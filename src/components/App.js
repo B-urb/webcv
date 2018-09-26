@@ -1,12 +1,19 @@
 import React, {Component} from "react";
-
+import ResponsiveNavContainer from "./ResponsiveNavContainer";
+import Introduction from "./Introduction";
+import EducationHistory from "./EducationHistory";
+import WorkExperience from"./WorkExperience";
+import Footer from "./Footer";
 
 class App extends Component {
     render(){
         return(
-            <div>
-                <h2>CV</h2>
-            </div>
+            <ResponsiveNavContainer>
+                <Introduction/>
+                <EducationHistory />
+                <WorkExperience />
+                <Footer />
+            </ResponsiveNavContainer>
         )
     }
 
