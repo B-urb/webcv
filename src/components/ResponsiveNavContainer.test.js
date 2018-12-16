@@ -10,11 +10,11 @@ describe("ResponsiveNavContainer", () => {
     });
 
     it("contains an MobileContainer", () => {
-       expect(container.find("MobileContainer").exists()).toBeTrue();
+       expect(container.find("MobileContainer").exists()).toBe(true);
     });
 
     it("contains an DesktopContainer", () => {
-        expect(container.find("DesktopContainer").exists()).toBeTrue();
+        expect(container.find("DesktopContainer").exists()).toBe(true);
     });
 
 
