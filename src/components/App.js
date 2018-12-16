@@ -1,19 +1,13 @@
 import React, {Component} from "react";
-import ResponsiveNavContainer from "./ResponsiveNavContainer";
-import Introduction from "./Introduction";
-import EducationHistory from "./EducationHistory";
-import WorkExperience from"./WorkExperience";
-import Footer from "./Footer";
+import {Segment} from "semantic-ui-react"
+import HomepageHeading from "./HomepageHeading"
 
 class App extends Component {
     render(){
         return(
-            <ResponsiveNavContainer>
-                <Introduction/>
-                <EducationHistory />
-                <WorkExperience />
-                <Footer />
-            </ResponsiveNavContainer>
+            <Segment style={{height:"100vh",backgroundColor:"black"}}>
+            <HomepageHeading/>
+            </Segment>
         )
     }
 
