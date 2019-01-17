@@ -1,7 +1,7 @@
 import React from 'react'
 import {
     Container,
-    Header
+    Header, Segment, Divider, List,Image
 } from "semantic-ui-react"
 
     /* eslint-disable react/no-multi-comp */
@@ -22,6 +22,70 @@ const HomepageHeading = () => (
                 marginTop: '3em',
             }}
         />
+            <Header inverted>
+                Work
+            </Header>
+            <List inverted>
+                <List.Item>
+                    <Image avatar src='https://react.semantic-ui.com/images/avatar/small/rachel.png' />
+                    <List.Content>
+                        <List.Header as='a'>ZF Group</List.Header>
+                        <List.Description>
+                            Last seen watching{' '}
+                            <a>
+                                <b>Arrested Development</b>
+                            </a>{' '}
+                            just now.
+                        </List.Description>
+                    </List.Content>
+                </List.Item>
+                <List.Item>
+                    <Image avatar src='https://react.semantic-ui.com/images/avatar/small/rachel.png' />
+                    <List.Content>
+                        <List.Header as='a'>Porsche AG</List.Header>
+                        <List.Description>
+                            Last seen watching{' '}
+                            <a>
+                                <b>Arrested Development</b>
+                            </a>{' '}
+                            just now.
+                        </List.Description>
+                    </List.Content>
+                </List.Item>
+                <List.Item>
+                    <Image avatar src='https://react.semantic-ui.com/images/avatar/small/rachel.png' />
+                    <List.Content>
+                        <List.Header as='a'>Hochtief AG</List.Header>
+                        <List.Description>
+                            Last seen watching{' '}
+                            <a>
+                                <b>Arrested Development</b>
+                            </a>{' '}
+                            just now.
+                        </List.Description>
+                    </List.Content>
+                </List.Item>
+            </List>
+        <Divider/>
+             <Header inverted>
+                Education
+            </Header>
+
+<List inverted>
+    <List.Item>
+            <Image avatar src='https://react.semantic-ui.com/images/avatar/small/rachel.png' />
+            <List.Content>
+                <List.Header as='a'>Rheinische Friedrichs Wilhelms Universität Bonn</List.Header>
+               </List.Content>
+        </List.Item>
+    <List.Item>
+        <Image avatar src='https://react.semantic-ui.com/images/avatar/small/rachel.png' />
+        <List.Content>
+            <List.Header as='a'>Ruhr-Universität Bochum</List.Header>
+        </List.Content>
+    </List.Item>
+    </List>
+
 
     </Container>
 );
