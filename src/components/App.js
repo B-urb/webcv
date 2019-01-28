@@ -7,7 +7,7 @@ import EducationHistory from "./EducationHistory"
 class App extends Component {
     render(){
         return(
-            <Segment style={{height:"100vh",backgroundColor:"black"}}>
+            <Segment style={{height:"100vh",backgroundColor:"rgb(59, 37, 37)"}}>
                 <Container text>
             <HomepageHeading/>
             <WorkHistory/>
