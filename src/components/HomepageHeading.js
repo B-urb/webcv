@@ -1,7 +1,6 @@
 import React from 'react'
 import {
-    Container,
-    Header, Segment, Divider, List,Image
+   Header
 } from "semantic-ui-react"
 
     /* eslint-disable react/no-multi-comp */
