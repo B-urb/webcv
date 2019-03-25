@@ -1,4 +1,4 @@
-image: node:7.9.0 # change to match your node version
+
 
 cache:
   paths:
@@ -13,11 +13,13 @@ stages:
   - deploy
 
 test:
+  image: node:7.9.0 # change to match your node version
   stage: test
   script:
     - CI=true npm run test-ci
     
 build:
+  image: docker:dind
   stage: build
   script:
     - CI=true npm run build
