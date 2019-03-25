@@ -1,4 +1,3 @@
-
 cache:
   paths:
     - node_modules/
@@ -25,8 +24,7 @@ build:
     - CI=true npm run build
     - rm -rf public
     - mv build public
-    - docker build . -t registry.gitlab.com/bjoern_urban_5/webcv:latest
-    - docker push registry.gitlab.com/bjoern_urban_5/webcv:latest
+    
 
 build-docker:
   image: docker:dind
