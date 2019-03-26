@@ -5,7 +5,7 @@ cache:
 variables:
   DOCKER_HOST: tcp://localhost:2375
   priviledged: true
-  gitlab-runner.runners.privileged=true
+  gitlab-runner.runners.privileged: true
 
 
 before_script:
