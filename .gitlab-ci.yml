@@ -33,8 +33,8 @@ build-docker:
   services: 
     - docker:dind
   variables:
-    - DOCKER_HOST: tcp://localhost:2375
-    - priviledged: true
+    DOCKER_HOST: tcp://localhost:2375
+    priviledged: true
  
   stage: build-docker
   script:
