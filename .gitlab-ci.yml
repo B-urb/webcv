@@ -27,6 +27,8 @@ build:
     
 
 build-docker:
+  variables:
+    - priviledged:true
   before_script:
     - echo "pass"
   image: docker:latest
