@@ -2,6 +2,12 @@ cache:
   paths:
     - node_modules/
 
+variables:
+  DOCKER_HOST: tcp://localhost:2375
+  priviledged: true
+  gitlab-runner.runners.privileged=true
+
+
 before_script:
   - npm install
 
@@ -32,10 +38,6 @@ build-docker:
   image: docker:latest
   services: 
     - docker:dind
-  variables:
-    DOCKER_HOST: tcp://localhost:2375
-    priviledged: true
- 
   stage: build-docker
   script:
     - docker build . -t registry.gitlab.com/bjoern_urban_5/webcv:latest
