@@ -28,7 +28,7 @@ build:
 
 build-docker:
   before_script:
-    - :
+    - echo "pass"
   image: docker:dind
   stage: build-docker
   script:
