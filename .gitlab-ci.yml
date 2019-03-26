@@ -27,6 +27,7 @@ build:
     
 
 build-docker:
+  before_script:
   image: docker:dind
   stage: build-docker
   script:
