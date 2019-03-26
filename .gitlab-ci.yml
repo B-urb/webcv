@@ -30,7 +30,8 @@ build-docker:
   before_script:
     - echo "pass"
   image: docker:latest
-  services: docker:dind
+  services: 
+    - docker:dind
   variables:
     - DOCKER_HOST: tcp://localhost:2375
     - priviledged:true
