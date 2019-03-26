@@ -27,11 +27,14 @@ build:
     
 
 build-docker:
-  variables:
-    - priviledged:true
   before_script:
     - echo "pass"
   image: docker:latest
+  services: docker:dind
+  variables:
+    - DOCKER_HOST: tcp://localhost:2375
+    - priviledged:true
+ 
   stage: build-docker
   script:
     - docker build . -t registry.gitlab.com/bjoern_urban_5/webcv:latest
