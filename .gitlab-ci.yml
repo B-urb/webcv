@@ -45,7 +45,7 @@ variables:
 
 deploy-staging:
   stage: deploy-staging
-    image: alpine
+  image: alpine
   environment:
     name: develop
   script:
