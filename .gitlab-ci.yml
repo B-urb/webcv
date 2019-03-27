@@ -31,15 +31,6 @@ build:
 build-docker:
   before_script:
     - echo "pass"
-  image: docker:dind
-  stage: build-docker
-  script:
-    - docker build . -t registry.gitlab.com/bjoern_urban_5/webcv:latest
-    - docker push registry.gitlab.com/bjoern_urban_5/webcv:latest
-    
-build-docker:
-  before_script:
-    - echo "pass"
   stage: build-docker
   image:
     name: gcr.io/kaniko-project/executor:debug
