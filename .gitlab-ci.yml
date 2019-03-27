@@ -43,7 +43,7 @@ variables:
   STAGING_NAMESPACE: app-stage
   PRODUCTION_NAMESPACE: app-prod
 
-deploy_staging:
+deploy-staging:
   stage: deploy
   image: lwolf/helm-kubectl-docker:v152_213
   before_script:
