@@ -1,39 +1,42 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: __CI_BUILD_REF_SLUG__
+  name: _APP_NAME_
   labels:
-    app: __CI_BUILD_REF_SLUG__
-    track: stable
+    app: _APP_NAME_
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: __CI_BUILD_REF_SLUG__
+      app: _APP_NAME_
+  
+  # Pod template
   template:
     metadata:
       labels:
-        app: __CI_BUILD_REF_SLUG__
-        track: stable
+        app: _APP_NAME_
     spec:
-      imagePullSecrets:
-        - name: $CI_REGISTRY_USER
-        - password: $CI_REGISTRY_PASSWORD
       containers:
-      - name: app
-        image: registry.gitlab.com/bjoern_urban_5/webcv:latest
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 80
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 80
-          initialDelaySeconds: 3
-          timeoutSeconds: 2
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 80
-          initialDelaySeconds: 3
-          timeoutSeconds: 2
+        - name: test
+          image: registry.gitlab.com/bjoern_urban_5/webcv:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: gitlab-registry
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: _APP_NAME_
+  labels:
+    app: _APP_NAME_
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+      app: _APP_NAME_
