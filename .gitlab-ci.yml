@@ -23,7 +23,7 @@ build:
   image: node:7.9.0
   stage: build
   script:
-    - CI=true npm run build
+    - CI=true npm run-script build
     - rm -rf public
     - mv build public
     
