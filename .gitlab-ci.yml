@@ -44,6 +44,8 @@ variables:
   PRODUCTION_NAMESPACE: app-prod
 
 deploy-staging:
+  before_script:
+    - echo "pass"
   stage: deploy-staging
   image: alpine
   environment:
