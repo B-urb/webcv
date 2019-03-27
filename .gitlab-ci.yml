@@ -11,7 +11,7 @@ stages:
   - test
   - build
   - build-docker
-  - deploy
+  - deploy-staging
 
 test:
   image: node:7.9.0 # change to match your node version
@@ -39,13 +39,30 @@ build-docker:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
 
+variables:
+  STAGING_NAMESPACE: app-stage
+  PRODUCTION_NAMESPACE: app-prod
 
-pages:
+deploy_staging:
   stage: deploy
+  image: lwolf/helm-kubectl-docker:v152_213
+  before_script:
+    - mkdir -p /etc/deploy
+    - echo ${kube_config} | base64 -d > ${KUBECONFIG}
+    - kubectl config use-context homekube
+    - helm init --client-only
+    - helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+    - helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com/
+    - helm repo update
   script:
-    kubectl create -f frontend-deployment.yaml
-  artifacts:
-    paths:
-      - public # GitLab pages serve from a 'public' directory
+    - cd deploy/libr-files
+    - helm dep build
+    - export API_VERSION="$(grep "appVersion" Chart.yaml | cut -d" " -f2)"
+    - export RELEASE_NAME="libr-files-v${API_VERSION/./-}"
+    - export DEPLOYS=$(helm ls | grep $RELEASE_NAME | wc -l)
+    - if [ ${DEPLOYS}  -eq 0 ]; then helm install --name=${RELEASE_NAME} . --namespace=${STAGING_NAMESPACE}; else helm upgrade ${RELEASE_NAME} . --namespace=${STAGING_NAMESPACE}; fi
+  environment:
+    name: staging
+    url: https://bjourban.de
   only:
-    - master # run on master branch
+  - master
