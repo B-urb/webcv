@@ -32,6 +32,8 @@ build-docker:
   before_script:
     - echo "pass"
   stage: build-docker
+  dependencies:
+    - build
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
