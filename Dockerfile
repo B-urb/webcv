@@ -1,4 +1,4 @@
-FROM node:7.9.0
+FROM node:8.9.0
 
 #COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY public/ /usr/local/public
