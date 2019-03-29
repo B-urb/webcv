@@ -39,7 +39,7 @@ spec:
       targetPort: 3000
       protocol: TCP
       name: http
-    - port: 443
+    - port: 31001
       protocol: TCP
       targetPort: 3000
       name: https
