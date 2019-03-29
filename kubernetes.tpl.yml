@@ -42,6 +42,10 @@ spec:
     - port: 31001
       protocol: TCP
       targetPort: 3000
+      name: test
+    - port: 443
+      protocol: TCP
+      targetPort: 3000
       name: https
   selector:
       app: _APP_NAME_
