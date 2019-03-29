@@ -14,13 +14,13 @@ stages:
   - deploy-staging
 
 test:
-  image: node:7.9.0 # change to match your node version
+  image: node:8.9.0 # change to match your node version
   stage: test
   script:
     - CI=true npm run test-ci
     
 build:
-  image: node:7.9.0
+  image: node:8.9.0
   stage: build
   script:
     - CI=true npm run-script build
