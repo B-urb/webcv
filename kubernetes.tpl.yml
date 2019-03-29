@@ -45,5 +45,3 @@ spec:
       name: https
   selector:
       app: _APP_NAME_
-  externalIPs:
-  - 172.20.41.93
