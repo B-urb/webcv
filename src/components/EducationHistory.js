@@ -16,15 +16,15 @@ const EducationHistory = () => (
 
         <List inverted size={'massive'} divided>
             <List.Item>
-                <Image style={{'font-size':42}} avatar src='https://www.xing.com/img/custom/cp/assets/logo/2/4/1/12865/square_512px/UNI_Bonn_Logo_Standard_RZ_L.jpg' />
+                <Image style={{fontSize:42}} avatar src='https://www.xing.com/img/custom/cp/assets/logo/2/4/1/12865/square_512px/UNI_Bonn_Logo_Standard_RZ_L.jpg' />
                 <List.Content>
                     <List.Header as='a'>Rheinische Friedrichs Wilhelms Universität Bonn</List.Header>
                 </List.Content>
             </List.Item>
             <List.Item>
-                <Image style={{'font-size':42}} avatar src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Ruhr-Universit%C3%A4t_Bochum_logo.svg/2000px-Ruhr-Universit%C3%A4t_Bochum_logo.svg.png' />
+                <Image style={{fontSize:42}} avatar src='' />
                 <List.Content>
-                    <List.Header as='a'>Ruhr-Universität Bochum</List.Header>
+                    <List.Header as='a'></List.Header>
                 </List.Content>
             </List.Item>
         </List>
