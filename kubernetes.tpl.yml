@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: _APP_NAME_
@@ -32,6 +32,7 @@ metadata:
   name: _APP_NAME_
   labels:
     app: _APP_NAME_
+    version: v1
 spec:
   type: ClusterIP
   ports:
