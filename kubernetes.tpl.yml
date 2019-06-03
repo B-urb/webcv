@@ -15,9 +15,10 @@ spec:
     metadata:
       labels:
         app: _APP_NAME_
+        version: v1
     spec:
       containers:
-        - name: test
+        - name: webcv-cont
           image: registry.gitlab.com/privateprojectsbu/webcv:latest
           imagePullPolicy: Always
           ports:
