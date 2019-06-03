@@ -22,7 +22,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
-            - containerPort: 3000
       imagePullSecrets:
         - name: gitlab-registry
 ---
@@ -33,19 +32,12 @@ metadata:
   labels:
     app: _APP_NAME_
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - port: 80
       targetPort: 3000
       protocol: TCP
-      name: http
-    - port: 31001
-      protocol: TCP
-      targetPort: 3000
-      name: test
-    - port: 443
-      protocol: TCP
-      targetPort: 3000
-      name: https
+      name: external
   selector:
       app: _APP_NAME_
+      version: v1
