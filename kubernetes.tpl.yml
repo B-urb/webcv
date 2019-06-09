@@ -2,6 +2,7 @@ apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: _APP_NAME_
+  namespace: _APP_ENV_
   labels:
     app: _APP_NAME_
 spec:
@@ -30,6 +31,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: _APP_NAME_
+  namespace: _APP_ENV_
   labels:
     app: _APP_NAME_
     version: v1
@@ -43,3 +45,24 @@ spec:
   selector:
       app: _APP_NAME_
       version: v1
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: _APP_NAME_
+  namespace: _APP_ENV_
+  labels:
+    app: _APP_NAME_
+    system: test
+  annotations:
+    zalando.org/skipper-filter: basicAuth(_APP_AUTH_FILE_)
+
+spec:
+  rules:
+    - host: _APP_HOST_
+      http:
+        paths:
+          - backend:
+              serviceName: _APP_NAME_
+              servicePort: 80
+            path: /
