@@ -133,5 +133,5 @@ deploy-prod:
     - kubectl apply -f kubernetes.yml
   when: manual
   only:
-    - master_temp
+    - master-temp
 
