@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: webcv-cont
-          image: registry.gitlab.com/privateprojectsbu/webcv:latest
+          image: _APP_CONTAINER_IMAGE_
           imagePullPolicy: Always
           ports:
             - containerPort: 3000

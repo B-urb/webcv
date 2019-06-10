@@ -43,7 +43,7 @@ build-docker:
     entrypoint: [""]
   script:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
 
 variables:
   STAGING_NAMESPACE: app-stage
@@ -69,10 +69,8 @@ deploy-dev:
     - kubectl config set-credentials admin --username="$KUBE_USER" --password="$KUBE_PASSWORD"
     - kubectl config set-context default --cluster=bjourban.de --user=admin
     - kubectl config use-context default
-    - 'printf "apiVersion: v1\nkind: Secret\n$(kubectl create secret docker-registry gitlab-registry --docker-server=$CI_REGISTRY --docker-username=$CI_REGISTRY_USER --docker-password=$CI_REGISTRY_PASSWORD --docker-email=$GITLAB_USER_EMAIL -o yaml --dry-run)" | kubectl apply -f -'
-    - sed 's/_APP_NAME_/'"$CI_PROJECT_NAME"'/g; s/_VERSION_/'"$CI_COMMIT_SHA"'/g'; s/_APP_ENV_/'"development"'/g'; \
-      s/_APP_HOST_/'"dev.bjourban.de"'/g';s/_APP_AUTH_FILE_/'"$DEV_AUTH_FILE"'/g' \
-      kubernetes.tpl.yml > kubernetes.yml;    - kubectl apply -f kubernetes.yml
+    - 'printf "apiVersion: v1\nkind: Secret\n$(kubectl create secret docker-registry gitlab-registry -n development --docker-server=$CI_REGISTRY --docker-username=$CI_REGISTRY_USER --docker-password=$CI_REGISTRY_PASSWORD --docker-email=$GITLAB_USER_EMAIL -o yaml --dry-run)" | kubectl apply -f -'
+    - sed 's,_APP_NAME_,'"$CI_PROJECT_NAME"',g; s,_VERSION_,'"$CI_COMMIT_SHA"',g; s,_APP_ENV_,"development",g;s,_APP_HOST_,"dev.bjourban.de",g; s,_APP_AUTH_FILE_,"'"$DEV_AUTH_FILE"'",g; s,_APP_CONTAINER_IMAGE_,'"$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"',g' kubernetes.tpl.yml > kubernetes.yml;
     - kubectl apply -f kubernetes.yml
   only:
     - development
@@ -98,12 +96,13 @@ deploy-staging:
     - kubectl config set-credentials admin --username="$KUBE_USER" --password="$KUBE_PASSWORD"
     - kubectl config set-context default --cluster=bjourban.de --user=admin
     - kubectl config use-context default
-    - 'printf "apiVersion: v1\nkind: Secret\n$(kubectl create secret docker-registry gitlab-registry --docker-server=$CI_REGISTRY --docker-username=$CI_REGISTRY_USER --docker-password=$CI_REGISTRY_PASSWORD --docker-email=$GITLAB_USER_EMAIL -o yaml --dry-run)" | kubectl apply -f -'
-    - sed 's/_APP_NAME_/'"$CI_PROJECT_NAME"'/g; s/_VERSION_/'"$CI_COMMIT_SHA"'/g'; s/_APP_ENV_/'"staging"'/g'; \
-       s/_APP_HOST_/'"staging.bjourban.de"'/g';s/_APP_AUTH_FILE_/'"$STAGING_AUTH_FILE"'/g' \
-      kubernetes.tpl.yml > kubernetes.yml;    - kubectl apply -f kubernetes.yml
+    - 'printf "apiVersion: v1\nkind: Secret\n$(kubectl create secret docker-registry gitlab-registry -n staging --docker-server=$CI_REGISTRY --docker-username=$CI_REGISTRY_USER --docker-password=$CI_REGISTRY_PASSWORD --docker-email=$GITLAB_USER_EMAIL -o yaml --dry-run)" | kubectl apply -f -'
+    - sed 's,_APP_NAME_,'"$CI_PROJECT_NAME"',g; s,_VERSION_,'"$CI_COMMIT_SHA"',g; s,_APP_ENV_,"staging",g;s,_APP_HOST_,"staging.bjourban.de",g; s,_APP_AUTH_FILE_,"'"$STAGING_AUTH_FILE"'",g; s,_APP_CONTAINER_IMAGE_,'"$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"',g' kubernetes.tpl.yml > kubernetes.yml;
+
+      kubernetes.tpl.yml > kubernetes.yml;
+    - kubectl apply -f kubernetes.yml
   only:
-    - master-temp
+    - release-*
   artifacts:
     paths:
       - kubernetes.yml
@@ -128,9 +127,8 @@ deploy-prod:
     - kubectl config set-credentials admin --username="$KUBE_USER" --password="$KUBE_PASSWORD"
     - kubectl config set-context default --cluster=bjourban.de --user=admin
     - kubectl config use-context default
-    - 'printf "apiVersion: v1\nkind: Secret\n$(kubectl create secret docker-registry gitlab-registry --docker-server=$CI_REGISTRY --docker-username=$CI_REGISTRY_USER --docker-password=$CI_REGISTRY_PASSWORD --docker-email=$GITLAB_USER_EMAIL -o yaml --dry-run)" | kubectl apply -f -'
-    - sed 's/_APP_NAME_/'"$CI_PROJECT_NAME"'/g; s/_VERSION_/'"$CI_COMMIT_SHA"'/g'; s/_APP_ENV_/'"production"'/g'; \
-      s/_APP_HOST_/'"bjourban.de"'/g' kubernetes.tpl.yml > kubernetes.yml;    - kubectl apply -f kubernetes.yml
+    - 'printf "apiVersion: v1\nkind: Secret\n$(kubectl create secret docker-registry gitlab-registry -n production --docker-server=$CI_REGISTRY --docker-username=$CI_REGISTRY_USER --docker-password=$CI_REGISTRY_PASSWORD --docker-email=$GITLAB_USER_EMAIL -o yaml --dry-run)" | kubectl apply -f -'
+    - sed 's,_APP_NAME_,'"$CI_PROJECT_NAME"',g; s,_VERSION_,'"$CI_COMMIT_SHA"',g; s,_APP_ENV_,"production",g;s,_APP_HOST_,"bjourban.de",g; s,_APP_CONTAINER_IMAGE_,'"$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"',g' kubernetes.tpl.yml > kubernetes.yml;
     - sed -i '/_APP_AUTH_FILE_/d' kubernetes.yml;
     - kubectl apply -f kubernetes.yml
   when: manual
