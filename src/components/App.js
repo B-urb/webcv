@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Container, Segment, Divider} from "semantic-ui-react"
+import {Container, Segment} from "semantic-ui-react"
 import HomepageHeading from "./HomepageHeading"
 
 
