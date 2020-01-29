@@ -11,9 +11,7 @@ stages:
   - test
   - build
   - build-docker
-  - deploy-dev
-  - deploy-staging
-  - deploy-prod
+
 test:
   image: node:8.9.0 # change to match your node version
   stage: test
