@@ -8,7 +8,7 @@ import AboutMe from "./AboutMe";
 class App extends Component {
     render(){
         return(
-            <Segment style={{height:"100vh",backgroundColor:"rgb(59, 37, 37)"}}>
+            <Segment style={{height:"100vh",backgroundColor:"#044c62"}}>
             <Container style={{width:"80vw"}}>
             <HomepageHeading/>
             <Divider inverted/>
