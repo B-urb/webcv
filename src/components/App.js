@@ -13,7 +13,6 @@ class App extends Component {
             <HomepageHeading/>
             <Divider inverted/>
             <AboutMe/>
-
             </Container>
             </Segment>
 
