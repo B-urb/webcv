@@ -12,7 +12,6 @@ const HomepageHeading = () => (
         <Header
             as='h1'
             content='Björn Urban'
-            inverted
             textAlign='center'
             style={{
                 fontSize: '4em',
