@@ -36,7 +36,7 @@ class AboutMe extends React.Component {
                     <a href={"https://www.porshe.de/"}>Porsche</a> and <a href={"https://www.hochtief.de/"}>Hochtief</a>.
                     <br/>
                     <br/>
-                    In my free time I play the drums or the piano or stay active doing bodyweight exercises and learning new movements.
+                    In my time off I play the drums or the piano or stay active doing bodyweight exercises and learning new movements.
 
 
 
