@@ -33,7 +33,7 @@ class AboutMe extends React.Component {
                     <br/>
                     <br/>
                     Previously I have worked at <a href={"https://www.zf.com/"}>ZF</a>,&nbsp;
-                    <a href={"https://www.porshe.de/"}>Porsche</a> and <a href={"https://www.hochtief.de/"}>Hochtief</a>.
+                    <a href={"https://www.porsche.de/"}>Porsche</a> and <a href={"https://www.hochtief.de/"}>Hochtief</a>.
                     <br/>
                     <br/>
                     In my time off I play the drums or the piano or stay active doing bodyweight exercises and learning new movements.
