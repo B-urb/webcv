@@ -1,20 +1,23 @@
 import React, {Component} from "react";
 import {Container, Segment, Divider} from "semantic-ui-react"
-import HomepageHeading from "./HomepageHeading"
-import AboutMe from "./AboutMe";
+import HomepageHeading from "../Functional/HomepageHeading"
+import AboutMe from "../AboutMe/AboutMe";
+import Footer from "../Functional/Footer"
 
 
 
 class App extends Component {
     render(){
         return(
-            <Segment style={{height:"100vh"}}>
-            <Container style={{width:"80vw"}}>
+         <div className='parent'>
+            <Container>
             <HomepageHeading/>
             <Divider inverted/>
             <AboutMe/>
             </Container>
-            </Segment>
+                <Footer/>
+         </div>
+
 
         )
     }
