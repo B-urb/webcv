@@ -4,7 +4,7 @@ import AboutPage from "./AboutPage";
 
 const Footer = () => (
   <Segment inverted vertical style={{ margin: '5em 0em 0em', padding: '5em 0em' }}>
-<Grid columns={2} divided>
+<Grid columns={2} divided textAlign='center'>
   <Grid.Column>
     <AboutPage/>
   </Grid.Column>
