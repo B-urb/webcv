@@ -15,7 +15,8 @@ class App extends Component {
         this.setState({contextRef: ref});
     render(){
         return(
-         <div ref={this.getParentRef} className='parent'>
+         <div className='parent'>
+             <Container ref={this.getParentRef}>
              <SocialMediaSticky contextRef={this.contextRef}/>
             <Container>
             <HomepageHeading/>
@@ -27,7 +28,9 @@ class App extends Component {
                 <Skills/>
             </Container>
 
-                <Footer/>
+
+             </Container>
+             <Footer/>
          </div>
 
 
