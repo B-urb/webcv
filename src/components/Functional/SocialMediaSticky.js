@@ -2,13 +2,11 @@ import React from 'react'
 import {Menu,   Sticky, Rail, Icon} from "semantic-ui-react"
 
 
-function SocialMediaSticky(props){
-
+function SocialMediaSticky(){
 
     return (
-
-        <Rail position='right'>
-            <Sticky active={true} context={props.contextRef}>
+        <Rail attached close position='right'>
+            <Sticky active={true}>
                 <Menu icon='labeled'
                       vertical
                 >
@@ -16,12 +14,10 @@ function SocialMediaSticky(props){
                         <Icon name='twitter' />
                         Twitter
                     </Menu.Item>
-
                     <Menu.Item>
                         <Icon name='facebook' />
                         Share
                     </Menu.Item>
-
                     <Menu.Item>
                         <Icon name='mail' />
                         Email

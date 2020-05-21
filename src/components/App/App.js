@@ -10,14 +10,12 @@ import SocialMediaSticky from "../Functional/SocialMediaSticky";
 
 
 class App extends Component {
-    contextRef = null;
-    getParentRef = ref =>
-        this.setState({contextRef: ref});
+
     render(){
         return(
          <div className='parent'>
-             <Container ref={this.getParentRef}>
-             <SocialMediaSticky contextRef={this.contextRef}/>
+             <Container >
+             <SocialMediaSticky/>
             <Container>
             <HomepageHeading/>
             <Divider inverted/>
