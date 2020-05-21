@@ -9,7 +9,7 @@ const Footer = () => (
     <AboutPage/>
   </Grid.Column>
   <Grid.Column>
-    <p>HIII</p>
+    <p>Thanks for Visiting my Page!</p>
   </Grid.Column>
 </Grid>
   </Segment>

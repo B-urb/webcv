@@ -1,9 +1,9 @@
 import React from 'react'
-import {Header, Modal} from 'semantic-ui-react'
+import {Header, Modal, Label} from 'semantic-ui-react'
 
 const AboutPage = () => (
     <Modal
-        trigger={<a>About this page</a>}
+        trigger={<Label as="a">About this page</Label>}
         closeIcon>
         <Modal.Header>About this page</Modal.Header>
         <Modal.Content image scrolling>
