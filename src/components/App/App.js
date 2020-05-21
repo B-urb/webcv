@@ -15,7 +15,7 @@ class App extends Component {
         return(
          <div className='parent'>
              <Container >
-             <SocialMediaSticky/>
+             <SocialMediaSticky active={true}/>
             <Container>
             <HomepageHeading/>
             <Divider inverted/>

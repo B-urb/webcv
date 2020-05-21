@@ -1,12 +1,12 @@
 import React from 'react'
-import {Menu,   Sticky, Rail, Icon} from "semantic-ui-react"
+import {Menu, Sticky, Rail, Icon} from "semantic-ui-react"
 
 
-function SocialMediaSticky(){
+function SocialMediaSticky(props){
 
     return (
         <Rail attached close position='right'>
-            <Sticky active={true}>
+            <Sticky active={props.active}>
                 <Menu icon='labeled'
                       vertical
                 >
