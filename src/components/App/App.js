@@ -4,6 +4,7 @@ import HomepageHeading from "../Functional/HomepageHeading"
 import AboutMe from "../AboutMe/AboutMe";
 import Footer from "../Functional/Footer"
 import "./App.css"
+import Skills from "../Skills/Skills";
 
 
 
@@ -15,10 +16,12 @@ class App extends Component {
             <HomepageHeading/>
             <Divider inverted/>
             <AboutMe/>
+            </Container>
+             <Divider/>
             <Container style={{height:"500px"}}>
-                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                <Skills/>
             </Container>
-            </Container>
+
                 <Footer/>
          </div>
 
