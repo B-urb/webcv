@@ -5,13 +5,18 @@ import AboutMe from "../AboutMe/AboutMe";
 import Footer from "../Functional/Footer"
 import "./App.css"
 import Skills from "../Skills/Skills";
+import SocialMediaSticky from "../Functional/SocialMediaSticky";
 
 
 
 class App extends Component {
+    contextRef = null;
+    getParentRef = ref =>
+        this.setState({contextRef: ref});
     render(){
         return(
-         <div className='parent'>
+         <div ref={this.getParentRef} className='parent'>
+             <SocialMediaSticky contextRef={this.contextRef}/>
             <Container>
             <HomepageHeading/>
             <Divider inverted/>
