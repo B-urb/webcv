@@ -2,12 +2,25 @@ import React from 'react'
 import {Menu, Sticky, Rail, Icon} from "semantic-ui-react"
 
 
-function SocialMediaSticky(props){
+const overlayMenuStyle = {
+    position: 'relative',
+    left: 0,
+    transition: 'left 0.5s ease',
+};
 
-    return (
-        <Rail attached close position='right'>
-            <Sticky active={props.active}>
+const fixedOverlayMenuStyle = {
+    ...overlayMenuStyle,
+    left: '2000px',
+};
+class SocialMediaSticky extends React.Component {
+    contextRef = React.createRef();
+    render() {
+        return (
+            <div ref={this.contextRef}>
+        <Rail attached close position='left'>
+            <Sticky contextRef={this.contextRef}>
                 <Menu icon='labeled'
+                      style={fixedOverlayMenuStyle}
                       vertical
                 >
                     <Menu.Item>
@@ -25,7 +38,9 @@ function SocialMediaSticky(props){
                 </Menu>
             </Sticky>
         </Rail>
+            </div>
         );
+}
 }
 
 export default SocialMediaSticky;

@@ -14,8 +14,8 @@ class App extends Component {
     render(){
         return(
          <div className='parent'>
-             <Container >
-             <SocialMediaSticky active={true}/>
+             <Container>
+                 <SocialMediaSticky active={true}/>
             <Container>
             <HomepageHeading/>
             <Divider inverted/>
@@ -29,6 +29,8 @@ class App extends Component {
 
              </Container>
              <Footer/>
+
+
          </div>
 
 
