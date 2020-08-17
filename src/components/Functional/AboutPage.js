@@ -1,5 +1,5 @@
 import React from 'react'
-import {Header, Modal, Label} from 'semantic-ui-react'
+import {Header, Modal, Label, List} from 'semantic-ui-react'
 
 const AboutPage = () => (
     <Modal
@@ -9,10 +9,11 @@ const AboutPage = () => (
         <Modal.Content image scrolling>
                <Modal.Description>
                 <Header>Framework and Technologies</Header>
-                <p>
-                    This is an example of expanded content that will cause the modal's
-                    dimmer to scroll
-                </p>
+                <List>
+                    <List.Item>Semantic UI React</List.Item>
+                    <List.Item>Gitlab CI/CD</List.Item>
+                    <List.Item>Traefik</List.Item>
+                </List>
             </Modal.Description>
         </Modal.Content>
     </Modal>
