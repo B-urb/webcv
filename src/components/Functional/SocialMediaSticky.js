@@ -11,6 +11,7 @@ const overlayMenuStyle = {
 const fixedOverlayMenuStyle = {
     ...overlayMenuStyle,
     left: '2000px',
+    top: '300px'
 };
 class SocialMediaSticky extends React.Component {
     contextRef = React.createRef();
