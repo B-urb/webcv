@@ -5,7 +5,6 @@ import AboutMe from "../AboutMe/AboutMe";
 import Footer from "../Functional/Footer"
 import "./App.css"
 import Skills from "../Skills/Skills";
-import SocialMediaSticky from "../Functional/SocialMediaSticky";
 
 
 
@@ -15,7 +14,6 @@ class App extends Component {
         return(
          <div className='parent'>
              <Container>
-                 <SocialMediaSticky active={true}/>
             <Container>
             <HomepageHeading/>
             <Divider inverted/>
