@@ -1,38 +1,24 @@
 {
   "name": "webcv",
-  "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.26",
-    "@fortawesome/free-solid-svg-icons": "^5.12.0",
-    "@fortawesome/react-fontawesome": "^0.1.8",
-    "prop-types": "^15.6.2",
-    "react-i18next": "^11.3.1",
-    "react-markdown": "^4.3.1",
-    "react-redux": "^5.0.7",
-    "react-scripts": "1.1.5",
-    "redux": "^4.0.0",
-    "semantic-ui-react": "^0.82.5"
-  },
+  "version": "0.0.0",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "test-ci": "npm test -- --updateSnapshot",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "enzyme": "^3.5.0",
-    "enzyme-adapter-react-16": "^1.3.0",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "react-test-renderer": "^16.4.2",
-    "semantic-ui-css": "^2.4.1"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.js",
-      "!src/index.js"
-    ]
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^1.3.0",
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.13",
+    "tailwindcss": "^3.0.24",
+    "typescript": "^4.6.3",
+    "vite": "^2.9.9"
   }
 }
