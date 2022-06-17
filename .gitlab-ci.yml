@@ -13,7 +13,7 @@ stages:
   - build-docker
 
 test:
-  image: node:8.9.0 # change to match your node version
+  image: node:14.19.2
   stage: test
   script:
     - CI=true npm run test-ci
@@ -21,7 +21,7 @@ test:
     - when: never
 
 build:
-  image: node:8.9.0
+  image: node:14.19.2
   stage: build
   script:
     - CI=true npm run-script build
