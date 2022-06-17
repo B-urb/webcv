@@ -9,8 +9,8 @@ const App= ()  => {
   return (
       <>
       <div className="w-screen top-0 bg-gray-600 h-12 hidden">THis is navbar</div>
-    <div className="h-screen grid bg-yellow-50 text-black dark:bg-black font-mono dark:text-yellow-300">
-        <div className="row-span-1">
+    <div className="h-screen overflow-scroll grid bg-yellow-50 text-black dark:bg-black font-mono dark:text-yellow-300">
+        <div className="row-span-1 border-b-4 border-dashed border-yellow-300 pb-3">
         <Header/>
         </div>
         <div className="row-auto">
