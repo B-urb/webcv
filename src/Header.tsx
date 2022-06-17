@@ -6,7 +6,7 @@ library.add(faCode)
 
 const Header = () => {
 
-    return <div className="bg-gradient-to-b from-gray-800 to-black min-h-full self-stretch items-center justify-center text-green-500 text-center text-4xl">
+    return <div className="dark:bg-gradient-to-b dark:from-gray-800 dark:to-black min-h-full self-stretch items-center justify-center text-center text-4xl">
         <h1>Björn Urban</h1>
         <IntroText/>
     </div>
