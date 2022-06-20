@@ -26,7 +26,7 @@ build:
   script:
     - CI=true npm run-script build
     - rm -rf public
-    - mv build public
+    - cp -a dist/. public/
   artifacts:
     paths:
       - public/
