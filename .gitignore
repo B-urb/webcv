@@ -3,9 +3,11 @@
 
 #IDE
 /.idea
+.idea/
 
 # dependencies
 /node_modules
+node_modules/
 
 # testing
 /coverage
@@ -15,6 +17,9 @@
 /dist
 /projectFilesBackup
 
+build/
+dist/
+projectFilesBackup/
 
 # misc
 .DS_Store

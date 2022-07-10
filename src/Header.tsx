@@ -3,6 +3,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {faCode} from "@fortawesome/free-solid-svg-icons";
 import IntroText from "./IntroText";
 import LightDarkSwitch from "./LightDarkSwitch";
+import {useQuery, useQueryClient} from "react-query";
+import {start} from "./api/directus";
 library.add(faCode)
 
 const Header = () => {
@@ -12,7 +14,6 @@ const Header = () => {
         <IntroText/>
         <LightDarkSwitch/>
     </div>
-
 
 
 
