@@ -1,22 +1,15 @@
-import {ReactElement, useState} from 'react'
 import {
   QueryClient,
   QueryClientProvider,
 } from 'react-query'
 
-
-
-
-// Create a client
-
-const queryClient = new QueryClient()
 import './App.css'
 import './Header'
 import Header from "./Header";
 import Footer from "./Footer";
 import Projects from "./Projects";
 const App= ()  => {
-
+const queryClient = new QueryClient()
   return (
       <QueryClientProvider client={queryClient}>
       <div className="w-screen top-0 bg-gray-600 h-12 hidden">THis is navbar</div>
