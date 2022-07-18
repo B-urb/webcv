@@ -1,10 +1,10 @@
 import {useQuery} from "react-query";
-import {start} from "./api/directus";
+import {allBlogposts} from "./api/directus";
 import {Link, Outlet} from "react-router-dom";
 
 const Blogposts = () => {
 
-  const {status, data, error} = useQuery("blogposts",start);
+  const {status, data, error} = useQuery("blogposts",allBlogposts);
 
   if (status === 'loading'|| status === 'idle') {
     return <span>Loading...</span>
@@ -15,13 +15,11 @@ const Blogposts = () => {
   }
   if (status === 'success') {
 
-    return <div>
-      <Outlet/>
+    return <div className="flex justify-center">
       <ul className="list-none">
       {data.data != undefined && data.data.length > 0 ?
           data?.data.map((post, key) => <li key={key}>
-            Ehm Hello someone there
-            <Link to={post.id!.toString()}>Here</Link>
+            <Link to={post.id!.toString()}>{post.title!}</Link>
           </li>): <li>No Blogposts yet :( </li>}
       </ul>
     </div>

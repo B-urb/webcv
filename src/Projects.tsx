@@ -1,10 +1,10 @@
 import ProjectsCard from "./ProjectsCard";
 import {useQuery} from "react-query";
-import {start} from "./api/directus";
+import {allBlogposts} from "./api/directus";
 
 
 const Projects = () => {
-    const {status, data, error} = useQuery("blogposts",start);
+    const {status, data, error} = useQuery("blogposts",allBlogposts);
 
     if (status === 'loading'|| status === 'idle') {
         return <span>Loading...</span>
@@ -18,7 +18,7 @@ const Projects = () => {
         return <div className=" grid grid-cols-1 md:grid-cols-3">
             {data.data != undefined && data.data.length > 0 ?
                 data?.data.map((content, key) => <div key={key} className="flex-col items-stretch flex">
-                <ProjectsCard content={content.content!}/>
+                <ProjectsCard content={content.title!}/>
             </div>): <span>No Projects yet :( </span>}
 
         </div>
