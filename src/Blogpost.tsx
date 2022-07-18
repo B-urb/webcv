@@ -16,12 +16,11 @@ const Blogpost = () => {
       return <span>Error: {error.message}</span>
   }
   if (status === 'success') {
-
-    return <div>
-          <h2 className="font-roboto text-xl md:text-2xl">{data?.title!}</h2>
-        <div className="row-auto ">{parse(data?.content!)}</div>
-    </div>
+    return  data != undefined ? <div>
+          <h2 className="font-roboto text-xl md:text-2xl">{data.title!}</h2>
+        <div className="row-auto ">{parse(data.content!)}</div>
+    </div> : <div>No</div>
   }
-  else <div>Wat</div>
+  else return <div>Wat</div>
 }
 export default Blogpost;
