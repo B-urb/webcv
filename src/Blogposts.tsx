@@ -1,29 +1,27 @@
-import {useQuery} from "react-query";
-import {allBlogposts} from "./api/directus";
-import {Link, Outlet} from "react-router-dom";
+import {useQuery, UseQueryResult} from "react-query";
+import {allBlogposts, IBlogPost} from "./api/directus";
+import {Link} from "react-router-dom";
+import {ManyItems} from "@directus/sdk";
 
 const Blogposts = () => {
 
-  const {status, data, error} = useQuery("blogposts",allBlogposts);
+  const {status, data, error} : UseQueryResult<ManyItems<IBlogPost>, Error> = useQuery("blogposts",allBlogposts);
 
-  if (status === 'loading'|| status === 'idle') {
-    return <span>Loading...</span>
-  }
-  if (status === 'error') {
-    if(error instanceof Error)
+  switch (status) {
+    case "idle":
+      return <div>idle</div>;
+    case 'loading': return <span>Loading...</span>
+    case 'error':
       return <span>Error: {error.message}</span>
-  }
-  if (status === 'success') {
 
-    return <div className="flex justify-center">
-      <ul className="list-none">
-      {data.data != undefined && data.data.length > 0 ?
-          data?.data.map((post, key) => <li key={key}>
-            <Link to={post.id!.toString()}>{post.title!}</Link>
-          </li>): <li>No Blogposts yet :( </li>}
-      </ul>
-    </div>
-  }
-  else return <span>wat</span>
+    case "success": return <div>
+        <ul className="list-none">
+          {data.data != undefined && data.data.length > 0 ?
+              data.data.map((post, key) => <li key={key}>
+                <Link to={post.id!.toString()}>{post.title!}</Link>
+              </li>) : <li>No Blogposts yet :( </li>}
+        </ul>
+      </div>
+    }
 }
 export default Blogposts;

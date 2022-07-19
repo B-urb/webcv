@@ -3,17 +3,17 @@ import blogposts from "../Blogposts";
 
 
 
-export type BlogPost = {
+export type IBlogPost = {
   id: ID;
   title: string;
   content: string;
 };
 
 type MyCollections = {
-  posts: BlogPost
+  posts: IBlogPost
 }
 const directus = new Directus<MyCollections>('https://cms.burban.me');
-export async function allBlogposts() : Promise<ManyItems<BlogPost>> {
+export async function allBlogposts() : Promise<ManyItems<IBlogPost>> {
   // We don't need to authenticate if data is public
   return await directus.items("blogposts").readByQuery({
     // By default API limits results to 100.
@@ -25,6 +25,6 @@ export async function allBlogposts() : Promise<ManyItems<BlogPost>> {
 
 }
 
-export async function getPostById(id: number) : Promise<OneItem<BlogPost>> {
+export async function getPostById(id: number) : Promise<OneItem<IBlogPost>> {
   return await directus.items("blogposts").readOne(id);
 }
