@@ -15,7 +15,7 @@ const Projects = () => {
     }
     if (status === 'success') {
 
-        return <div className=" grid grid-cols-1 md:grid-cols-3">
+        return <div className="grid grid-cols-1 md:grid-cols-3">
             {data.data != undefined && data.data.length > 0 ?
                 data?.data.map((content, key) => <div key={key} className="flex-col items-stretch flex">
                 <ProjectsCard content={content.title!}/>

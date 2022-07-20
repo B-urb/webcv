@@ -21,7 +21,7 @@ const [theme, setTheme] = useState("dark")
       }
     }
   }
-  return <button onClick={switchTheme} className="absolute right-4 top-2">
+  return <button onClick={switchTheme} >
     <FontAwesomeIcon icon={theme === "dark" ? faLightbulb : faLightbulbOff} />
   </button>
 

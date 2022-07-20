@@ -2,32 +2,33 @@ import './App.css'
 import './Header'
 import Header from "./Header";
 import Footer from "./Footer";
-import {NavLink, Outlet} from "react-router-dom";
+import { Outlet} from "react-router-dom";
 import React from "react";
 import LightDarkSwitch from "./LightDarkSwitch";
+import NavBar from "./NavBar";
 const Layout = ()  => {
   return (<>
-        <div className="h-screen overflow-scroll grid bg-yellow-300 text-black dark:bg-black font-jetbrains dark:text-yellow-300">
-          <div className="row-span-1 border-b-4 border-dashed border-black dark:border-yellow-300">
-            <div className="dark:bg-gradient-to-b dark:from-gray-800 dark:to-black  font-roboto self-stretch items-center justify-center text-center md:text-4xl">
+        <div className="h-screen overflow-scroll grid grid-flow-row auto-rows-max bg-yellow-300 text-black dark:bg-black font-jetbrains dark:text-yellow-300">
+          <div className="grid grid-rows-3 border-b-4 font-roboto border-dashed border-black dark:border-yellow-300">
+            <div className="row-span-2 grid grid-cols-4 justify-between dark:bg-gradient-to-b dark:from-gray-800 dark:to-black items-center text-center md:text-4xl">
+              <div/>
               <Header/>
-            <LightDarkSwitch/>
+              <LightDarkSwitch/>
             </div>
-            <nav className="p-1 m-1">
-              <ul className="ml-auto flex items-center">
-                <li className="inline-block m-3"><NavLink to="/">About Me</NavLink></li>
-                <li className="inline-block m-3"><NavLink to="projects">Projects</NavLink></li>
-                <li className="inline-block m-3"><NavLink to="blogposts">Blog</NavLink></li>
-              </ul>
-            </nav>
-          </div>
-          <main className="row-auto ">
+            <div className="row-span-1 text-center items-center">
+              <NavBar/>
+            </div>            </div>
+
+
+          <main>
+            <div className="mt-4">
             <Outlet/>
+            </div>
           </main>
-          <div className=" row-span-1 flex justify-center items-center content-center justify-items-center ">
+          <div className="row-end-auto flex justify-center">
             <Footer/>
           </div>
-        </div>
+          </div>
     </>
   )
 }
