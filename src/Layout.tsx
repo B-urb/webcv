@@ -5,7 +5,6 @@ import Footer from "./Footer";
 import {NavLink, Outlet} from "react-router-dom";
 import React from "react";
 import LightDarkSwitch from "./LightDarkSwitch";
-import IntroText from "./IntroText";
 const Layout = ()  => {
   return (<>
         <div className="h-screen overflow-scroll grid bg-yellow-300 text-black dark:bg-black font-jetbrains dark:text-yellow-300">
@@ -14,11 +13,11 @@ const Layout = ()  => {
               <Header/>
             <LightDarkSwitch/>
             </div>
-            <IntroText/>
             <nav className="p-1 m-1">
-              <ul className="[&>li]inline">
-                <li><NavLink to="/">Home</NavLink></li>
-                <li><NavLink to="blogposts">Blog</NavLink></li>
+              <ul className="ml-auto flex items-center">
+                <li className="inline-block m-3"><NavLink to="/">About Me</NavLink></li>
+                <li className="inline-block m-3"><NavLink to="projects">Projects</NavLink></li>
+                <li className="inline-block m-3"><NavLink to="blogposts">Blog</NavLink></li>
               </ul>
             </nav>
           </div>
