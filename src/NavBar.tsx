@@ -3,7 +3,7 @@ import React from "react";
 
 
 const NavLinkWrapper = (props: {text:string,path:string}) => {
-  return <li className="inline-block m-4">
+  return <li className="p-4">
     <NavLink className={({ isActive }) => isActive ? "underline" : undefined} to={props.path}>{props.text}
     </NavLink>
   </li>
@@ -11,7 +11,7 @@ const NavLinkWrapper = (props: {text:string,path:string}) => {
 
 const NavBar = () => {
   return <nav className="flex justify-center">
-    <ul className="flex">
+    <ul className="flex justify-around">
       <NavLinkWrapper text={"About Me"} path={"/"}/>
       <NavLinkWrapper path="projects" text={"Projects"}/>
       <NavLinkWrapper path="blogposts" text={"Blog"}/>
