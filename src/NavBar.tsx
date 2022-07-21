@@ -3,8 +3,8 @@ import React from "react";
 
 
 const NavLinkWrapper = (props: {text:string,path:string}) => {
-  return <li className="p-4">
-    <NavLink className={({ isActive }) => isActive ? "underline" : undefined} to={props.path}>{props.text}
+  return <li className="p-6 md:p-4 bor-bo">
+    <NavLink className={({ isActive }) => isActive ? "underline transition-all ease" : undefined} to={props.path}>{props.text}
     </NavLink>
   </li>
 }
