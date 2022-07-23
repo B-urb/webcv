@@ -1,29 +1,27 @@
 import ProjectsCard from "./ProjectsCard";
-import {useQuery} from "react-query";
-import {allBlogposts} from "./api/directus";
+import {useQuery, UseQueryResult} from "react-query";
+import {allProjects, IBlogPost, IProjects} from "./api/directus";
+import {ManyItems} from "@directus/sdk";
 
 
 const Projects = () => {
-    const {status, data, error} = useQuery("blogposts",allBlogposts);
+    const {status, data, error} : UseQueryResult<ManyItems<IProjects>, Error>= useQuery("projects",allProjects);
 
-    if (status === 'loading'|| status === 'idle') {
-        return <span>Loading...</span>
-    }
-    if (status === 'error') {
-        if(error instanceof Error)
-        return <span>Error: {error.message}</span>
-    }
-    if (status === 'success') {
+    switch (status) {
+        case "idle":
+            return <div>idle</div>;
+        case 'loading': return <span>Loading...</span>
+        case 'error':
+            return <span>Error: {error.message}</span>
 
-        return <div className="grid grid-cols-1 md:grid-cols-3">
+        case "success": return <div className="grid grid-cols-1 md:grid-cols-3">
             {data.data != undefined && data.data.length > 0 ?
                 data?.data.map((content, key) => <div key={key} className="flex-col items-stretch flex">
-                <ProjectsCard content={content.title!}/>
+                <ProjectsCard name={content.name!} content={content.description!} tags={content.tags!}/>
             </div>): <span>No Projects yet :( </span>}
 
         </div>
     }
-    else return <span>wat</span>
 }
 
 export default Projects;

@@ -1,6 +1,21 @@
+import {useQuery, UseQueryResult} from "react-query";
+import {getIntrotext, Introtext} from "./api/directus";
+import {OneItem} from "@directus/sdk";
 
 
 const IntroText = () => {
-    return <p className="text-center text-xs md:text-xl ">Hi, my Name is Björn and I am a software developer</p>
+    const {status,data, error} :UseQueryResult<OneItem<Introtext>, Error>= useQuery("introtext", getIntrotext)
+
+    switch (status) {
+        case "idle":
+            return <div>idle</div>;
+        case 'loading':
+            return <span>Loading...</span>
+        case 'error':
+            return <span>Error: {error.message}</span>
+
+        case "success":
+            return <p className="text-center text-xs md:text-xl ">{data?.introtext}</p>
+    }
 }
 export default IntroText;
