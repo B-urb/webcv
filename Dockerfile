@@ -1,4 +1,4 @@
-FROM node:8.9.0
+FROM node:14.19.2
 #COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY public/ /usr/local/public
 RUN npm install -g serve
