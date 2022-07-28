@@ -49,7 +49,7 @@ export async function allProjects() : Promise<ManyItems<IProjects>> {
   });
 
 }
-export async function getPostById(id: number) : Promise<OneItem<IBlogPost>> {
+export async function getPostById(id: string) : Promise<OneItem<IBlogPost>> {
   return await directus.items("blogposts").readOne(id);
 }
 

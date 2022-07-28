@@ -8,9 +8,8 @@ import {faArrowAltCircleLeft} from "@fortawesome/free-solid-svg-icons";
 
 const Blogpost = () => {
   const {id} = useParams()
-  const {status, data, error} : UseQueryResult<PartialItem<IBlogPost>, Error> = useQuery("blogpost", () => getPostById(parseInt(id!)),{
+  const {status, data, error} : UseQueryResult<PartialItem<IBlogPost>, Error> = useQuery(["blogpost",id], () => getPostById(id!),{
     refetchOnWindowFocus: false,
-    staleTime: 5*1000,
   });
 
   switch (status) {
