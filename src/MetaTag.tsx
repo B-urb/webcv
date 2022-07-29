@@ -1,16 +1,23 @@
 
-
+const tagIconMapping:Object = {
+    "cpp":"cplusplus",
+    "kotlin": "kotlin"
+}
 
 
 
 const MetaTag = (props: {tag: string}) => {
-    return (
-        <div className="md:text-xl text-sm rounded-xl bg-slate-500 text-white w-fit p-2 divide-x divide-white">
-        <span className="divide-white divide-x-2"><i className="devicon-cplusplus-plain"></i>
+    const findIconOrNull = () => {
+        if(!(props.tag in tagIconMapping))
+            return ""
+        return `devicon-${tagIconMapping[props.tag as keyof Object]}-plain`}
 
-            <span className="ml-2 mr-1 hidden md:visible">
-                {" "+ props.tag}
-        </span>
+    return (
+        <div className=" md:text-md text-md rounded-xl bg-slate-500 text-white flex w-fit p-0.5 text-center justify-around">
+        <div className="text-center text-xl pt-1"><i className={findIconOrNull()}></i>
+      </div>
+            <span className="ml-0.5 text-xl md:text-2xl">
+                {""+ props.tag}
         </span>
 
         </div>

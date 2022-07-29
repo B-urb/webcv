@@ -9,9 +9,10 @@ before_script:
 
 stages:
   - test
+  - release
   - build
   - build-docker
-  - release
+
 
 test:
   image: node:14.19.2
