@@ -2,17 +2,14 @@ cache:
   paths:
     - node_modules/
 
-
-
 before_script:
   - CI=true npm install
 
 stages:
   - test
-  - release
   - build
   - build-docker
-
+  - release
 
 test:
   image: node:14.19.2
@@ -21,19 +18,6 @@ test:
     - CI=true npm run test-ci
   rules:
     - when: never
-release:
-  image: node:16 # Requires GIT
-  stage: release
-  allow_failure: true
-  rules:
-    # allow creating releases from master branch and maintenance branches named like this:
-    # `MAJOR.MINOR.PATCH`, e.g. `1.16.2`
-    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^[0-9]+(\.([0-9]+|x))?\.x$/'
-      when: manual
-    - when: never
-  script:
-    - npm install @semantic-release/gitlab @semantic-release/exec
-    - npx semantic-release
 
 build:
   image: node:14.19.2
@@ -46,7 +30,6 @@ build:
     paths:
       - public/
     
-
 build-docker:
   before_script:
     - echo "pass"
@@ -61,6 +44,19 @@ build-docker:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
 
+release:
+  image: node:16 # Requires GIT
+  stage: release
+  allow_failure: true
+  rules:
+    # allow creating releases from master branch and maintenance branches named like this:
+    # `MAJOR.MINOR.PATCH`, e.g. `1.16.2`
+    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^[0-9]+(\.([0-9]+|x))?\.x$/'
+      when: manual
+    - when: never
+  script:
+    - npm install @semantic-release/gitlab @semantic-release/exec
+    - npx semantic-release
 
 
 
