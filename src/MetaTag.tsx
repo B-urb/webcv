@@ -1,20 +1,25 @@
+const tagIconMapping: Object = {
+  "cpp": "cplusplus",
+}
 
 
+const MetaTag = (props: { tag: string }) => {
+  const findIconOrNull = () => {
+    if (!(props.tag.toLowerCase() in tagIconMapping))
+      return `devicon-${props.tag.toLowerCase()}-plain`
+    return `devicon-${tagIconMapping[props.tag.toLowerCase() as keyof Object]}-plain`
+  }
 
-
-
-const MetaTag = (props: {tag: string}) => {
-    return (
-        <div className="md:text-xl text-sm rounded-xl bg-slate-500 text-white w-fit p-2 divide-x divide-white">
-        <span className="divide-white divide-x-2"><i className="devicon-cplusplus-plain"></i>
-
-            <span className="ml-2 mr-1 hidden md:visible">
-                {" "+ props.tag}
-        </span>
-        </span>
-
+  return (
+      <div className="rounded-xl bg-slate-500 text-white w-fit flex pl-1 md:pt-0.5 pr-1.5 text-center">
+        <div className="text-center text-base md:text-lg"><i className={findIconOrNull()}></i>
         </div>
-    )
+        <span className="ml-0.5 text-sm md:text-base">
+                {"" + props.tag}
+        </span>
+
+      </div>
+  )
 
 }
 export default MetaTag;

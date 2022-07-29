@@ -5,10 +5,10 @@ library.add(faGithub, faLinkedin)
 const Footer = () => {
     return <div className="dark:bg-gradient-to-b flex justify-center from-black to-gray-700 text-2xl md:text-4xl dark:text-amber-50">
             <ul className="flex">
-                <li key={0} onClick={()=> window.open("https://github.com/B-urb")} className="m-1 sm:m-3 hover:cursor-crosshair"><FontAwesomeIcon icon={faGithub}/></li>
-                <li key={1} onClick={()=> window.open("https://www.linkedin.com/in/bj%C3%B6rn-u-3a9347113")} className="m-1 sm:m-3 hover:cursor-crosshair"><FontAwesomeIcon icon={faLinkedin}/></li>
-                <li key={2} onClick={()=> window.open("https://twitter.com/bambusbijoern")} className="m-1 sm:m-3 hover:cursor-crosshair"><FontAwesomeIcon icon={faTwitter}/></li>
-                <li key={3} onClick={()=> window.open("https://www.instagram.com/bambusbijoern/")} className="m-1 sm:m-3 hover:cursor-crosshair"><FontAwesomeIcon icon={faInstagram}/></li>
+                <li key={0} onClick={()=> window.open("https://github.com/B-urb")} className="m-1 sm:m-3 hover:cursor-pointer"><FontAwesomeIcon icon={faGithub}/></li>
+                <li key={1} onClick={()=> window.open("https://www.linkedin.com/in/bj%C3%B6rn-u-3a9347113")} className="m-1 sm:m-3 hover:cursor-pointer"><FontAwesomeIcon icon={faLinkedin}/></li>
+                <li key={2} onClick={()=> window.open("https://twitter.com/bambusbijoern")} className="m-1 sm:m-3 hover:cursor-pointer"><FontAwesomeIcon icon={faTwitter}/></li>
+                <li key={3} onClick={()=> window.open("https://www.instagram.com/bambusbijoern/")} className="m-1 sm:m-3 hover:cursor-pointer"><FontAwesomeIcon icon={faInstagram}/></li>
             </ul>
         </div>
 
