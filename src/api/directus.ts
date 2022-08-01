@@ -28,6 +28,7 @@ type MyCollections = {
   intro: Introtext,
 }
 const directus = new Directus<MyCollections>('https://cms.burban.me');
+directus.auth.static("MYaW_VlI9QhVLcZJ26zQtil6wBRnkxtM");
 export async function allBlogposts() : Promise<ManyItems<IBlogPost>> {
   // We don't need to authenticate if data is public
   return await directus.items("blogposts").readByQuery({
