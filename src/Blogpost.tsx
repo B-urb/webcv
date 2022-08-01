@@ -19,10 +19,13 @@ const Blogpost = () => {
     case 'error':
           return <span>Error: {error.message}</span>
 
-    case "success": {return data != undefined ? <div className="relative justify-center text-center items-center3">
-      <Link to="/blogposts"><button className="absolute top-2 left-2"><FontAwesomeIcon icon={faArrowAltCircleLeft}/></button></Link>
+    case "success": {return data != undefined ? <div className="relative flex flex-col  items-center">
+      <Link to="/blogposts"><button className="absolute top-2 left-2">
+        <FontAwesomeIcon icon={faArrowAltCircleLeft}/></button>
+      </Link>
+
         <h2 className="font-roboto text-xl md:text-2xl">{data.title!}</h2>
-        <div className="row-auto ">{parse(data.content!)}</div>
+        <div className="inline-block md:min-w-[65vw] max-w-full prose prose-sm dark:prose-p:text-amber-300">{parse(data.content!)}</div>
       </div> : <div>No Blogdata</div>}
   }
 }
