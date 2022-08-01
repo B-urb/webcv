@@ -39,6 +39,12 @@ export async function allBlogposts() : Promise<ManyItems<IBlogPost>> {
     limit: -1,
   });
 }
+export  function getProfileImage() {
+  const id = "98341d3d-4b86-45b5-bd27-75b5b82cd7df"
+  const file =  directus.files.readOne(id)
+  return id
+}
+
 export async function allProjects() : Promise<ManyItems<IProjects>> {
   // We don't need to authenticate if data is public
   return await directus.items("Projects").readByQuery({
