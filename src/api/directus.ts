@@ -9,6 +9,7 @@ export type IBlogPost = {
   content: string;
   code: string;
   tags: Array<string>;
+  date_created: string
 };
 
 export type IProjects = {
@@ -28,18 +29,22 @@ type MyCollections = {
   intro: Introtext,
 }
 const directus = new Directus<MyCollections>('https://cms.burban.me');
-directus.auth.static("MYaW_VlI9QhVLcZJ26zQtil6wBRnkxtM");
 export async function allBlogposts() : Promise<ManyItems<IBlogPost>> {
   // We don't need to authenticate if data is public
   return await directus.items("blogposts").readByQuery({
     // By default API limits results to 100.
     // With -1, it will return all results, but it may lead to performance degradation
     // for large result sets.
-    fields: ['id','title'],
+    fields: ['id','title','tags','date_created'],
     limit: -1,
   });
-
 }
+export  function getProfileImage() {
+  const id = "98341d3d-4b86-45b5-bd27-75b5b82cd7df"
+  const file =  directus.files.readOne(id)
+  return id
+}
+
 export async function allProjects() : Promise<ManyItems<IProjects>> {
   // We don't need to authenticate if data is public
   return await directus.items("Projects").readByQuery({

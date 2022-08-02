@@ -21,7 +21,7 @@ const [theme, setTheme] = useState("dark")
       }
     }
   }
-  return <div className="h-10 w-10 mr-4 mt-2 md:h-16 md:w-16 text-md md:text-2xl md:mr-2 md:mt-2 justify-self-end flex justify-center rounded-full shadow-black dark:shadow-gray-300 shadow-md"><button  onClick={switchTheme} >
+  return <div className="h-10 w-10 mr-4 mt-2 md:h-16 md:w-16 text-md hover:dark:shadow-lg hover:dark:bg-yellow-300 hover:dark:text-black duration-1000 transition-all md:text-2xl md:mr-2 md:mt-2 justify-self-end flex justify-center rounded-full shadow-black dark:shadow-gray-300 shadow-md"><button  onClick={switchTheme} >
     <FontAwesomeIcon icon={theme === "dark" ? faLightbulb : faLightbulbOff} />
   </button></div>
 

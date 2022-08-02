@@ -25,7 +25,7 @@ const Blogpost = () => {
       </Link>
 
         <h2 className="font-roboto text-xl md:text-2xl">{data.title!}</h2>
-        <div className="inline-block md:min-w-[65vw] max-w-full prose prose-sm dark:prose-p:text-amber-300">{parse(data.content!)}</div>
+        <div className="inline-block md:min-w-[65vw] max-w-[90vw] prose prose-sm dark:prose-p:text-amber-300">{parse(data.content!)}</div>
       </div> : <div>No Blogdata</div>}
   }
 }
