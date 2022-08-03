@@ -60,5 +60,5 @@ export async function getPostById(id: string) : Promise<OneItem<IBlogPost>> {
 
 
 export async function getIntrotext() : Promise<OneItem<Introtext>> {
-  return directus.singleton("intro").read();
+  return directus.singleton("aboutme").read();
 }
