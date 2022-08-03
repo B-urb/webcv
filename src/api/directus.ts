@@ -46,7 +46,7 @@ export  function getProfileImage() {
 
 export async function allProjects() : Promise<ManyItems<IProjects>> {
   // We don't need to authenticate if data is public
-  return await directus.items("Projects").readByQuery({
+  return await directus.items("projects").readByQuery({
     // By default API limits results to 100.
     // With -1, it will return all results, but it may lead to performance degradation
     // for large result sets.
