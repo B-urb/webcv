@@ -7,7 +7,6 @@ export type IBlogPost = {
   id: ID;
   title: string;
   content: string;
-  code: string;
   tags: Array<string>;
   date_created: string
 };
@@ -40,7 +39,7 @@ export async function allBlogposts() : Promise<ManyItems<IBlogPost>> {
   });
 }
 export  function getProfileImage() {
-  const id = "98341d3d-4b86-45b5-bd27-75b5b82cd7df"
+  const id = "410d7427-8a7c-4f4f-9ba7-9563757ac99a"//TODO: GET BY NAME
   const file =  directus.files.readOne(id)
   return id
 }

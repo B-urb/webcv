@@ -23,7 +23,7 @@ const Blogposts = () => {
                   <div><span>{post.title!}</span> <br/>
                   <span className="text-sm">{post.date_created!}</span>
                   </div>
-                  <div className="hidden md:flex md:flex-row py-1 gap-x-1">{post.tags?.map((tag,key) => {
+                  <div className="hidden md:flex md:flex-row py-1 h-fit gap-x-1">{post.tags?.map((tag,key) => {
                       if(tag !== undefined)
                         return <MetaTag key={key} tag={tag}/>
                     }

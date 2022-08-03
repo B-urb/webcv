@@ -14,7 +14,7 @@ const Projects = () => {
         case 'error':
             return <span>Error: {error.message}</span>
 
-        case "success": return <div className="grid grid-cols-1 md:grid-cols-3">
+        case "success": return <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             {data.data != undefined && data.data.length > 0 ?
                 data?.data.map((content, key) => <div key={key} className="flex-col items-stretch flex">
                 <ProjectsCard name={content.name!} content={content.description!} tags={content.tags!}/>

@@ -10,7 +10,7 @@ const NavLinkWrapper = (props: {text:string,path:string}) => {
 }
 
 const NavBar = () => {
-  return <nav className="flex justify-center">
+  return <nav className="flex lg:text-xl justify-center">
     <ul className="flex justify-around">
       <NavLinkWrapper text={"About Me"} path={"/"}/>
       <NavLinkWrapper path="projects" text={"Projects"}/>
