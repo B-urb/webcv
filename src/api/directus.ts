@@ -34,6 +34,10 @@ export async function allBlogposts() : Promise<ManyItems<IBlogPost>> {
     // By default API limits results to 100.
     // With -1, it will return all results, but it may lead to performance degradation
     // for large result sets.
+    filter: {
+      "status": {
+        "_neq": "draft"
+      },
     fields: ['id','title','tags','date_created'],
     limit: -1,
   });
