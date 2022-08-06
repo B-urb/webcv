@@ -36,7 +36,7 @@ export async function allBlogposts(): Promise<ManyItems<IBlogPost>> {
     // for large result sets.
     filter: {
       "status": {
-        "_neq": "draft"
+        "_eq": "published"
       }
     },
     fields: ['id', 'title', 'tags', 'date_created'],
