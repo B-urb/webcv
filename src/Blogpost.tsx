@@ -5,6 +5,7 @@ import {getPostById,IBlogPost} from "./api/directus";
 import {PartialItem} from "@directus/sdk";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowAltCircleLeft} from "@fortawesome/free-solid-svg-icons";
+import {BlogpostMarkdown} from "./BlogpostMarkdown";
 
 const Blogpost = () => {
   const {id} = useParams()
@@ -25,7 +26,7 @@ const Blogpost = () => {
       </Link>
 
         <h2 className="font-roboto text-xl md:text-2xl">{data.title!}</h2>
-        <div className="inline-block md:min-w-[65vw] max-w-[90vw] prose prose-sm dark:prose-p:text-amber-300"><ReactMarkdown children={data.content!}/> </div>
+        <div className="inline-block md:min-w-[65vw] max-w-[90vw] prose dark:prose-p:text-yellow-300 dark:prose-headings:text-yellow-300 dark:prose-invert"><BlogpostMarkdown markdown={data.content!}/> </div>
       </div> : <div>No Blogdata</div>}
   }
 }
