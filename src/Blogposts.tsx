@@ -5,6 +5,7 @@ import {ManyItems} from "@directus/sdk";
 import MetaTag from "./MetaTag";
 
 const Blogposts = () => {
+  const dateOptions = {year: 'numeric', month: 'long', day: '2-digit'};
 
   const {status, data, error} : UseQueryResult<ManyItems<IBlogPost>, Error> = useQuery("blogposts",allBlogposts);
 
@@ -19,11 +20,15 @@ const Blogposts = () => {
         <ul className="group overflow-hidden list-none  w-96 md:w-3/4 justify-center ">
           {data.data != undefined && data.data.length > 0 ?
               data.data.map((post, key) => <Link key={key} to={post.id!.toString()}>
-                <li className="border-black dark:bg-gradient-to-r dark:transition-all dark:ease-in-out dark:delay-150 dark:duration-200 hover:dark:to-gray-500 font-extrabold text-xl dark:from-gray-800 dark:to-black flex h-14 justify-center md:justify-between dark:border-gray-50 border-b-2 border-solid">
-                  <div><span>{post.title!}</span> <br/>
-                  <span className="text-sm">{post.date_created!}</span>
+                <li className="border-black dark:bg-gradient-to-r dark:transition-all dark:ease-in-out dark:delay-150
+                dark:duration-200 hover:dark:to-gray-500
+                text-sm md:text-xl dark:from-gray-800 dark:to-black flex md:h-18
+                justify-center md:justify-between dark:border-gray-50 border-b-2 border-solid">
+                  <div className="flex flex-col justify-between text-left ml-1.5">
+                    <span className="font-extrabold">{post.title!}</span>
+                  <span className="text-xs">{new Date(post.date_created!).toLocaleDateString("de-DE", dateOptions)}</span>
                   </div>
-                  <div className="hidden md:flex md:flex-row py-1 h-fit gap-x-1">{post.tags?.map((tag,key) => {
+                  <div className="hidden md:flex md:flex-wrap justify-self-end md:flex-row-reverse w-1/3 py-1 h-fit gap-1 mr-2">{post.tags?.map((tag,key) => {
                       if(tag !== undefined)
                         return <MetaTag key={key} tag={tag}/>
                     }

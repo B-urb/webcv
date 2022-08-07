@@ -20,13 +20,18 @@ const Blogpost = () => {
     case 'error':
           return <span>Error: {error.message}</span>
 
-    case "success": {return data != undefined ? <div className="relative flex flex-col  items-center">
-      <Link to="/blogposts"><button className="absolute top-2 left-2">
+    case "success": {return data != undefined ? <div className="flex flex-col">
+      <div className="flex flex-row justify-between mx-4">
+      <Link to="/blogposts"><button className="md:text-2xl transition-all hover:scale-150">
         <FontAwesomeIcon icon={faArrowAltCircleLeft}/></button>
       </Link>
-
-        <h2 className="font-roboto text-xl md:text-2xl">{data.title!}</h2>
-        <div className="inline-block md:min-w-[65vw] max-w-[90vw] prose dark:prose-p:text-yellow-300 dark:prose-headings:text-yellow-300 dark:prose-invert"><BlogpostMarkdown markdown={data.content!}/> </div>
+        <h2 className="hidden md:inline font-roboto opacity-50 w-48 text-xl md:text-sm">{data.title!}</h2>
+      </div>
+      <div className="flex items-center flex-col mt-6 md:min-w-[65vw] max-w-[90vw]
+       prose dark:prose-p:text-yellow-300
+       dark:prose-headings:text-yellow-300
+       dark:prose-invert"><h2>{data.title!}</h2><BlogpostMarkdown markdown={data.content!}/> </div>
+      <CommentGroup/>
       </div> : <div>No Blogdata</div>}
   }
 }
