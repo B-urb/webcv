@@ -1,11 +1,11 @@
 import {Link, useParams} from "react-router-dom";
 import {useQuery, UseQueryResult} from "react-query";
-import ReactMarkdown from "react-markdown";
-import {getPostById,IBlogPost} from "./api/directus";
+import {getPostById, IBlogPost} from "./api/directus";
 import {PartialItem} from "@directus/sdk";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowAltCircleLeft} from "@fortawesome/free-solid-svg-icons";
 import {BlogpostMarkdown} from "./BlogpostMarkdown";
+import {CommentGroup} from "./CommentGroup";
 
 const Blogpost = () => {
   const {id} = useParams()
