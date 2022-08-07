@@ -5,7 +5,7 @@ import {ManyItems} from "@directus/sdk";
 import MetaTag from "./MetaTag";
 
 const Blogposts = () => {
-  const dateOptions = {year: 'numeric', month: 'long', day: '2-digit'};
+  const dateOptions :Intl.DateTimeFormatOptions = {year: "numeric", month: 'long', day: '2-digit'};
 
   const {status, data, error} : UseQueryResult<ManyItems<IBlogPost>, Error> = useQuery("blogposts",allBlogposts);
 
