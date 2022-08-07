@@ -7,6 +7,7 @@ import Blogposts from "./Blogposts";
 import Blogpost from "./Blogpost";
 import Layout from "./Layout";
 import AboutMe from "./AboutMe";
+import {ErrorPage} from "./ErrorPage";
 
 const App = () => {
   return (<BrowserRouter>
@@ -16,7 +17,9 @@ const App = () => {
             <Route path="projects" element={<Projects/>}/>
             <Route path={"blogposts"} element={<Blogposts/>}/>
             <Route path={"blogposts/:id"} element={<Blogpost/>}/>
+            <Route path={"*"} element={<ErrorPage/>}/>
           </Route>
+
         </Routes>
       </BrowserRouter>
   )
