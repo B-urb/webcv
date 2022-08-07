@@ -1,6 +1,7 @@
 import {useQuery, UseQueryResult} from "react-query";
 import {getIntrotext, Introtext} from "./api/directus";
 import {OneItem} from "@directus/sdk";
+import ReactMarkdown from "react-markdown";
 
 
 const IntroText = () => {
@@ -15,7 +16,7 @@ const IntroText = () => {
             return <span>Error: {error.message}</span>
 
         case "success":
-            return <p className="text-center text-xs md:text-xl ">{data?.introtext}</p>
+            return <ReactMarkdown className="text-center text-xs md:text-xl ">{data?.introtext!}</ReactMarkdown>
     }
 }
 export default IntroText;
