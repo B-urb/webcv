@@ -3,7 +3,7 @@ import parse from "html-react-parser"
 
 const ProjectsCard = (props: {name: string, content: string, tags: Array<string|undefined>}) => {
     return <div onClick={() => alert("Detailed Projects view Coming soon ;)")} className="shadow-md hover:cursor-pointer shadow-black dark:shadow-white dark:shadow-md h-full self-stretch rounded-md m-4">
-        <div className="shadow-sm p-3 rounded-md bg-yellow-600 dark:bg-gray-900 divide-y h-full  divide-white divide-dotted grid text-xs md:text-md">
+        <div className="shadow-sm p-3 rounded-md bg-yellow-600 dark:bg-gray-900 divide-y h-full divide-white divide-dotted grid text-xs md:text-md">
             <div className="row-span-auto">
                 <h2 className="font-roboto text-xl md:text-2xl">{props.name}</h2></div>
             <div className="row-auto text-base h-44 md:h-36">{parse(props.content)}</div>
