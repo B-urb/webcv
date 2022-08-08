@@ -6,7 +6,7 @@ const ProjectsCard = (props: {name: string, content: string, tags: Array<string|
         <div className="shadow-sm p-3 rounded-md bg-yellow-600 dark:bg-gray-900 divide-y divide-white divide-dotted grid text-xs md:text-md">
             <div className="row-span-1">
                 <h2 className="font-roboto text-xl md:text-2xl">{props.name}</h2></div>
-            <div className="row-auto text-base h-32">{parse(props.content)}</div>
+            <div className="row-auto text-base h-44 md:h-36">{parse(props.content)}</div>
             <div className="row-auto pt-2 flex flex-wrap justify-start justify-items-start gap-2">{
                 props.tags.map((tag,key) => {
                         if(tag!== undefined)
