@@ -6,9 +6,9 @@ import {faLightbulb as faLightbulbOff}  from "@fortawesome/free-regular-svg-icon
 
 const LightDarkSwitch = () => {
 
-const [theme, setTheme] = useState("dark")
+const [theme, setTheme] = useState(localStorage.getItem("theme"))
   const switchTheme = () => {
-    if(theme == "light") {
+    if(theme === "light") {
       localStorage.setItem("theme", "dark")
       setTheme("dark")
         document.documentElement.classList.add('dark');
