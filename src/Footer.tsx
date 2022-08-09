@@ -18,7 +18,7 @@ const socialLinks = [{
 },
   {
     url: "https://twitter.com/bambusbijoern",
-    icon: faGithub
+    icon: faTwitter
   },
   {
     url: "https://www.instagram.com/bambusbijoern/",
