@@ -43,6 +43,12 @@ build-docker:
   script:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH == "development" || $CI_COMMIT_TAG
+      when: always
+    - if: $CI_MERGE_REQUEST_ID
+      when: never
+    - when: manual
 
 release:
   image: node:16 # Requires GIT
@@ -51,7 +57,7 @@ release:
   rules:
     # allow creating releases from master branch and maintenance branches named like this:
     # `MAJOR.MINOR.PATCH`, e.g. `1.16.2`
-    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^[0-9]+(\.([0-9]+|x))?\.x$/'
+    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^[0-9]+(\.([0-9]+|x))?\.x$/ || $CI_COMMIT_BRANCH == "development"'
       when: manual
     - when: never
   script:
