@@ -3,8 +3,8 @@ import React from "react";
 
 
 const NavLinkWrapper = (props: {text:string,path:string}) => {
-  return <li className="p-6 md:p-4 bor-bo transition-all hover:scale-150">
-    <NavLink className={({ isActive }) => isActive ? "underline": undefined} to={props.path}>{props.text}
+  return <li className=" p-6 md:p-4 transition-all hover:scale-150">
+    <NavLink className={"transition-all border-b-0 border-yellow-300 focus:border-b-2 motion-reduce:transition-none ease-in-out"} end to={props.path}>{props.text}
     </NavLink>
   </li>
 }
