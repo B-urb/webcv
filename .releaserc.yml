@@ -9,3 +9,4 @@ branches:
   - "master"
   - name: "development"
     prerelease: "rc"
+    channel: false
