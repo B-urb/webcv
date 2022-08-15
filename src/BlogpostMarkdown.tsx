@@ -11,7 +11,7 @@ export const BlogpostMarkdown = (props: {markdown: string}) => {
               children={String(children).replace(/\n$/, '')}
               // @ts-ignore
               //TODO: Github issue
-              style={localStorage.getItem("theme") === "light" ? duotoneLight : dracula}
+              style={localStorage.getItem("theme") === "light" ? prism: dracula}
               showLineNumbers={true}
               language={match[1]}
               PreTag="div"
