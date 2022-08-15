@@ -20,10 +20,11 @@ module.exports = {
         'light-3': '#05668dff',
         'light-4': '#c0a9b0ff',
         'light-5': '#2c363fff',
-        'dark-2': '#468189',
-        'dark-3': '#77aca2',
-        'dark-4': '#83781b',
-        'dark-5': '#7b5e7b'
+        'dark-1': '#000000ff',
+        'dark-2': '#19647eff',
+        'dark-3': '#50c5b7ff',
+        'dark-4': '#948392ff',
+        'dark-5': '#c7f2a7ff'
       }
     },
 
