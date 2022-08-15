@@ -11,7 +11,7 @@ import ProfileImage from "./ProfileImage";
 const Layout = () => {
   return (
         <div
-            className="min-h-screen grid auto-rows-auto bg-yellow-300 text-black dark:bg-black font-jetbrains dark:text-yellow-300">
+            className="min-h-screen grid auto-rows-auto bg-light1 text-black dark:bg-black font-jetbrains dark:text-yellow-300">
             <div className="dark:bg-gradient-to-b dark:from-gray-800 dark:to-black grid auto-rows-auto border-b-4 font-roboto border-dashed border-black dark:border-yellow-300">
               <div
                   className="row-span-1 text-md text-center md:text-3xl">
