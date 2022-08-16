@@ -1,6 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
-import {dracula, duotoneLight} from "react-syntax-highlighter/dist/esm/styles/prism";
+import {dracula, prism} from "react-syntax-highlighter/dist/esm/styles/prism";
 export const BlogpostMarkdown = (props: {markdown: string}) => {
 
   return <ReactMarkdown  children={props.markdown}  components={{
@@ -11,7 +11,7 @@ export const BlogpostMarkdown = (props: {markdown: string}) => {
               children={String(children).replace(/\n$/, '')}
               // @ts-ignore
               //TODO: Github issue
-              style={localStorage.getItem("theme") === "light" ? duotoneLight : dracula}
+              style={localStorage.getItem("theme") === "light" ? prism: dracula}
               showLineNumbers={true}
               language={match[1]}
               PreTag="div"

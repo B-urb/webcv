@@ -20,9 +20,10 @@ const Blogposts = () => {
         <ul className="group overflow-hidden list-none  w-96 md:w-3/4 justify-center ">
           {data.data != undefined && data.data.length > 0 ?
               data.data.map((post, key) => <Link key={key} to={post.id!.toString()}>
-                <li className="border-black dark:bg-gradient-to-r dark:transition-all dark:ease-in-out dark:delay-150
-                dark:duration-200 hover:dark:to-gray-500
+                <li className="border-black bg-gradient-to-br text-white transition-all ease-in-out delay-50
+                duration-500 hover:dark:to-gray-500 hover:to-gray-500 from-light-3 to-light-1 hover:from-light-1 hover:to-bg-light-4
                 text-sm md:text-xl dark:from-gray-800 dark:to-black flex md:h-18
+                hover:translate-x-1 dark:text-yellow-300
                 justify-center md:justify-between dark:border-gray-50 border-b-2 border-solid">
                   <div className="flex flex-col justify-between text-left ml-1.5">
                     <span className="font-extrabold">{post.title!}</span>
