@@ -29,7 +29,7 @@ const Blogpost = () => {
       </div>
       <article className="flex justify-items-center flex-col mt-6 min-w-[65vw]
       max-w-[90vw]
-       prose dark:prose-p:text-yellow-300
+       prose prose-pre:bg-inherit dark:prose-p:text-yellow-300
        dark:prose-headings:text-yellow-300
        dark:prose-invert"><h2>{data.title!}</h2><BlogpostMarkdown markdown={data.content!}/> </article>
       <CommentGroup/>
