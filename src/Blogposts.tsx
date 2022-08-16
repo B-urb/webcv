@@ -17,14 +17,14 @@ const Blogposts = () => {
       return <span>Error: {error.message}</span>
 
     case "success": return <div className="text-center mt-2 flex items-center justify-center">
-        <ul className="group overflow-hidden list-none  w-96 md:w-3/4 justify-center ">
+        <ul className="group overflow-hidden list-none w-96 min-w-[90vw] max-w-[100vw] md:max-w-[80vw] justify-center ">
           {data.data != undefined && data.data.length > 0 ?
               data.data.map((post, key) => <Link key={key} to={post.id!.toString()}>
                 <li className="border-black bg-gradient-to-br text-white transition-all ease-in-out delay-50
                 duration-500 hover:dark:to-gray-500 hover:to-gray-500 from-light-3 to-light-1 hover:from-light-1 hover:to-bg-light-4
                 text-sm md:text-xl dark:from-gray-800 dark:to-black flex md:h-18
                 hover:translate-x-1 dark:text-yellow-300
-                justify-center md:justify-between dark:border-gray-50 border-b-2 border-solid">
+                md:justify-center md:justify-between dark:border-gray-50 border-b-2 border-solid">
                   <div className="flex flex-col justify-between text-left ml-1.5">
                     <span className="font-extrabold">{post.title!}</span>
                   <span className="text-xs">{new Date(post.date_created!).toLocaleDateString("de-DE", dateOptions)}</span>

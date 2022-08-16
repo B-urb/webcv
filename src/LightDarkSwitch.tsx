@@ -21,7 +21,7 @@ const [theme, setTheme] = useState(localStorage.getItem("theme"))
       }
     }
   }
-  return <div className="h-8 w-8 mr-4 md:h-14 md:w-14 text-md hover:dark:shadow-lg hover:dark:bg-yellow-300 hover:dark:text-black duration-1000 transition-all text-md md:text-xl md:mr-2 justify-self-end flex justify-center rounded-full shadow-black dark:shadow-gray-300 shadow-md"><button  onClick={switchTheme} >
+  return <div className="h-8 w-8 mr-4 md:h-14 md:w-14 text-md hover:bg-black hover:text-white dark:hover:shadow-lg dark:hover:bg-yellow-300 dark:hover:text-black duration-1000 transition-all text-md md:text-xl md:mr-2 justify-self-end flex justify-center rounded-full shadow-black dark:shadow-gray-300 shadow-md"><button  onClick={switchTheme} >
     <FontAwesomeIcon icon={theme === "dark" ? faLightbulb : faLightbulbOff} />
   </button></div>
 
