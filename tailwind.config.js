@@ -15,7 +15,7 @@ module.exports = {
       colors: {
         transparent: 'transparent',
         current: 'currentColor',
-        'light1': '#8cb369ff',
+        'light-1': '#8cb369ff',
         'light-2': '#59d2feff',
         'light-3': '#05668dff',
         'light-4': '#c0a9b0ff',

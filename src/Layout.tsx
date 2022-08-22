@@ -12,7 +12,7 @@ const Layout = () => {
   return (
         <div
             className="min-h-screen grid auto-rows-auto
-            bg-gradient-to-br from-light1 to-light-2 dark:bg-gradient-to-b
+            bg-gradient-to-br from-light-1 to-light-2 dark:bg-gradient-to-b
             dark:from-gray-800 dark:to-black dark:bg-dark-1
             text-black font-jetbrains dark:text-yellow-300">
             <div className="grid auto-rows-auto border-b-4 font-roboto border-dashed border-black dark:border-yellow-300">
