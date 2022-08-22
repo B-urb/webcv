@@ -5,13 +5,14 @@ import App from './App'
 import './index.css'
 import 'devicon'
 import {QueryClient, QueryClientProvider} from "react-query";
+import UIProvider from "./context/ui-context";
 
 
 const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
-<App/>
+        <UIProvider><App/></UIProvider>
       </QueryClientProvider>
 
     </React.StrictMode>
