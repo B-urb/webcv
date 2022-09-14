@@ -24,11 +24,9 @@ build:
   stage: build
   script:
     - CI=true npm run build
-    - rm -rf dist
-    - cp -a .next/standalone/. dist/
   artifacts:
     paths:
-      - dist/
+      - .next/standalone/
       - public/
       - .next/static/
     
