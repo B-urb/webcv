@@ -12,7 +12,7 @@ stages:
   - release
 
 test:
-  image: node:14.19.2
+  image: node:16
   stage: test
   script:
     - CI=true npm run test-ci
@@ -20,15 +20,17 @@ test:
     - when: never
 
 build:
-  image: node:14.19.2
+  image: node:16
   stage: build
   script:
     - CI=true npm run build
-    - rm -rf public
-    - cp -a dist/. public/
+    - rm -rf dist
+    - cp -a .next/standalone/. dist/
   artifacts:
     paths:
+      - dist/
       - public/
+      - .next/static/
     
 build-docker:
   before_script:
