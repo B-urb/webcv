@@ -1,7 +1,21 @@
-FROM node:14.19.2
-#COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY public/ /usr/local/public
-RUN npm install -g serve
-CMD serve -s /usr/local/public -l 3000
+# Production image, copy all the files and run next
+FROM node:16-alpine
+WORKDIR /app
+ENV NODE_ENV production
+# Uncomment the following line in case you want to disable telemetry during runtime.
+# ENV NEXT_TELEMETRY_DISABLED 1
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY  public ./public
+COPY  .next/standalone ./
+COPY --chown=nextjs:nodejs .next/static ./.next/static
+
+USER nextjs
+
 EXPOSE 3000
-#RUN apt-get update && apt-get install -y dnsutils curl
+
+ENV PORT 3000
+
+CMD ["node", "server.js"]
