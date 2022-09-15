@@ -1,8 +1,10 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
     mode: 'jit',
-   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./layouts/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: "class",
   theme: {
@@ -15,11 +17,11 @@ module.exports = {
       colors: {
         transparent: 'transparent',
         current: 'currentColor',
-        'light1': '#8cb369ff',
-        'light-2': '#59d2feff',
-        'light-3': '#05668dff',
-        'light-4': '#c0a9b0ff',
-        'light-5': '#2c363fff',
+        'light-1': '#D7DAE5',
+        'light-2': '#B9CDDA',
+        'light-3': '#A6D8D4',
+        'light-4': '#8EAF9D',
+        'light-5': '#6B7D7D',
         'dark-1': '#000000ff',
         'dark-2': '#19647eff',
         'dark-3': '#50c5b7ff',
