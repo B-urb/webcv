@@ -4,7 +4,7 @@ interface Preference {
   theme: string,
   toggleTheme: Function
 }
-const defaultTheme = typeof window !== "undefined" ? localStorage.getItem("theme") ?? "light" : ""
+const defaultTheme = typeof window !== "undefined" ? localStorage.getItem("theme")!: "light"
 const defaultUpdate: Dispatch<SetStateAction<string>> = () => defaultTheme
 export const UIContext = React.createContext({currentTheme: defaultTheme,setTheme: defaultUpdate });
 UIContext.displayName = "UiContext"
@@ -13,5 +13,5 @@ UIContext.displayName = "UiContext"
   const [currentTheme, setTheme] = useState(defaultTheme);
 
 
-  return (<UIContext.Provider value={{currentTheme,setTheme}}>{props.children}</UIContext.Provider>);
+  return (<UIContext.Provider value={{currentTheme, setTheme}}>{props.children}</UIContext.Provider>);
 };
