@@ -8,7 +8,7 @@ export default function Document() {
   return (
       <Html>
         <Head>
-          <link rel="icon" type="image/svg+xml" href="/src/code-solid.svg"/>
+          <link rel="icon" type="image/svg+xml" href="/code-solid.svg"/>
           <link rel="preconnect" href="https://fonts.googleapis.com"/>
           <link rel="preconnect" href="https://fonts.gstatic.com"/>
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"/>
