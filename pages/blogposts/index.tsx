@@ -10,11 +10,11 @@ const Blogposts = (props: {blogposts: Array<IBlogPost> }) => {
 
  return <div className="text-center mt-2 flex items-center justify-center">
    <SEO title={"Björn Urban | Blogposts"} description={"Overview of all blogposts I have written"}/>
-        <ul className="group overflow-hidden list-none w-96 min-w-[90vw] max-w-[100vw] md:max-w-[80vw] shadow-sm shadow-black rounded-t-md
+        <nav className="group overflow-hidden list-none w-96 min-w-[90vw] max-w-[100vw] md:max-w-[80vw] shadow-sm shadow-black rounded-t-md
         justify-center">
           {props.blogposts != undefined && props.blogposts.length > 0 ?
               props.blogposts.map((post, key) => <Link key={key} href={"blogposts/"+post.id!.toString()}>
-                <li className="border-black bg-light-4 dark:bg-dark-2 dark:bg-gradient-to-br text-black transition-all ease-in-out delay-50
+                <a className="border-black bg-light-4 dark:bg-dark-2 dark:bg-gradient-to-br text-black transition-all ease-in-out delay-50
                 duration-500 hover:cursor-pointer dark:hover:to-gray-500 text-sm md:text-xl dark:from-gray-800 dark:to-black flex md:h-18
                 hover:mix-blend-overlay dark:hover:mix-blend-normal dark:text-yellow-300 font-roboto
                 md:justify-center md:justify-between dark:border-gray-50 border-b-2 border-solid">
@@ -28,8 +28,8 @@ const Blogposts = (props: {blogposts: Array<IBlogPost> }) => {
                     }
                 )}
                   </div>
-              </li></Link>) : <li>No Blogposts yet :( </li>}
-        </ul>
+              </a></Link>) : <li>No Blogposts yet :( </li>}
+        </nav>
       </div>
 
 }
