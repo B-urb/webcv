@@ -22,6 +22,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mapbox/rehype-highlight-code-block": "^1.0.0",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.7",
     "@types/node": "18.7.16",
     "@types/react": "18.0.19",
