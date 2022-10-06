@@ -29,15 +29,17 @@ const directus = new Directus<MyCollections>('https://cms.burban.me');
 
 export async function allBlogposts(): Promise<ManyItems<IBlogPost>> {
   // We don't need to authenticate if data is public
+  const env = process.env.NODE_ENV
+  const filter = env == "production" ? {"status": {
+        "_eq": "published"
+      }
+  } : {};
+  console.log(filter);
   return await directus.items("blogposts").readByQuery({
     // By default API limits results to 100.
     // With -1, it will return all results, but it may lead to performance degradation
     // for large result sets.
-    filter: {
-      "status": {
-        "_eq": "published"
-      }
-    },
+    filter:filter,
     fields: ['id', 'title', 'tags', 'date_created'],
     limit: -1,
   });

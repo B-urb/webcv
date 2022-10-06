@@ -12,7 +12,8 @@ module.exports = {
       fontFamily: {
         "jetbrains": ["JetBrains Mono","monospace"],
         "roboto": ["Roboto Condensed","sans-serif"],
-        "trispace": ["Trispace", "sans-serif"]
+        "trispace": ["Trispace", "sans-serif"],
+        "barlow": ["Barlow Condensed", "sans-serif"]
       },
       colors: {
         transparent: 'transparent',
@@ -31,5 +32,5 @@ module.exports = {
     },
 
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/line-clamp')],
 }

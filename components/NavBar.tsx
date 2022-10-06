@@ -1,10 +1,14 @@
 import Link from "next/link";
-import React, {useState} from "react";
+import React from "react";
+import {useRouter} from "next/router";
 
 
 const NavLinkWrapper = (props: {text:string,path:string}) => {
+  const router = useRouter()
   return <li className={"p-6 md:p-4 transition-all hover:scale-150" }>
-    <Link href={props.path}><a className={"focus transition-all border-solid border-black dark:border-yellow-300 focus:border-b-2 motion-reduce:transition-none ease-in-out"}>{props.text}
+    <Link href={props.path}>
+      <a className={"transition-all border-solid border-black dark:border-yellow-300 focus:border-b-2 motion-reduce:transition-none ease-in-out" + (router.pathname == props.path ? "border-solid border-b-2 border-black" : "")}>
+     {props.text}
     </a>
     </Link>
   </li>
