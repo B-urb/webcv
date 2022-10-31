@@ -16,7 +16,7 @@ const Blogposts = (props: {blogposts: Array<IBlogPost> }) => {
               props.blogposts.map((post, key) => <Link key={key} href={"blogposts/"+post.id!.toString()}>
                 <a className="my-2 shadow-sm shadow-black rounded-md border-black bg-light-4 dark:bg-dark-2 dark:bg-gradient-to-br text-black transition-all ease-in-out delay-50
                 duration-500 hover:cursor-pointer dark:hover:to-gray-500 text-sm md:text-xl dark:from-gray-800 dark:to-black flex md:h-18
-                hover:mix-blend-overlay dark:hover:mix-blend-normal dark:text-yellow-300 font-roboto
+                hover:mix-blend-overlay dark:hover:mix-blend-normal dark:text-dark-4 font-roboto
                 md:justify-center md:justify-between dark:border-gray-50 border-b-2 border-solid">
                   <div className="flex flex-col justify-between text-left ml-1.5">
                     <span className="font-extrabold">{post.title!}</span>

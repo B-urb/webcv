@@ -23,7 +23,7 @@ const {currentTheme, setTheme} = useContext(UIContext)
       }
     }
   }
-  return <div className="h-8 w-8 mr-4 md:h-14 md:w-14 text-md md:hover:bg-black md:hover:text-white md:dark:hover:shadow-lg md:dark:hover:bg-yellow-300 md:dark:hover:text-black duration-300 transition-all text-md md:text-xl md:mr-2 justify-self-end flex justify-center rounded-full shadow-black dark:shadow-gray-300 shadow-md">
+  return <div className="h-8 w-8 mr-4 md:h-14 md:w-14 text-md md:hover:bg-black md:hover:text-white md:dark:hover:shadow-lg md:dark:hover:bg-dark-4 md:dark:hover:text-black duration-300 transition-all text-md md:text-xl md:mr-2 justify-self-end flex justify-center rounded-full shadow-black dark:shadow-gray-300 shadow-md">
     <button className="w-full h-full"  onClick={switchTheme} >
     <FontAwesomeIcon icon={loaded && currentTheme === "dark" ? faLightbulb : faLightbulbOff} />
   </button></div>

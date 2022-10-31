@@ -7,14 +7,15 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 const ProjectsCard = (props: {name: string, content: string, tags: Array<string|undefined>}) => {
     const [showModal, setShowModal] = useState(false);
 
-    return <><div className="shadow-md hover:cursor-pointer md:hover:scale-105 transition-all duration-300 shadow-black dark:shadow-white dark:shadow-md h-full self-stretch rounded-md m-4">
-        <div className="shadow-sm p-3 rounded-md bg-light-4 text-black dark:text-white dark:bg-dark-2 divide-y h-full divide-white divide-dotted grid text-xs md:text-md" onClick={() => setShowModal(true)}
+    return <><div className=" hover:cursor-pointer md:hover:scale-105 transition-all duration-300 shadow-black  h-full self-stretch rounded-md m-4">
+        <div className=" p-3 rounded-md bg-light-4 text-black dark:text-white dark:bg-dark-2 divide-y h-full divide-white divide-dotted grid text-xs md:text-md" onClick={() => setShowModal(true)}
         >
             <div className="row-span-auto">
                 <h2 className="font-roboto text-xl md:text-2xl">{props.name}</h2></div>
-            <div className="row-auto text-base h-44 md:h-36"><ReactMarkdown className="text-xl md:text-xl font-barlow line-clamp-6">
+            <div onClick={(e)=> e.stopPropagation()} className="row-auto text-base h-44 font-barlow md:h-36 cursor-default prose-a:underline"><ReactMarkdown className="text-xl md:text-xl  line-clamp-6">
                 {props.content}
-            </ReactMarkdown></div>
+            </ReactMarkdown>
+            <button onClick={(e) => setShowModal(true)}>Details</button></div>
             <div className="row-auto pt-2 flex flex-wrap justify-start justify-items-start gap-2">{
                 props.tags.map((tag,key) => {
                         if(tag!== undefined)
