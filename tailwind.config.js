@@ -18,16 +18,16 @@ module.exports = {
       colors: {
         transparent: 'transparent',
         current: 'currentColor',
-        'light-1': '#D7DAE5',
-        'light-2': '#B9CDDA',
-        'light-3': '#A6D8D4',
-        'light-4': '#8EAF9D',
-        'light-5': '#6B7D7D',
-        'dark-1': '#000000ff',
-        'dark-2': '#19647eff',
-        'dark-3': '#50c5b7ff',
-        'dark-4': '#948392ff',
-        'dark-5': '#c7f2a7ff'
+        'light-1': '#00887A',
+        'light-2': '#FFCCBC',
+        'light-3': '#FFFFFF',
+        'light-4': '#D3E3FC',
+        'light-5': '#77A6F7',
+        'dark-1': '#0B0C10',
+        'dark-2': '#1F2833',
+        'dark-3': '#C5C6C7',
+        'dark-4': '#66FCF1',
+        'dark-5': '#45A29E'
       }
     },
 
