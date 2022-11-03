@@ -1,34 +1,19 @@
 import Link from "next/link"
 import {allBlogposts, IBlogPost} from "../../lib/directus";
-import MetaTag from "../../components/MetaTag";
-import SEO from "../../components/Seo";
-
+import BlogpostCard from "../../components/BlogpostCard";
+import { NextSeo } from 'next-seo';
 const Blogposts = (props: {blogposts: Array<IBlogPost> }) => {
-  const dateOptions :Intl.DateTimeFormatOptions = {year: "numeric", month: 'long', day: '2-digit'};
 
 
 
- return <div className="text-center mt-2 flex items-center justify-center">
-   <SEO title={"Björn Urban | Blogposts"} description={"Overview of all blogposts I have written"}/>
-        <nav className="group overflow-hidden list-none w-96 min-w-[90vw] max-w-[100vw] md:max-w-[80vw]
+ return <div className="text-center mt-2 flex flex-col items-center justify-center">
+   <NextSeo title={"Björn Urban | Blogposts"} description={"Checkout my Blogposts. I write about everything related to tech, mostly tutorials and experiences from my hobby projects."}/>
+   <h2>Blogposts about mostly tech related topics. Tutorials, experiences and more.</h2>
+        <nav className="flex-row overflow-hidden list-none w-96 min-w-[90vw] max-w-[100vw] md:max-w-[80vw]
         justify-center">
           {props.blogposts != undefined && props.blogposts.length > 0 ?
-              props.blogposts.map((post, key) => <Link key={key} href={"blogposts/"+post.id!.toString()}>
-                <a className="my-2 shadow-sm shadow-black rounded-md border-black bg-light-4 dark:bg-dark-2 dark:bg-gradient-to-br text-black transition-all ease-in-out delay-50
-                duration-500 hover:cursor-pointer dark:hover:to-gray-500 text-sm md:text-xl dark:from-gray-800 dark:to-black flex md:h-18
-                hover:mix-blend-overlay dark:hover:mix-blend-normal dark:text-dark-4 font-roboto
-                md:justify-center md:justify-between dark:border-gray-50 border-b-2 border-solid">
-                  <div className="flex flex-col justify-between text-left ml-1.5">
-                    <span className="font-extrabold">{post.title!}</span>
-                  <span className="text-xs">{new Date(post.date_created!).toLocaleDateString("de-DE", dateOptions)}</span>
-                  </div>
-                  <div className="hidden md:flex  md:flex-wrap justify-self-end md:flex-row-reverse w-1/3 py-1 h-fit gap-1 mr-2">{post.tags?.map((tag,key) => {
-                      if(tag !== undefined)
-                        return <MetaTag key={key} tag={tag}/>
-                    }
-                )}
-                  </div>
-              </a></Link>) : <li>No Blogposts yet :( </li>}
+              props.blogposts.map((post, key) => <Link key={key} href={"blogposts/"+post.id!.toString()}><a className="w-96 h-96">
+                <BlogpostCard name={post.title} thumbnail={post.thumbnail} abstract={post.abstract} date={post.date_created} tags={post.tags}/></a></Link>) : <span>No Blogposts yet :( </span>}
         </nav>
       </div>
 

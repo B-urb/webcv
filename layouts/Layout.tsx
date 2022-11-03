@@ -12,7 +12,7 @@ export default function Layout(props: { children: ReactNode }) {
       <div
           className="h-full grid auto-rows-auto
             dark:text-dark-4 dark:bg-dark-1 font-barlow dark:-z-40 dark:">
-        <div className="absolute flex m-auto w-full h-[100vh] dark:bg-moon opacity-30 bg-no-repeat bg-contain bg-center bg-fixed"></div>
+        <div className="fixed flex m-auto w-full h-full dark:bg-moon opacity-30 bg-no-repeat bg-contain bg-center bg-fixed"></div>
         <div className="-z-0">
         <div className="grid font-roboto auto-rows-auto border-solid border-black dark:border-dark-4 ">
           <div

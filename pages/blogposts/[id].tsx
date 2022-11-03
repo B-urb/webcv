@@ -4,8 +4,7 @@ import {BlogpostMarkdown} from "../../components/BlogpostMarkdown";
 import {allBlogposts, getPostById, IBlogPost} from "../../lib/directus";
 import Link from "next/link";
 import {GetStaticPropsContext} from "next";
-import SEO from "../../components/Seo";
-
+import {NextSeo} from "next-seo";
 
 type BlogParams = {
   id: string
@@ -14,7 +13,7 @@ type BlogParams = {
 const Blogpost = (props: {post: IBlogPost}) => {
 
  return (props.post != undefined ? <div className="flex items-center flex-col">
-   <SEO title={props.post.title} description={props.post.title}/>
+   <NextSeo title={props.post.title} description={props.post.abstract}/>
       <div className="flex flex-row w-[90vw] justify-between mx-4">
       <Link href="/blogposts"><button className="md:text-2xl transition-all hover:scale-150">
         <FontAwesomeIcon icon={faArrowAltCircleLeft}/></button>

@@ -4,6 +4,8 @@ import {Directus, ID, ISingleton, ManyItems, OneItem,} from '@directus/sdk';
 export type IBlogPost = {
   id: ID;
   title: string;
+  abstract: string;
+  thumbnail: string;
   content: string;
   tags: Array<string>;
   date_created: string
@@ -34,13 +36,12 @@ export async function allBlogposts(): Promise<ManyItems<IBlogPost>> {
         "_eq": "published"
       }
   } : {};
-  console.log(filter);
   return await directus.items("blogposts").readByQuery({
     // By default API limits results to 100.
     // With -1, it will return all results, but it may lead to performance degradation
     // for large result sets.
     filter:filter,
-    fields: ['id', 'title', 'tags', 'date_created'],
+    fields: ['id', 'title','abstract', 'thumbnail', 'tags', 'date_created'],
     limit: -1,
   });
 }
