@@ -15,6 +15,9 @@ module.exports = {
         "trispace": ["Trispace", "sans-serif"],
         "barlow": ["Barlow Condensed", "sans-serif"]
       },
+      backgroundImage: {
+        'moon': "url('../public/moon.png')",
+      },
       colors: {
         transparent: 'transparent',
         current: 'currentColor',

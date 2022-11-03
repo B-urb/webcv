@@ -27,7 +27,7 @@ const socialLinks = [{
 
 const Footer = () => {
   return <div
-      className="dark:bg-gradient-to-b flex justify-center from-dark-1 to-dark-2 text-2xl md:text-4xl dark:text-dark-4">
+      className=" flex justify-center text-2xl md:text-4xl dark:text-dark-4">
     <ul className="flex">{socialLinks.map((social, key) =>
         <li key={key} onClick={() => window.open(social.url)}
             className="m-1 sm:m-3 hover:cursor-pointer"><FontAwesomeIcon icon={social.icon}/></li>
