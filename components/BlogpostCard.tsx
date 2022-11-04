@@ -2,7 +2,7 @@ import MetaTag from "./MetaTag";
 import React, {useState} from "react";
 import DirectusImage from "./DirectusImage";
 
-const BlogpostCard = (props: {name: string, thumbnail: string, abstract: string, date: string, tags: Array<string|undefined>}) => {
+const BlogpostCard = (props: {name: string, thumbnail: string, abstract: string, date: string, tags: Array<string|undefined>  }) => {
   const dateOptions :Intl.DateTimeFormatOptions = {year: "numeric", month: 'long', day: '2-digit'};
 
   return <div className="hover:cursor-pointer md:hover:scale-105 w-96 transition-all duration-300 shadow-black h-full self-stretch rounded-md m-4">
@@ -18,7 +18,7 @@ const BlogpostCard = (props: {name: string, thumbnail: string, abstract: string,
         <span className="text-xs">{new Date(props.date!).toLocaleDateString("de-DE", dateOptions)}</span>
       <div className="row-auto pt-2 flex flex-wrap justify-start justify-items-start gap-2">{
         props.tags.map((tag,key) => {
-              if(tag!== undefined)
+              if(tag !== undefined)
                 return <MetaTag key={key} tag={tag}/>
             }
         )}

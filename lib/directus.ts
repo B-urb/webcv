@@ -1,5 +1,9 @@
-import {Directus, ID, ISingleton, ManyItems, OneItem,} from '@directus/sdk';
-
+import {Auth, Directus, ID, ISingleton, ManyItems, OneItem,} from '@directus/sdk';
+const directus =  new Directus<MyCollections>('https://cms.burban.me', {
+  auth: {
+    staticToken: process.env.DIRECTUS_TOKEN!
+  }
+})
 
 export type IBlogPost = {
   id: ID;
@@ -27,15 +31,16 @@ type MyCollections = {
   projects: IProjects,
   intro: Introtext,
 }
-const directus = new Directus<MyCollections>('https://cms.burban.me');
+class DirecutsApi {
+  constructor() {
 
+  }
+
+}
 export async function allBlogposts(): Promise<ManyItems<IBlogPost>> {
   // We don't need to authenticate if data is public
   const env = process.env.NODE_ENV
-  const filter = env == "production" ? {"status": {
-        "_eq": "published"
-      }
-  } : {};
+  const filter =  {};
   return await directus.items("blogposts").readByQuery({
     // By default API limits results to 100.
     // With -1, it will return all results, but it may lead to performance degradation
@@ -47,7 +52,7 @@ export async function allBlogposts(): Promise<ManyItems<IBlogPost>> {
 }
 
 export function getProfileImage() {
-  const id = "410d7427-8a7c-4f4f-9ba7-9563757ac99a"//TODO: GET BY NAME
+  const id = "410d7427-8a7c-4f4f-9ba7-9563757ac99a" //TODO: GET BY NAME
   const file = directus.files.readOne(id)
   return id
 }
