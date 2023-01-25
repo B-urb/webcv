@@ -1,5 +1,5 @@
 import {Auth, Directus, ID, ISingleton, ManyItems, OneItem,} from '@directus/sdk';
-const directus =  new Directus<MyCollections>('https://cms.burban.me', {
+const directus =  new Directus<MyCollections>('https://cms.tecios.de', {
   auth: {
     staticToken: process.env.DIRECTUS_TOKEN!
   }
@@ -15,7 +15,7 @@ export type IBlogPost = {
   date_created: string
 };
 
-export type IProjects = {
+export type IProject = {
   id: ID;
   name: string;
   description: string;
@@ -28,7 +28,7 @@ export type Introtext = {
 
 type MyCollections = {
   posts: IBlogPost
-  projects: IProjects,
+  projects: IProject,
   intro: Introtext,
 }
 class DirecutsApi {
@@ -57,12 +57,13 @@ export function getProfileImage() {
   return id
 }
 
-export async function allProjects(): Promise<ManyItems<IProjects>> {
+export async function allProjects(): Promise<ManyItems<IProject>> {
   // We don't need to authenticate if data is public
   return await directus.items("projects").readByQuery({
     // By default API limits results to 100.
     // With -1, it will return all results, but it may lead to performance degradation
     // for large result sets.
+    fields: ['id', 'name','description', 'tags'],
     limit: -1,
   });
 
@@ -71,7 +72,9 @@ export async function allProjects(): Promise<ManyItems<IProjects>> {
 export async function getPostById(id: string): Promise<OneItem<IBlogPost>> {
   return await directus.items("blogposts").readOne(id);
 }
-
+export async function getProjectById(id: string): Promise<OneItem<IBlogPost>> {
+  return await directus.items("projects").readOne(id);
+}
 
 export async function getIntrotext(): Promise<OneItem<Introtext>> {
   return directus.singleton("aboutme").read();

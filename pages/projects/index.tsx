@@ -1,8 +1,8 @@
 import ProjectsCard from "../../components/ProjectsCard";
-import {allProjects, IProjects} from "../../lib/directus";
+import {allProjects, IProject} from "../../lib/directus";
 import { NextSeo } from 'next-seo';
 
-const Projects = (props: { projects: Array<IProjects> }) => {
+const Projects = (props: { projects: Array<IProject> }) => {
   return <div className="flex flex-col">
     <NextSeo title={"Björn Urban | Projects "} description={"Have a look at some of the projects I have worked on in the past or working on at the moment. This can be work, university or hobby projects."}/>
     <h2 className="text-center">Projects summarizing my professional experience with different frameworks and programming languages and technologies.</h2>
@@ -10,7 +10,7 @@ const Projects = (props: { projects: Array<IProjects> }) => {
 
     {props.projects != undefined && props.projects.length > 0 ?
         props.projects.map((content, key) => <div key={key} className="flex-col items-stretch flex">
-          <ProjectsCard name={content.name!} content={content.description!} tags={content.tags!}/>
+          <ProjectsCard id={content.id} name={content.name!} content={content.description!} tags={content.tags!}/>
         </div>) : <span>No Projects yet :( </span>}
   </div>
   </div>
