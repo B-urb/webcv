@@ -61,7 +61,7 @@ release:
       when: manual
     - when: never
   script:
-    - npm install @semantic-release/gitlab @semantic-release/exec
+    - npm install @semantic-release/gitlab @semantic-release/exec @saithodev/semantic-release-backmerge
     - npx semantic-release
 
 
