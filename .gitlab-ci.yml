@@ -20,7 +20,7 @@ test:
     - when: never
 
 build:
-  image: node:16
+  image: node:18
   stage: build
   script:
     - CI=true npm run build
@@ -51,7 +51,7 @@ build-docker:
     - when: manual
 
 release:
-  image: node:16 # Requires GIT
+  image: node:18 # Requires GIT
   stage: release
   allow_failure: true
   rules:

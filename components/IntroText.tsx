@@ -2,7 +2,7 @@ import ReactMarkdown from "react-markdown";
 
 
 const IntroText = (props: {introtext: string}) => {
-    return <ReactMarkdown className="prose md:min-w-[20vw] max-w-[80vw] md:max-w-[50vw]
+    return <ReactMarkdown className="prose
      dark:prose-invert
       dark:prose-p:text-dark-4
        text-lg md:text-2xl
