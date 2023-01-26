@@ -1,6 +1,13 @@
 plugins:
   - "@semantic-release/commit-analyzer"
   - "@semantic-release/release-notes-generator"
+  - - "@saithodev/semantic-release-backmerge"
+    - branches:
+        - development
+      plugins:
+        - - "@semantic-release/exec"
+          - successCmd: echo 'Version in master is ${nextRelease.version}' > test.txt
+              && git add test.txt
   - - "@semantic-release/npm"
     - npmPublish: false
   - - "@semantic-release/exec"
