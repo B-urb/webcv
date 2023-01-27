@@ -22,6 +22,13 @@ test:
 build:
   image: node:18
   stage: build
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^[0-9]+(\.([0-9]+|x))?\.x$/'
+      variables: # Override DEPLOY_VARIABLE defined
+        NODE_ENV: "production"  # at the job level.
+    - if: '$CI_COMMIT_BRANCH == "development"'
+      variables:
+        NODENV: "development"
   script:
     - CI=true npm run build
   artifacts:
