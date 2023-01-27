@@ -57,7 +57,9 @@ release:
   rules:
     # allow creating releases from master branch and maintenance branches named like this:
     # `MAJOR.MINOR.PATCH`, e.g. `1.16.2`
-    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^[0-9]+(\.([0-9]+|x))?\.x$/ || $CI_COMMIT_BRANCH == "development"'
+    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^[0-9]+(\.([0-9]+|x))?\.x$/'
+      when: always
+    - if: '$CI_COMMIT_BRANCH == "development"'
       when: manual
     - when: never
   script:
