@@ -5,6 +5,7 @@ plugins:
     - branches:
         - from: master
           to: development
+      clearWorkspace: true
       plugins:
         - - "@semantic-release/exec"
           - successCmd: echo 'Version in master is ${nextRelease.version}' > test.txt
