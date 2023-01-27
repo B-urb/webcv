@@ -3,7 +3,8 @@ plugins:
   - "@semantic-release/release-notes-generator"
   - - "@saithodev/semantic-release-backmerge"
     - branches:
-        - development
+        - from: master
+          to: development
       plugins:
         - - "@semantic-release/exec"
           - successCmd: echo 'Version in master is ${nextRelease.version}' > test.txt
@@ -18,4 +19,4 @@ branches:
   - "master"
   - name: "development"
     prerelease: "rc"
-    channel: false
+    channel: "false"
