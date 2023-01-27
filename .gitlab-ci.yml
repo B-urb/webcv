@@ -32,6 +32,7 @@ test:
       - .next/static/
 
 build:dev:
+  extends: .build
   variables:
     NODE_ENV: "development"
   rules:
@@ -40,6 +41,7 @@ build:dev:
     - when: never
 
 build:prod:
+  extends: .build
   variables:
     NODE_ENV: "production"  # at the job level.
   rules:
@@ -52,8 +54,8 @@ build-docker:
     - echo "pass"
     - echo $CI_COMMIT_TAG
   stage: build-docker
-  dependencies:
-    - build
+  needs:
+    - job: build
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
