@@ -33,19 +33,23 @@ test:
 
 build:dev:
   extends: .build
+  environment:
+    name: development
   variables:
     NODE_ENV: "development"
   rules:
-    - if: '$CI_COMMIT_BRANCH == "development" || $CI_COMMIT_TAG =~ /v[0-9]+\.[0-9]+\.[0-9]+\-rc.[0-9]+/'
+    - if: '$CI_COMMIT_BRANCH == "development" || $CI_COMMIT_TAG =~ /v[0-9]+\.[0-9]+\.[0-9]+\-rc.[0-9]+$/'
       when: always
     - when: never
 
 build:prod:
   extends: .build
+  environment:
+    name: production
   variables:
     NODE_ENV: "production"  # at the job level.
   rules:
-    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^v[0-9]+\.[0-9]+\.[0-9]+/'
+    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/'
       when: always
     - when: never
 
