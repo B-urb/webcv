@@ -19,9 +19,10 @@ test:
   rules:
     - when: never
 
-build:
+.build:
   image: node:18
   stage: build
+
   script:
     - CI=true npm run build
   artifacts:
@@ -29,14 +30,30 @@ build:
       - .next/standalone/
       - public/
       - .next/static/
-    
+
+build:dev:
+  extends: .build
+  environment:
+    name: development
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "development" || $CI_COMMIT_TAG =~ /v[0-9]+\.[0-9]+\.[0-9]+\-rc.[0-9]+$/'
+      when: always
+    - when: never
+
+build:prod:
+  extends: .build
+  environment:
+    name: production
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/'
+      when: always
+    - when: never
+
 build-docker:
   before_script:
     - echo "pass"
     - echo $CI_COMMIT_TAG
   stage: build-docker
-  dependencies:
-    - build
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
