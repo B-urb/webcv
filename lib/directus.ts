@@ -31,12 +31,7 @@ type MyCollections = {
   projects: IProject,
   intro: Introtext,
 }
-class DirecutsApi {
-  constructor() {
 
-  }
-
-}
 export async function allBlogposts(): Promise<ManyItems<IBlogPost>> {
   // We don't need to authenticate if data is public
   const env = process.env.NODE_ENV
