@@ -10,10 +10,10 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "next": "12.3.0",
+    "next": "^13.4.2",
     "next-seo": "^5.13.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@directus/sdk": "^10.1.1",

@@ -1,0 +1,3 @@
+name: webcv
+runtime: java
+description: Personal website pulumi deployment program
