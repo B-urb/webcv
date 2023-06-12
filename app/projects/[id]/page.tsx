@@ -33,15 +33,7 @@ const project: IProject = await getProject(params.id)
        dark:prose-invert"><h2>{project.name!}</h2><BlogpostMarkdown markdown={project.description!}/> </article>
   </div> :<div>No Projectdata</div>;
 }
-export async function getStaticPaths() {
-  const res = await allProjects()
-  const projects = res.data
-  const paths = projects!.map((project) => ({
-    params: { id: project.id.toString() },
-  }))
 
-  return { paths, fallback: false }
-}
 
 
 export default Project;

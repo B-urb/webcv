@@ -7,7 +7,7 @@ export const metadata:Metadata = {
   title: "Björn Urban | Blogposts",
   description: "Checkout my Blogposts. I write about everything related to tech, mostly tutorials and experiences from my hobby projects."
 }
-const Blogposts = async (props: {blogposts: Array<IBlogPost> }) => {
+const Blogposts = async () => {
 
   const res = await allBlogposts()
   const blogposts = res.data

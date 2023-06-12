@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Björn Urban | Projects",
   description:"Have a look at some of the projects I have worked on in the past or working on at the moment. This can be work, university or hobby projects."
 }
-const Projects = async (props: { projects: Array<IProject> }) => {
+const Projects = async () => {
   const res = await allProjects()
   const  projects = res.data
   return <div className="flex flex-col">
