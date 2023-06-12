@@ -65,7 +65,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_REGISTRY }}/${{ github.repository }}:${{ github.ref }}
       - name: Get the image digest
-        run: echo "::set-output name=digest::$(docker inspect --format='{{index .RepoDigests 0}}' ${{ secrets.DOCKER_REGISTRY }}/${{ github.repository }}:${{ github.ref }})"
+        run: echo "name=digest::$(docker inspect --format='{{index .RepoDigests 0}}' ${{ secrets.DOCKER_REGISTRY }}/${{ github.repository }}:${{ github.ref }})" >> $GITHUB_OUTPUT
         id: docker_inspect
     outputs:
       image-digest: ${{ steps.docker_inspect.outputs.digest }}
