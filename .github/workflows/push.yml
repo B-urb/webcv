@@ -101,5 +101,5 @@ jobs:
           command: up
           stack-name: dev
           work-dir: pulumi
-          env:
-            DOCKER_IMAGE_DIGEST: ${{ needs.build-docker.outputs.image-digest }}
+    env:
+      DOCKER_IMAGE_DIGEST: ${{ needs.build-docker.outputs.image-digest }}
