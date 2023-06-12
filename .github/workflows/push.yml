@@ -18,7 +18,7 @@ env:
   CI: true
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     container: node:18
     steps:
@@ -36,8 +36,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests
-        run: npm run test-ci
+      - name: Build
+        run: npm run build
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: production-artifacts
+          path: |
+            .next/standalone/
+            public/
+            .next/static/
 
   build-docker:
     needs: build
