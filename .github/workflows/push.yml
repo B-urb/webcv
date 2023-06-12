@@ -67,8 +67,8 @@ jobs:
       - name: Get the image digest
         run: echo "::set-output name=digest::$(docker inspect --format='{{index .RepoDigests 0}}' ${{ secrets.DOCKER_REGISTRY }}/${{ github.repository }}:${{ github.ref }})"
         id: docker_inspect
-        outputs:
-          image-digest: ${{ steps.docker_inspect.outputs.digest }}
+    outputs:
+      image-digest: ${{ steps.docker_inspect.outputs.digest }}
 
   release:
     needs: build
