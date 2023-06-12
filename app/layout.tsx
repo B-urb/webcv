@@ -17,7 +17,7 @@ import Script from "next/script";
 export default function Layout({ children} :{ children: ReactNode }) {
 
   return (
-      <html lang="en">
+      <html lang="en" className="dark">
       <body>
       <div
           className="h-full grid auto-rows-auto
