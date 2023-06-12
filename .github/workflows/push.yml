@@ -38,7 +38,7 @@ jobs:
 
       - name: Build
         run: npm run build
-        with:
+        env:
           CI_DIRECTUS_TOKEN: ${{ secrets.CI_DIRECTUS_TOKEN }}
 
       - name: Archive production artifacts
