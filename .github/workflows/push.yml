@@ -39,8 +39,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        with:
-          CI_DIRECTUS_TOKEN: ${{ secrets.CI_DIRECTUS_TOKEN }}
         env:
           CI_DIRECTUS_TOKEN: ${{ secrets.CI_DIRECTUS_TOKEN }}
 
