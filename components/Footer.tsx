@@ -29,8 +29,9 @@ const Footer = () => {
   return <div
       className=" flex justify-center text-2xl md:text-4xl dark:text-dark-4">
     <ul className="flex">{socialLinks.map((social, key) =>
-        <li key={key} onClick={() => window.open(social.url)}
-            className="m-1 sm:m-3 hover:cursor-pointer"><FontAwesomeIcon icon={social.icon}/></li>
+        <li key={key}
+            className="m-1 sm:m-3 hover:cursor-pointer"><a href={social.url} target={"_blank"}><FontAwesomeIcon icon={social.icon}/></a>
+        </li>
     )
     }
     </ul>

@@ -2,7 +2,6 @@ const tagIconMapping: Object = {
   "cpp": "cplusplus",
 }
 
-
 const MetaTag = (props: { tag: string }) => {
   const findIconOrNull = () => {
     if (!(props.tag.toLowerCase() in tagIconMapping))
