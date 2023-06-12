@@ -20,6 +20,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: development
     container: node:18
     steps:
       - name: Checkout code
@@ -38,6 +39,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        with:
+          CI_DIRECTUS_TOKEN: ${{ secrets.CI_DIRECTUS_TOKEN }}
         env:
           CI_DIRECTUS_TOKEN: ${{ secrets.CI_DIRECTUS_TOKEN }}
 
