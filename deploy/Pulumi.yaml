@@ -1,3 +1,3 @@
 name: webcv
-runtime: java
-description: Personal website pulumi deployment program
+runtime: nodejs
+description: Personal Website and Project Showcase
