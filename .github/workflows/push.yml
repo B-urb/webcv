@@ -75,16 +75,19 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/webcv:${{ env.BRANCH_NAME }}
   release:
+    needs: build-docker
     runs-on: ubuntu-latest
     if: ${{ github.ref }} == 'master' || ${{ github.ref }} == 'development'
-    container: node:18
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
           persist-credentials: false
-        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
       - name: Install dependencies
         run: npm install -g semantic-release @saithodev/semantic-release-backmerge @semantic-release/github @semantic-release/exec
       - name: Release
