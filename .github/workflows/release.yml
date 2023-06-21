@@ -1,5 +1,4 @@
-name: Release
-
+name: Deploy Release
 on:
   push:
     branches:
