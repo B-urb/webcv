@@ -77,7 +77,7 @@ jobs:
     needs: build-docker
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read|write
       issues: write
       pull-requests: write
     if: ${{ github.ref }} == 'master' || ${{ github.ref }} == 'development'
