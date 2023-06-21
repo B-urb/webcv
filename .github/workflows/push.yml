@@ -75,6 +75,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/webcv:${{ env.BRANCH_NAME }}
   release:
+    needs: build-docker
     runs-on: ubuntu-latest
     if: ${{ github.ref }} == 'master' || ${{ github.ref }} == 'development'
     container: node:18
@@ -89,9 +90,8 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-
       - name: Install dependencies
-        run: npm ci semantic-release
+        run: npm ci semantic-release @saithodev/semantic-release-backmerge @semantic-release/github @semantic-release/exec
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
