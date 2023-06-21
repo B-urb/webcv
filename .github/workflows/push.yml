@@ -82,7 +82,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Cache node modules
         uses: actions/cache@v3
         with:
@@ -91,7 +90,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies
-        run: npm ci semantic-release @saithodev/semantic-release-backmerge @semantic-release/github @semantic-release/exec
+        run: npm install -g semantic-release @saithodev/semantic-release-backmerge @semantic-release/github @semantic-release/exec
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
