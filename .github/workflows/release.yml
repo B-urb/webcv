@@ -1,15 +1,12 @@
-name: CI
+name: Release
 
 on:
   push:
     branches:
-      - master
-      - development
-  pull_request:
-    branches:
-      - '*'
-      - development
-
+      - '[0-9]+.[0-9]+.[0-9]+-rc.[0-9]+'
+      - '[0-9]+.[0-9]+.[0-9]+'
+    tags:
+      - 'v*'
 env:
   CI: true
 
@@ -76,7 +73,6 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/webcv:${{ env.BRANCH_NAME }}
   release:
     runs-on: ubuntu-latest
-    if: ${{ github.ref }} == 'master' || ${{ github.ref }} == 'development'
     container: node:18
     steps:
       - name: Checkout code
@@ -96,3 +92,22 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
+
+
+
+  pulumi-deploy:
+    needs: build-docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy with Pulumi
+        uses: pulumi/actions@v3
+        with:
+          command: up
+          stack-name: dev
+          work-dir: deploy
+    env:
+      registryImage: ${{ secrets.DOCKERHUB_USERNAME }}/webcv
+      imageTag: ${{ github.head_ref || github.ref_name }}
