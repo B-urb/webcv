@@ -92,6 +92,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   pulumi-deploy:
     needs: build-docker
+    on:
+      tags:
+        - 'v*'
+    branches:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -102,7 +106,7 @@ jobs:
         with:
           command: up
           stack-name: dev
-          work-dir: pulumi
+          work-dir: deploy
     env:
       registryImage: ${{ secrets.DOCKERHUB_USERNAME }}/webcv
       imageTag: ${{ github.head_ref || github.ref_name }}
