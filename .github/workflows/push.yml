@@ -54,6 +54,8 @@ jobs:
   build-docker:
     needs: build
     runs-on: ubuntu-latest
+    env:
+      BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -75,7 +77,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/webcv:${GITHUB_REF_NAME}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/webcv:${BRANCH_NAME}
   release:
     needs: build
     runs-on: ubuntu-latest
@@ -103,4 +105,4 @@ jobs:
           work-dir: pulumi
     env:
       registryImage: ${{ secrets.DOCKERHUB_USERNAME }}/webcv
-      imageTag: $GITHUB_REF_NAME
+      imageTag: ${{ github.head_ref || github.ref_name }}
