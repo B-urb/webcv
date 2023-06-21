@@ -77,6 +77,10 @@ jobs:
   release:
     needs: build-docker
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     if: ${{ github.ref }} == 'master' || ${{ github.ref }} == 'development'
     container: node:18
     steps:
