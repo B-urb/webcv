@@ -12,6 +12,8 @@ on:
 env:
   CI: true
 
+permissions:
+  contents: read
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -77,6 +79,10 @@ jobs:
   release:
     needs: build-docker
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     if: ${{ github.ref }} == 'master' || ${{ github.ref }} == 'development'
     steps:
       - name: Checkout code
