@@ -1,17 +1,16 @@
+'use client'
 import Link from "next/link";
 import React from "react";
-import {useRouter} from "next/router";
+import {usePathname} from "next/navigation";
 
 
 const NavLinkWrapper = (props: {text:string,path:string}) => {
-  const router = useRouter()
+  const pathname = usePathname()
   const isActive = () => {
-    return router.pathname.includes(props.path) || (props.path === "/#" && router.pathname  === "/")
+    return pathname.includes(props.path) || (props.path === "/#" && pathname  === "/")
   }
-  return <Link href={props.path}>
-      <a className={"transition-all border-solid hover:scale-110  duration-50 border-black dark:border-dark-4 focus:border-b-2 motion-reduce:transition-none ease-in-out" + (isActive() ? "border-solid border-b-2 border-black  hover:scale-150" : "")}>
+  return <Link href={props.path} className={"transition-all border-solid hover:scale-110  duration-50 border-black dark:border-dark-4 focus:border-b-2 motion-reduce:transition-none ease-in-out" + (isActive() ? "border-solid border-b-2 border-black  hover:scale-150" : "")}>
      {props.text}
-    </a>
     </Link>
 
 }

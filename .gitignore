@@ -18,6 +18,7 @@
 
 # production
 /build
+/deploy/target
 
 # misc
 .DS_Store

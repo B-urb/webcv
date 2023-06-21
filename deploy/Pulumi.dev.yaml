@@ -1,0 +1,4 @@
+config:
+  webcv:namespace: burban
+  webcv:replicas: "1"
+  webcv:url: burban.me

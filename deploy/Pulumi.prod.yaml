@@ -1,0 +1,3 @@
+config:
+  webcv:namespace: burban
+  webcv:url: burban.me

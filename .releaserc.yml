@@ -2,19 +2,16 @@ plugins:
   - "@semantic-release/commit-analyzer"
   - "@semantic-release/release-notes-generator"
   - - "@saithodev/semantic-release-backmerge"
-    - branches:
+    - backmergeBranches:
         - from: master
           to: development
       clearWorkspace: true
-      plugins:
-        - - "@semantic-release/exec"
-          - successCmd: echo 'Version in master is ${nextRelease.version}' > test.txt
-              && git add test.txt
   - - "@semantic-release/npm"
     - npmPublish: false
   - - "@semantic-release/exec"
     - verifyReleaseCmd: "echo ${nextRelease.version} > VERSION.txt"
   - "@semantic-release/gitlab"
+  - "@semantic-release/github"
 branches:
   - "+([0-9])?(.{+([0-9]),x}).x"
   - "master"
