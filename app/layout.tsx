@@ -9,20 +9,37 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false;
 import React, {ReactNode, } from "react";
-import {Metadata} from "next";
 import Script from "next/script";
+import localFont from "next/font/local";
 
+const barlow = localFont({
+  src: [
+    {
+      path: '../public/fonts/barlow-condensed-v12-latin-300.ttf',
+      weight: '300'
+    },
+  ],
+  variable: '--font-barlow'
+})
+const roboto = localFont({
+  src: [
 
+    {
+      path: '../public/fonts/roboto-condensed-v25-latin-700.ttf',
+      weight: '700'
+    }
+  ],
+  variable: '--font-roboto'
+})
 
 export default function Layout({ children} :{ children: ReactNode }) {
 
   return (
-      <html lang="en" className="dark">
+      <html lang="en" className={`${roboto.variable} ${roboto.variable} dark`}>
       <body>
       <div
           className="h-full grid auto-rows-auto
             dark:text-dark-4 dark:bg-dark-1 font-barlow dark:-z-40 dark:">
-        <div className="fixed flex m-auto w-full h-full dark:bg-moon opacity-30 bg-no-repeat bg-contain bg-center bg-fixed"></div>
         <div className="-z-0">
         <div className="grid font-roboto auto-rows-auto border-solid border-black dark:border-dark-4 ">
           <div
@@ -39,7 +56,7 @@ export default function Layout({ children} :{ children: ReactNode }) {
             <NavBar/>
           </div>
         </div>
-        <main className="min-h-[70vh] ">
+        <main className="min-h-[70vh] font-barlow ">
           <div className="mt-4">
             {children}
           </div>
