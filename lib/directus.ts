@@ -47,7 +47,7 @@ export async function allBlogposts(): Promise<ManyItems<IBlogPost>> {
 }
 
 export function getProfileImage() {
-  const id = "410d7427-8a7c-4f4f-9ba7-9563757ac99a" //TODO: GET BY NAME
+  const id = "384e369b-89b9-4182-80b4-871848fad4c2" //TODO: GET BY NAME
   const file = directus.files.readOne(id)
   return id
 }

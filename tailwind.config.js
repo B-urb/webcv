@@ -10,10 +10,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        "jetbrains": ["JetBrains Mono","monospace"],
-        "roboto": ["Roboto Condensed","sans-serif"],
-        "trispace": ["Trispace", "sans-serif"],
-        "barlow": ["Barlow Condensed", "sans-serif"]
+        "barlow": ["var(--font-barlow)"],
+        "roboto": ["var(--font-roboto)"]
+
       },
       backgroundImage: {
         'moon': "url('../public/moon.png')",

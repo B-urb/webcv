@@ -8,7 +8,7 @@ const directusLoader = ({src, width, quality}: ImageLoaderProps) => {
 }
 
 const ProfileImage = () => {
-  const image_uuid = "218815ac-b04e-4156-9be9-3770ff825a70"
+  const image_uuid = "218814ac-b04e-4156-9be9-3770ff825a70"
   return (
       <div className="relative rounded-full w-35 h-36 lg:h-56 overflow-hidden lg:w-56 border-4 border-black dark:border-yellow-50">
         <Image
