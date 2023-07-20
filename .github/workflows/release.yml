@@ -84,10 +84,12 @@ jobs:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
           args: get pods
+        run:
+          echo "KUBECONFIG=$(cat $HOME/.kube/config)" >> $GITHUB_ENV
       - name: Deploy with Pulumi
         uses: pulumi/actions@v4
         env:
-          KUBECONFIG: $(cat $HOME/.kube/config)
+          KUBECONFIG: ${{ env.KUBECONFIG }}
         with:
           command: up
           stack-name: dev
