@@ -84,8 +84,10 @@ jobs:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
           args: get pods
+      - name: Setup config for pulumi
         run:
-          echo "KUBECONFIG=$(cat $HOME/.kube/config)" >> $GITHUB_ENV
+          - echo "KUBECONFIG=$(cat $HOME/.kube/config)" >> $GITHUB_ENV
+          - echo {{ env.KUBECONFIG }}
       - name: Deploy with Pulumi
         uses: pulumi/actions@v4
         env:
