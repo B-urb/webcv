@@ -85,6 +85,8 @@ jobs:
           kubeconfig: ${{ secrets.KUBE_CONFIG }}
       - name: Deploy with Pulumi
         uses: pulumi/actions@v4
+        env:
+          KUBECONFIG: $(echo ${{ secrets.KUBECONFIG }} | base64 -d)
         with:
           command: up
           stack-name: dev
