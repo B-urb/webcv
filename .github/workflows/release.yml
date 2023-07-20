@@ -79,9 +79,11 @@ jobs:
         uses: actions/checkout@v3
       - run: npm install
         working-directory: deploy
-      - run: echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > kubeconfig
+      - uses: actions-hub/kubectl@master
         env:
-            KUBECONFIG: $GITHUB_WORKSPACE/kubeconfig
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+        with:
+          args: get pods
       - name: Deploy with Pulumi
         uses: pulumi/actions@v3
         with:
