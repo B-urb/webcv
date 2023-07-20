@@ -85,7 +85,7 @@ jobs:
         with:
           args: get pods
       - name: Deploy with Pulumi
-        uses: pulumi/actions@v3
+        uses: pulumi/actions@v4
         with:
           command: up
           stack-name: dev
