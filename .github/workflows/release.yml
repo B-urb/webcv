@@ -79,18 +79,12 @@ jobs:
         uses: actions/checkout@v3
       - run: npm install
         working-directory: deploy
-      - uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+      - uses: azure/k8s-set-context@v3
         with:
-          args: get pods
-      - name: Setup config for pulumi
-        run: echo "KUBECONFIG=$(echo ${{ secrets.KUBE_CONFIG }} | base64 -d)" >> $GITHUB_ENV
-      - run: echo ${{ env.KUBECONFIG }}
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
       - name: Deploy with Pulumi
         uses: pulumi/actions@v4
-        env:
-          KUBECONFIG: ${{ env.KUBECONFIG }}
         with:
           command: up
           stack-name: dev
