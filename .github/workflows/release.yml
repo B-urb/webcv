@@ -80,22 +80,22 @@ jobs:
       - run: npm install
         working-directory: deploy
       - name: Decode kubeconfig
-        run: echo ${{ secrets.KUBE_CONFIG }} | base64 -d >  ~/.kube/config
+        run: echo ${{ secrets.KUBE_CONFIG }} | base64 -d >  $HOME/.kube/config
         shell: bash
       - name: Upload kubeconfig as an artifact
         uses: actions/upload-artifact@v2
         with:
           name: kubeconfig
-          path: ~/.kube/config
+          path: $HOME/.kube/config
       - name: Download kubeconfig
         uses: actions/download-artifact@v2
         with:
           name: kubeconfig
-          path: ~/.kube
+          path: $HOME/.kube
       - name: Deploy with Pulumi
         uses: pulumi/actions@v4
         env:
-          KUBECONFIG: ~/.kube/config
+          KUBECONFIG: $HOME/.kube/config
         with:
           command: up
           stack-name: dev
