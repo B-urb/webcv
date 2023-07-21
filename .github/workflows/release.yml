@@ -80,7 +80,7 @@ jobs:
       - run: npm install
         working-directory: deploy
       - name: Decode kubeconfig
-        run: echo "${{ secrets.KUBECONFIG }}" | base64 -d >  ~/.kube/config
+        run: echo "${{ secrets.KUBE_CONFIG }}" | base64 -d >  ~/.kube/config
         shell: bash
       - name: Upload kubeconfig as an artifact
         uses: actions/upload-artifact@v2
