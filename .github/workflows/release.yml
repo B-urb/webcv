@@ -83,17 +83,8 @@ jobs:
         run: |
           mkdir -p $HOME/.kube
           echo "${{ secrets.KUBE_CONFIG }}" | base64 -d >  $HOME/.kube/config
+          cat $HOME/.kube/config
         shell: bash
-      - name: Upload kubeconfig as an artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: kubeconfig
-          path: $HOME/.kube/config
-      - name: Download kubeconfig
-        uses: actions/download-artifact@v2
-        with:
-          name: kubeconfig
-          path: $HOME/.kube
       - name: Deploy with Pulumi
         uses: pulumi/actions@v4
         env:
