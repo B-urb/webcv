@@ -87,8 +87,6 @@ jobs:
         shell: bash
       - name: Deploy with Pulumi
         uses: pulumi/actions@v4
-        env:
-          KUBECONFIG: $(cat $HOME/.kube/config)
         with:
           command: up
           stack-name: dev
