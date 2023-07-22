@@ -1,3 +1,5 @@
 config:
+  webcv:cms-token:
+    secure: AAABAOhodwSqJpD3zqWJr+T/xuZQsc8Exb/6w5QCwhgVnjXRehon5Q1vrb0pvIxyYlf7meRFErTNXKbAzVXIoQ==
   webcv:namespace: burban
   webcv:url: burban.me

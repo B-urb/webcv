@@ -18,16 +18,20 @@ const projectName = getProject()
 const resourceName = stackName + "-" + projectName
 const k8sNamespace = config.get("namespace") || projectName;
 
+const cmsToken = config.getSecret("cms-token")
+
 
 const appLabels = {
-    name: resourceName,
-    app: resourceName
+  name: resourceName,
+  app: resourceName
 };
 
 // Create a new namespace
-const webServerNs = new kubernetes.core.v1.Namespace(resourceName, {metadata: {
+const webServerNs = new kubernetes.core.v1.Namespace(resourceName, {
+  metadata: {
     name: resourceName,
-}});
+  }
+});
 
 const ingressAnnotation = {}//= stackName === "prod" ? {} : basicAuthAnnotation
 
@@ -39,104 +43,106 @@ const pullSecret = process.env.CI_PULL_SECRET!
 const secret = createGitlabSecret("pulumi", pullSecret, "gitlab-pull-secret", webServerNs)
 
 
-
 // Create a new Deployment with a user-specified number of replicas
 
 const deployment = new Deployment(resourceName, {
 
-    metadata: {
-        name: resourceName,
-        namespace: webServerNs.metadata.name,
-        labels: appLabels
+  metadata: {
+    name: resourceName,
+    namespace: webServerNs.metadata.name,
+    labels: appLabels
+  },
+  spec: {
+    "strategy": {
+      "type": "Recreate"
     },
-    spec: {
-        "strategy": {
-            "type": "Recreate"
-        },
-        selector: {
-            matchLabels: appLabels
-        },
-        "template": {
-            "metadata": {
-                "labels": appLabels
-            },
-            "spec": {
-                "containers": [
-                    {
-                        "name": resourceName,
-                        "image": process.env.registryImage + ":" + process.env.imageTag,
-                        "imagePullPolicy": "Always",
-                        "env": [
-                            {
-                                "name": "url",
-                                "value": url
-                            }
-                        ],
-                        "ports": [
-                            {
-                                "name": "http",
-                                "containerPort": 3000
-                            }
-                        ]
-                    }
-                ],
-                imagePullSecrets: [
-                    {"name": pulumi.interpolate `${secret.metadata.name}`}
-                ]
+    selector: {
+      matchLabels: appLabels
+    },
+    "template": {
+      "metadata": {
+        "labels": appLabels
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": resourceName,
+            "image": process.env.registryImage + ":" + process.env.imageTag,
+            "imagePullPolicy": "Always",
+            "env": [
+              {
+                "name": "url",
+                "value": url
+              },
+              {
+                "name": "CI_DIRECTUS_TOKEN",
+                "value": cmsToken
+              }
+            ],
+            "ports": [
+              {
+                "name": "http",
+                "containerPort": 3000
+              }
+            ]
+          }
+        ],
+        imagePullSecrets: [
+          {"name": pulumi.interpolate`${secret.metadata.name}`}
+        ]
 
-            }
-        }
+      }
     }
+  }
 })
 
 // Expose the Deployment as a Kubernetes Service
 const service = new kubernetes.core.v1.Service(resourceName, {
-    metadata: {
-        namespace: webServerNs.metadata.name,
-        name: resourceName
-    },
-    spec: {
-            "ports": [
-                {
-                    "name": "http",
-                    "port": 80,
-                    "protocol": "TCP",
-                    "targetPort": "http"
-                }
-            ],
-        selector: appLabels,
-    },
+  metadata: {
+    namespace: webServerNs.metadata.name,
+    name: resourceName
+  },
+  spec: {
+    "ports": [
+      {
+        "name": "http",
+        "port": 80,
+        "protocol": "TCP",
+        "targetPort": "http"
+      }
+    ],
+    selector: appLabels,
+  },
 });
 const ingress = new Ingress(resourceName, {
-        metadata: {
-            annotations: {
-                "kubernetes.io/ingress.class": "traefik",
-                "cert-manager.io/cluster-issuer": "letsencrypt",
-                ...ingressAnnotation
-            },
-            namespace: webServerNs.metadata.name
+      metadata: {
+        annotations: {
+          "kubernetes.io/ingress.class": "traefik",
+          "cert-manager.io/cluster-issuer": "letsencrypt",
+          ...ingressAnnotation
         },
+        namespace: webServerNs.metadata.name
+      },
 
-        spec: {
-            tls: [{
-                secretName: interpolate `${service.metadata.name}-tls`,
-                hosts: [url]
-            }],
-            rules: [
-                {
-                    host: url,
-                    http: {
-                        paths: [{
-                            pathType: "Prefix",
-                            path: "/",
-                            backend: {service: {name: interpolate `${service.metadata.name}`, port:{number: 80 }}}
-                        }]
-                    }
-                }]
-        }
+      spec: {
+        tls: [{
+          secretName: interpolate`${service.metadata.name}-tls`,
+          hosts: [url]
+        }],
+        rules: [
+          {
+            host: url,
+            http: {
+              paths: [{
+                pathType: "Prefix",
+                path: "/",
+                backend: {service: {name: interpolate`${service.metadata.name}`, port: {number: 80}}}
+              }]
+            }
+          }]
+      }
     }
 );
-
 
 
 // Export some values for use elsewhere
