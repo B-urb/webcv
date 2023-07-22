@@ -1,3 +1,4 @@
+'use client'
 import MetaTag from "./MetaTag";
 import ReactMarkdown from "react-markdown";
 import React, {useState} from "react";
