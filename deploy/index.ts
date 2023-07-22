@@ -8,7 +8,6 @@ import {Deployment} from "@pulumi/kubernetes/apps/v1";
 
 // Get some values from the stack configuration, or use defaults
 const config = new pulumi.Config();
-const k8sNamespace = config.get("namespace") || "default";
 const baseUrl = config.get("url") || "default";
 const numReplicas = config.getNumber("replicas") || 1;
 const stackName = getStack()
@@ -16,7 +15,9 @@ const stackName = getStack()
 const prefix = stackName === "prod" ? "" : stackName
 const url = prefix === "" ? baseUrl : prefix + "." + baseUrl
 const projectName = getProject()
-const resourceName = prefix + projectName
+const resourceName = stackName + "-" + projectName
+const k8sNamespace = config.get("namespace") || projectName;
+
 
 const appLabels = {
     name: resourceName,
@@ -24,7 +25,7 @@ const appLabels = {
 };
 
 // Create a new namespace
-const webServerNs = new kubernetes.core.v1.Namespace("webserver", {metadata: {
+const webServerNs = new kubernetes.core.v1.Namespace(resourceName, {metadata: {
     name: k8sNamespace,
 }});
 
