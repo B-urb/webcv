@@ -26,7 +26,7 @@ const appLabels = {
 
 // Create a new namespace
 const webServerNs = new kubernetes.core.v1.Namespace(resourceName, {metadata: {
-    name: k8sNamespace,
+    name: resourceName,
 }});
 
 const ingressAnnotation = stackName === "prod" ? {} : basicAuthAnnotation
