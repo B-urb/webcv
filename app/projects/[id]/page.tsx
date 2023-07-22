@@ -1,3 +1,4 @@
+'use client'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowAltCircleLeft} from "@fortawesome/free-solid-svg-icons";
 import {BlogpostMarkdown} from "../../../components/BlogpostMarkdown";
@@ -17,6 +18,8 @@ async function getProject(projectId: string) {
 //FIXME: Add generate metadata
 const Project = async ({params}: any) => {
 const project: IProject = await getProject(params.id)
+console.log(project)
+
   return project != undefined ? <div className="flex items-center flex-col">
     <div className="flex flex-row w-[90vw] justify-between mx-4">
       <Link href="/projects" legacyBehavior><button className="md:text-2xl transition-all hover:scale-150">
