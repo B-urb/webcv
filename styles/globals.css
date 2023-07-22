@@ -12,75 +12,7 @@ body {
 }
 @layer base {
   /* roboto-condensed-700 - latin */
-  @font-face {
-    font-family: 'Roboto Condensed';
-    font-style: normal;
-    font-weight: 700;
-    src: url('../public/fonts/roboto-condensed-v25-latin-700.eot'); /* IE9 Compat Modes */
-    src: local(''),
-    url('../public/fonts/roboto-condensed-v25-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../public/fonts/roboto-condensed-v25-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../public/fonts/roboto-condensed-v25-latin-700.woff') format('woff'), /* Modern Browsers */
-    url('../public/fonts/roboto-condensed-v25-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('../public/fonts/roboto-condensed-v25-latin-700.svg#RobotoCondensed') format('svg'); /* Legacy iOS */
-  }
-  /* jetbrains-mono-regular - latin */
-  @font-face {
-    font-family: 'JetBrains Mono';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../public/fonts/jetbrains-mono-v13-latin-regular.eot'); /* IE9 Compat Modes */
-    src: local(''),
-    url('../public/fonts/jetbrains-mono-v13-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../public/fonts/jetbrains-mono-v13-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../public/fonts/jetbrains-mono-v13-latin-regular.woff') format('woff'), /* Modern Browsers */
-    url('../public/fonts/jetbrains-mono-v13-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('../public/fonts/jetbrains-mono-v13-latin-regular.svg#JetBrainsMono') format('svg'); /* Legacy iOS */
-  }
-  /* trispace-300 - latin */
-  @font-face {
-    font-family: 'Trispace';
-    font-style: normal;
-    font-weight: 300;
-    src: url('../public/fonts/trispace-v18-latin-300.eot'); /* IE9 Compat Modes */
-    src: local(''),
-    url('../public/fonts/trispace-v18-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../public/fonts/trispace-v18-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../public/fonts/trispace-v18-latin-300.woff') format('woff'), /* Modern Browsers */
-    url('../public/fonts/trispace-v18-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('../public/fonts/trispace-v18-latin-300.svg#Trispace') format('svg'); /* Legacy iOS */
-  }
-
-  /* barlow-condensed-100 - latin */
-  @font-face {
-    font-family: 'Barlow Condensed';
-    font-style: normal;
-    font-weight: 100;
-    src: url('../public/fonts/barlow-condensed-v12-latin-100.eot'); /* IE9 Compat Modes */
-    src: local(''),
-    url('../public/fonts/barlow-condensed-v12-latin-100.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../public/fonts/barlow-condensed-v12-latin-100.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../public/fonts/barlow-condensed-v12-latin-100.woff') format('woff'), /* Modern Browsers */
-    url('../public/fonts/barlow-condensed-v12-latin-100.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('../public/fonts/barlow-condensed-v12-latin-100.svg#BarlowCondensed') format('svg'); /* Legacy iOS */
-  }
-
-  /* barlow-condensed-300 - latin */
-  @font-face {
-    font-family: 'Barlow Condensed';
-    font-style: normal;
-    font-weight: 300;
-    src: url('../public/fonts/barlow-condensed-v12-latin-300.eot'); /* IE9 Compat Modes */
-    src: local(''),
-    url('../public/fonts/barlow-condensed-v12-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../public/fonts/barlow-condensed-v12-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../public/fonts/barlow-condensed-v12-latin-300.woff') format('woff'), /* Modern Browsers */
-    url('../public/fonts/barlow-condensed-v12-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('../public/fonts/barlow-condensed-v12-latin-300.svg#BarlowCondensed') format('svg'); /* Legacy iOS */
-  }
-
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;

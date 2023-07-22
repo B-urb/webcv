@@ -1,3 +1,4 @@
+'use client'
 import MetaTag from "./MetaTag";
 import React, {useState} from "react";
 import DirectusImage from "./DirectusImage";

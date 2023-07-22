@@ -2,18 +2,17 @@
 module.exports = {
     mode: 'jit',
   content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}", // Note the addition of the `app` directory.
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
-    "./layouts/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
-        "jetbrains": ["JetBrains Mono","monospace"],
-        "roboto": ["Roboto Condensed","sans-serif"],
-        "trispace": ["Trispace", "sans-serif"],
-        "barlow": ["Barlow Condensed", "sans-serif"]
+        "barlow": ["var(--font-barlow)"],
+        "roboto": ["var(--font-roboto)"]
+
       },
       backgroundImage: {
         'moon': "url('../public/moon.png')",

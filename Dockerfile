@@ -1,5 +1,5 @@
 # Production image, copy all the files and run next
-FROM node:16-alpine
+FROM node:18-alpine
 WORKDIR /app
 ENV NODE_ENV production
 # Uncomment the following line in case you want to disable telemetry during runtime.

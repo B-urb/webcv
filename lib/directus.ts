@@ -31,12 +31,7 @@ type MyCollections = {
   projects: IProject,
   intro: Introtext,
 }
-class DirecutsApi {
-  constructor() {
 
-  }
-
-}
 export async function allBlogposts(): Promise<ManyItems<IBlogPost>> {
   // We don't need to authenticate if data is public
   const env = process.env.NODE_ENV
@@ -52,7 +47,7 @@ export async function allBlogposts(): Promise<ManyItems<IBlogPost>> {
 }
 
 export function getProfileImage() {
-  const id = "410d7427-8a7c-4f4f-9ba7-9563757ac99a" //TODO: GET BY NAME
+  const id = "384e369b-89b9-4182-80b4-871848fad4c2" //TODO: GET BY NAME
   const file = directus.files.readOne(id)
   return id
 }
@@ -72,7 +67,7 @@ export async function allProjects(): Promise<ManyItems<IProject>> {
 export async function getPostById(id: string): Promise<OneItem<IBlogPost>> {
   return await directus.items("blogposts").readOne(id);
 }
-export async function getProjectById(id: string): Promise<OneItem<IBlogPost>> {
+export async function getProjectById(id: string): Promise<OneItem<IProject>> {
   return await directus.items("projects").readOne(id);
 }
 
