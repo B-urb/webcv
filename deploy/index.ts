@@ -33,7 +33,7 @@ const webServerNs = new kubernetes.core.v1.Namespace(resourceName, {
   }
 });
 
-const ingressAnnotation = {}//= stackName === "prod" ? {} : basicAuthAnnotation
+const ingressAnnotation =  stackName === "prod" ? {} : basicAuthAnnotation
 
 // Create a new ConfigMap for the Nginx configuration
 
