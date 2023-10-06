@@ -12,7 +12,9 @@ const DirectusImage = (props: { src: string, alt: string }) => {
       <Image src={props.src}
              alt={props.alt}
              loader={directusLoader}
-             fill/>
+             fill
+             sizes={"(max-width: 768px) 70vw, (max-width: 1200px) 40vw, 25vw"}
+      />
   )
 }
 

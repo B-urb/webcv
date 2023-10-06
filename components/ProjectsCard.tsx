@@ -9,12 +9,12 @@ import {ID} from "@directus/sdk";
 const ProjectsCard = (props: {id: ID, name: string, content: string, tags: Array<string|undefined>}) => {
 
     return <Link href={"projects/"+props.id!.toString()}>
-        <div className=" hover:cursor-pointer md:hover:scale-105 transition-all duration-300 shadow-black  h-full self-stretch rounded-md m-4">
-        <div className="p-3 rounded-md bg-light-4 text-black dark:text-white dark:bg-dark-2 divide-y h-full divide-white divide-dotted grid text-xs md:text-md"
+        <div className=" hover:cursor-pointer md:hover:scale-105 w-64 2xl:w-96 transition-all duration-300 shadow-black h-full self-stretch rounded-md m-4">
+        <div className="p-3 rounded-md bg-primary text-black dark:text-text dark:bg-secondary divide-y h-full divide-white divide-dotted grid text-xs md:text-md"
         >
             <div className="row-span-auto">
                 <h2 className="font-roboto text-xl md:text-2xl">{props.name}</h2></div>
-            <div onClick={(e)=> e.stopPropagation()} className="row-auto text-base h-44  font-barlow md:h-36 cursor-default prose-a:underline"><ReactMarkdown className="text-xl md:text-xl line-clamp-6">
+            <div onClick={(e)=> e.stopPropagation()} className="row-auto text-base h-44 font-barlow md:h-36 cursor-default overflow-hidden prose-a:underline"><ReactMarkdown className="text-xl md:text-xl line-clamp-6">
                 {props.content}
             </ReactMarkdown>
             </div>

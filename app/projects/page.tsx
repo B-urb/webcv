@@ -12,12 +12,12 @@ const Projects = async () => {
   const  projects = res.data
   return <div className="flex flex-col">
     <h2 className="text-center">Projects summarizing my professional experience with different frameworks and programming languages and technologies.</h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+    <div className="flex gap-4 flex-row flex-wrap justify-center">
 
     {projects != undefined && projects.length > 0 ?
-        projects.map((content, key) => <div key={key} className="flex-col items-stretch flex">
+        projects.map((content, key) =>
           <ProjectsCard id={content.id} name={content.name!} content={content.description!} tags={content.tags!}/>
-        </div>) : <span>No Projects yet :( </span>}
+        ) : <span>No Projects yet :( </span>}
   </div>
   </div>
 }

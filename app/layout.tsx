@@ -39,9 +39,9 @@ export default function Layout({ children} :{ children: ReactNode }) {
       <body>
       <div
           className="h-full grid auto-rows-auto
-            dark:text-dark-4 dark:bg-dark-1 font-barlow dark:-z-40 dark:">
+            dark:text-text dark:bg-background font-barlow dark:-z-40 dark:">
         <div className="-z-0">
-        <div className="grid font-roboto auto-rows-auto border-solid border-black dark:border-dark-4 ">
+        <div className="grid font-roboto auto-rows-auto border-solid border-text dark:border-dark-4 ">
           <div
               className="row-span-1 text-md text-center md:text-3xl">
             <div className="row-span-1 grid grid-cols-4 justify-start mt-4">
@@ -56,7 +56,7 @@ export default function Layout({ children} :{ children: ReactNode }) {
             <NavBar/>
           </div>
         </div>
-        <main className="min-h-[70vh] font-barlow ">
+        <main className="min-h-[70vh] overflow-y-scroll font-barlow ">
           <div className="mt-4">
             {children}
           </div>
