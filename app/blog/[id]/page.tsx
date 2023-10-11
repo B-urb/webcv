@@ -20,19 +20,19 @@ async function getPost(postId: string) {
 }
 
 
-export async function generateMetadata(
-    { id}: BlogParams,
-    parent: ResolvingMetadata
-): Promise<Metadata> {
-  // read route params
-
-  // fetch data
-  //const blog = await getPost(id)
-  return {
-    title: "test", //blog.title,
-    description: "test" //blog?.description
-  }
-}
+// export async function generateMetadata(
+//     { id }: BlogParams,
+//     parent: ResolvingMetadata
+// ): Promise<Metadata> {
+//   // read route params
+//
+//   // fetch data
+//   //const blog = await getPost(id)
+//   return {
+//     title: "test", //blog.title,
+//     description: "test" //blog?.description
+//   }
+// }
 const Blogpost = async ({params }: any) => {
 const post: IBlogPost = await getPost(params.id)
  return post != undefined ? <div className="flex items-center flex-col">

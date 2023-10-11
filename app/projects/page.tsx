@@ -15,7 +15,7 @@ const Projects = async () => {
 
     {projects != undefined && projects.length > 0 ?
         projects.map((content, key) =>
-          <ProjectsCard id={content.id} name={content.name!} content={content.description!} tags={content.tags!}/>
+          <ProjectsCard key={key} id={content.id} name={content.name!} content={content.description!} tags={content.tags!}/>
         ) : <span>No Projects yet :( </span>}
   </div>
   </div>

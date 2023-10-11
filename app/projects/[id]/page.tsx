@@ -8,18 +8,18 @@ import {Metadata, ResolvingMetadata} from "next";
 type ProjectParams = {
   id: string
 }
-export async function generateMetadata(
-    id: string,
-    parent: ResolvingMetadata
-): Promise<Metadata> {
-  // read route params
-  // fetch data
-  //const project = await getProject(id)
-  return {
-    title: "test", // project.title,
-    description: "test"
-  }
-}
+// export async function generateMetadata(
+//     id: string,
+//     parent: ResolvingMetadata
+// ): Promise<Metadata> {
+//   // read route params
+//   // fetch data
+//   //const project = await getProject(id)
+//   return {
+//     title: "test", // project.title,
+//     description: "test"
+//   }
+// }
 
 async function getProject(projectId: string) {
   // Call an external API endpoint to get posts
