@@ -20,7 +20,7 @@ const NavBar = () => {
   return <nav className="flex lg:text-4xl text-accent  justify-center gap-4 list-none ">
       <NavLinkWrapper path={"/#"} text={"About Me"}/>
       <NavLinkWrapper path="/projects" text={"Projects"}/>
-      <NavLinkWrapper path="/blogposts" text={"Blog"}/>
+      <NavLinkWrapper path="/blog" text={"Blog"}/>
   </nav>
 }
 

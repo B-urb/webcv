@@ -3,7 +3,6 @@ import {allProjects, IProject} from "../../lib/directus";
 import {Metadata} from "next";
 
 export const metadata: Metadata = {
-
   title: "Björn Urban | Projects",
   description:"Have a look at some of the projects I have worked on in the past or working on at the moment. This can be work, university or hobby projects."
 }

@@ -3,6 +3,7 @@ import {faArrowAltCircleLeft} from "@fortawesome/free-solid-svg-icons";
 import {BlogpostMarkdown} from "../../../components/BlogpostMarkdown";
 import {allBlogposts, getPostById, IBlogPost} from "../../../lib/directus";
 import Link from "next/link";
+import {Metadata, ResolvingMetadata} from "next";
 type BlogParams = {
   id: string
 }
@@ -10,17 +11,33 @@ type BlogParams = {
 //FIXME: Add metadata generation
 async function getPost(postId: string) {
   // Call an external API endpoint to get posts
+  console.log(postId)
   const post = await getPostById(postId)
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
   return post
 
 }
+
+
+export async function generateMetadata(
+    { id}: BlogParams,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+
+  // fetch data
+  //const blog = await getPost(id)
+  return {
+    title: "test", //blog.title,
+    description: "test" //blog?.description
+  }
+}
 const Blogpost = async ({params }: any) => {
 const post: IBlogPost = await getPost(params.id)
  return post != undefined ? <div className="flex items-center flex-col">
       <div className="flex flex-row w-[90vw] justify-between mx-4">
-      <Link href="/blogposts" legacyBehavior><button className="md:text-2xl transition-all hover:scale-150">
+      <Link href="/blog" legacyBehavior><button className="md:text-2xl transition-all hover:scale-150">
         <FontAwesomeIcon icon={faArrowAltCircleLeft}/></button>
       </Link>
         <h2 className="hidden md:inline font-roboto opacity-50 w-48 text-xl md:text-sm">{post.title!}</h2>

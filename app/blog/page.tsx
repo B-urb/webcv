@@ -27,7 +27,7 @@ const Blogposts = async () => {
         <nav className="flex flex-row gap-4 justify-center flex-wrap list-none">
           {blogposts.length > 0
               ? blogposts.sort((a, b) => new Date(b.date_created ?? "").getTime() - new Date(a.date_created ?? "").getTime()).map((post, key) => (
-                  <Link key={key} href={"blogposts/" + (post.id?.toString() ?? "")}>
+                  <Link key={key} href={"blog/" + (post.id?.toString() ?? "")}>
                     <BlogpostCard
                         name={post.title ?? ""}
                         thumbnail={post.thumbnail}

@@ -11,6 +11,7 @@ config.autoAddCss = false;
 import React, {ReactNode, } from "react";
 import Script from "next/script";
 import localFont from "next/font/local";
+import NavBar2 from "../components/NavBar2";
 
 const barlow = localFont({
   src: [
@@ -36,30 +37,19 @@ export default function Layout({ children} :{ children: ReactNode }) {
 
   return (
       <html lang="en" className={`${roboto.variable} ${roboto.variable} dark`}>
-      <body>
+      <body className="bg-background">
       <div
           className="h-full grid auto-rows-auto
-            dark:text-text dark:bg-background font-barlow dark:-z-40 dark:">
-        <div className="-z-0">
-        <div className="grid font-roboto auto-rows-auto border-solid border-text dark:border-dark-4 ">
-          <div
-              className="row-span-1 text-md text-center md:text-3xl">
-            <div className="row-span-1 grid grid-cols-4 justify-start mt-4">
-              <div/>
-              <Header/>
-            </div>
-            <div className="row-span-1 flex justify-center">
+          w-full dark:text-text dark:bg-background font-barlow">
+        <div className="grid font-roboto auto-rows-auto border-solid border-text">
+          <div className="row-span-1 text-md text-center md:text-3xl">
+              <NavBar2/>
+          </div>
+            <div className="row-span-1 mt-4 flex justify-center">
               <ProfileImage/>
             </div>
-          </div>
-          <div className="row-span-1 text-center items-center flex-col self-end">
-            <NavBar/>
-          </div>
-        </div>
-        <main className="min-h-[70vh] overflow-y-scroll font-barlow ">
-          <div className="mt-4">
+        <main className="min-h-[70vh] font-barlow ">
             {children}
-          </div>
         </main>
         <Footer/>
       </div>
