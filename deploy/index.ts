@@ -32,8 +32,7 @@ const webServerNs = new kubernetes.core.v1.Namespace(resourceName, {
     name: resourceName,
   }
 });
-
-const ingressAnnotation =  stackName === "prod" ? {} : basicAuthAnnotation
+const ingressAnnotation =  stackName === "prod" ? {} : {"traefik.ingress.kubernetes.io/router.middlewares": "fw-auth@kubernetescrd"};
 
 // Create a new ConfigMap for the Nginx configuration
 
@@ -137,7 +136,8 @@ const ingress = new Ingress(resourceName, {
                 pathType: "Prefix",
                 path: "/",
                 backend: {service: {name: interpolate`${service.metadata.name}`, port: {number: 80}}}
-              }]
+              }],
+
             }
           }]
       }
