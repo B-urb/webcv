@@ -19,12 +19,11 @@ interface BlogPostData {
 
 const Blogposts = async () => {
   const res = await allBlogposts();
-  const blogposts: BlogPostData[] = res?.data ?? [];
+  const blogposts: BlogPostData[] = res ?? [];
 
-  return (
-      <div className="text-center mt-2 flex flex-col items-center justify-center">
+  return <div className="text-center mt-2 flex flex-col items-center justify-center">
         <h2>Blogposts about mostly tech related topics. Tutorials, experiences and more.</h2>
-        <nav className="flex flex-row gap-4 justify-center flex-wrap list-none">
+        <nav className="flex flex-row gap-4 justify-start flex-wrap list-none">
           {blogposts.length > 0
               ? blogposts.sort((a, b) => new Date(b.date_created ?? "").getTime() - new Date(a.date_created ?? "").getTime()).map((post, key) => (
                   <Link key={key} href={"blog/" + (post.id?.toString() ?? "")}>
@@ -40,7 +39,6 @@ const Blogposts = async () => {
               : <span>No Blogposts yet :( </span>}
         </nav>
       </div>
-  );
 };
 
 export default Blogposts;

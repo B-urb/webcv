@@ -1,21 +1,18 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowAltCircleLeft} from "@fortawesome/free-solid-svg-icons";
 import {BlogpostMarkdown} from "../../../components/BlogpostMarkdown";
-import {allBlogposts, getPostById, IBlogPost} from "../../../lib/directus";
+import {Blogpost, getPostById} from "../../../lib/directus";
 import Link from "next/link";
-import {Metadata, ResolvingMetadata} from "next";
-type BlogParams = {
-  id: string
-}
+import DirectusImage from "../../../components/DirectusImage";
+import BlogMeta from "../../../components/BlogMeta";
 
 //FIXME: Add metadata generation
 async function getPost(postId: string) {
   // Call an external API endpoint to get posts
   console.log(postId)
-  const post = await getPostById(postId)
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
-  return post
+  return await getPostById(postId)
 
 }
 
@@ -34,7 +31,7 @@ async function getPost(postId: string) {
 //   }
 // }
 const Blogpost = async ({params }: any) => {
-const post: IBlogPost = await getPost(params.id)
+const post: Blogpost = await getPost(params.id)
  return post != undefined ? <div className="flex items-center flex-col">
       <div className="flex flex-row w-[90vw] justify-between mx-4">
       <Link href="/blog" legacyBehavior><button className="md:text-2xl transition-all hover:scale-150">
@@ -48,7 +45,15 @@ const post: IBlogPost = await getPost(params.id)
        prose prose-pre:bg-inherit dark:prose-p:text-dark-4
        dark: prose-pre:opacity-90
        dark:prose-headings:text-dark-4
-       dark:prose-invert"><h2>{post.title!}</h2><BlogpostMarkdown markdown={post.content!}/> </article>
+       dark:prose-invert"><h2>{post.title!}</h2>
+        <div className="flex flex-col items-center justify-items-center">
+        <BlogMeta tags={post.tags} date={post.date_created}/>
+        <div className="w-96 h-96 relative">
+          <DirectusImage src={post.thumbnail} alt={"Titelbild"}/>
+        </div>
+          <div/>
+        </div>
+        <BlogpostMarkdown markdown={post.content!}/> </article>
       </div> :<div>No Blogdata</div>;
 }
 

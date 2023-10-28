@@ -15,7 +15,7 @@ const BlogpostCard: React.FC<BlogpostCardProps> = ({ name, thumbnail, abstract, 
   const dateOptions: Intl.DateTimeFormatOptions = { year: "numeric", month: 'long', day: '2-digit' };
 
   return (
-      <div className="hover:cursor-pointer md:hover:scale-105 w-64 2xl:w-96 transition-all duration-300 shadow-black h-full self-stretch rounded-md m-4">
+      <div className="hover:cursor-pointer md:hover:scale-105  w-96 transition-all duration-300 shadow-black h-full self-stretch rounded-md m-4">
         <div className="p-3 rounded-md bg-secondary text-black dark:text-white dark:bg-secondary divide-y h-full divide-white divide-dotted grid text-xs md:text-md">
           <div className="flex justify-center">
             <div className="relative w-52 h-52 2xl:w-80 2xl:h-80">
