@@ -68,6 +68,16 @@ const deployment = new Deployment(resourceName, {
             "name": resourceName,
             "image": process.env.registryImage + ":" + process.env.imageTag,
             "imagePullPolicy": "Always",
+            resources: {
+              requests: {
+                memory: "250Mi",
+                cpu: "300m"
+              },
+              limits: {
+                memory: "500Mi",
+                cpu: "700m"
+              }
+            },
             "env": [
               {
                 "name": "url",
