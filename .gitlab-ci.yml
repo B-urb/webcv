@@ -8,8 +8,9 @@ before_script:
 stages:
   - build
   - build-docker
-  - release
   - deploy
+  - release
+
 
 .build:
   image: node:18
@@ -67,16 +68,16 @@ release:
     # allow creating releases from master branch and mastertenance branches named like this:
     # `MAJOR.MINOR.PATCH`, e.g. `1.16.2`
     - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^[0-9]+(\.([0-9]+|x))?\.x$/'
-      when: always
+      when: on_success
     - if: '$CI_COMMIT_BRANCH == "development"'
-      when: always
+      when: on_success
     - when: never
   script:
     - npm install @semantic-release/gitlab@11.0.1 @semantic-release/exec @saithodev/semantic-release-backmerge
     - npx semantic-release
 
 
-pulumi:
+.deploy:
   image:
     name: pulumi/pulumi:3.69.0
     entrypoint:
@@ -89,7 +90,7 @@ pulumi:
   script:
     - cd deploy
     - npm ci
-    - pulumi stack select bjoern_urban_5/webcv/dev
+    - pulumi stack select bjoern_urban_5/webcv/${STAGE}
     - pulumi update --skip-preview
   # Create an artifact archive with just the pulumi log file,
   # which is created using console-redirection in run-pulumi.sh.
@@ -100,12 +101,31 @@ pulumi:
     # You may choose to not set this at all based on your organization's or team's preference.
     expire_in: 1 week
   # This job should only be created if the pipeline is created for the master branch.
+
+
+deploy:dev:
+  extends: .deploy
+  environment:
+    name: development
+  variables:
+    STAGE: dev
   rules:
-    - if: $CI_COMMIT_BRANCH == "master" ||  $CI_COMMIT_TAG
+    - if: $CI_COMMIT_TAG =~ /v[0-9]+\.[0-9]+\.[0-9]+\-rc.[0-9]+$/
       when: always
     - if: $CI_MERGE_REQUEST_ID
       when: never
-    - when: manual
+
+deploy:prod:
+  extends: .deploy
+  environment:
+    name: production
+  variables:
+    STAGE: prod
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/
+      when: always
+
+
 
 pulumi-preview:
   image:
@@ -119,8 +139,9 @@ pulumi-preview:
     - npm ci
     - pulumi stack select bjoern_urban_5/webcv/dev
     - pulumi preview
-  only:
-    - merge_requests
+  rules:
+    - if: $CI_COMMIT_TAG == null
+      when: always
 
 
 

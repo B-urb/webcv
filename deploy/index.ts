@@ -2,7 +2,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as kubernetes from "@pulumi/kubernetes";
 import {getProject, getStack, interpolate} from "@pulumi/pulumi";
 import {createGitlabSecret} from "./src/util";
-import {basicAuthAnnotation} from "./src/globals";
+import {authAnnotation} from "./src/globals";
 import {Ingress} from "@pulumi/kubernetes/networking/v1";
 import {Deployment} from "@pulumi/kubernetes/apps/v1";
 
@@ -32,8 +32,7 @@ const webServerNs = new kubernetes.core.v1.Namespace(resourceName, {
     name: resourceName,
   }
 });
-
-const ingressAnnotation = {}//= stackName === "prod" ? {} : basicAuthAnnotation
+const ingressAnnotation =  stackName === "prod" ? {} : authAnnotation;
 
 // Create a new ConfigMap for the Nginx configuration
 
@@ -69,6 +68,16 @@ const deployment = new Deployment(resourceName, {
             "name": resourceName,
             "image": process.env.registryImage + ":" + process.env.imageTag,
             "imagePullPolicy": "Always",
+            resources: {
+              requests: {
+                memory: "250Mi",
+                cpu: "300m"
+              },
+              limits: {
+                memory: "500Mi",
+                cpu: "700m"
+              }
+            },
             "env": [
               {
                 "name": "url",
@@ -137,7 +146,8 @@ const ingress = new Ingress(resourceName, {
                 pathType: "Prefix",
                 path: "/",
                 backend: {service: {name: interpolate`${service.metadata.name}`, port: {number: 80}}}
-              }]
+              }],
+
             }
           }]
       }

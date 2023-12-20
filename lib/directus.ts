@@ -1,12 +1,24 @@
-import {Auth, Directus, ID, ISingleton, ManyItems, OneItem,} from '@directus/sdk';
-const directus =  new Directus<MyCollections>('https://cms.tecios.de', {
-  auth: {
-    staticToken: process.env.DIRECTUS_TOKEN!
-  }
-})
+import {
+  createDirectus,
+  graphql, readFile,
+  readItem, readItems, readSingleton,
+  rest,
+  staticToken,
+} from '@directus/sdk';
+const directus =
+    createDirectus<MyCollections>('https://cms.tecios.de')
+    .with(staticToken(process.env.DIRECTUS_TOKEN!))
+    .with(rest()).with(graphql());
 
-export type IBlogPost = {
-  id: ID;
+
+// const directus = new Directus<MyCollections>('https://cms.tecios.de', {
+//   auth: {
+//     staticToken: process.env.DIRECTUS_TOKEN!
+//   }
+// })
+
+export type Blogpost = {
+  id: number;
   title: string;
   abstract: string;
   thumbnail: string;
@@ -15,62 +27,61 @@ export type IBlogPost = {
   date_created: string
 };
 
-export type IProject = {
-  id: ID;
+export type Project = {
+  id: number;
   name: string;
   description: string;
   tags: Array<string>;
 }
 export type Introtext = {
-  id: ID;
+  id: number;
   introtext: string;
 }
 
-type MyCollections = {
-  posts: IBlogPost
-  projects: IProject,
-  intro: Introtext,
+interface MyCollections {
+  blogposts: Blogpost[];
+  projects: Project[];
+  aboutme: Introtext;
 }
 
-export async function allBlogposts(): Promise<ManyItems<IBlogPost>> {
+export async function allBlogposts(): Promise<Blogpost[]> {
   // We don't need to authenticate if data is public
-  const env = process.env.NODE_ENV
-  const filter =  {};
-  return await directus.items("blogposts").readByQuery({
+  const filter = {};
+  return directus.request(readItems("blogposts", {
     // By default API limits results to 100.
     // With -1, it will return all results, but it may lead to performance degradation
     // for large result sets.
-    filter:filter,
-    fields: ['id', 'title','abstract', 'thumbnail', 'tags', 'date_created'],
+    filter: filter,
+    fields: ['id', 'title', 'abstract', 'thumbnail', 'content', 'tags', 'date_created'],
     limit: -1,
-  });
+  }));
 }
 
 export function getProfileImage() {
   const id = "384e369b-89b9-4182-80b4-871848fad4c2" //TODO: GET BY NAME
-  const file = directus.files.readOne(id)
+  //const file = directus.request(readFile(id))
   return id
 }
 
-export async function allProjects(): Promise<ManyItems<IProject>> {
+export async function allProjects(): Promise<Project[]> {
   // We don't need to authenticate if data is public
-  return await directus.items("projects").readByQuery({
+  return directus.request(readItems("projects", {
     // By default API limits results to 100.
     // With -1, it will return all results, but it may lead to performance degradation
     // for large result sets.
-    fields: ['id', 'name','description', 'tags'],
-    limit: -1,
-  });
+    fields: ['id', 'name', 'description', 'tags'],
+  }));
 
 }
 
-export async function getPostById(id: string): Promise<OneItem<IBlogPost>> {
-  return await directus.items("blogposts").readOne(id);
-}
-export async function getProjectById(id: string): Promise<OneItem<IProject>> {
-  return await directus.items("projects").readOne(id);
+export async function getPostById(id: string): Promise<Blogpost> {
+  return directus.request(readItem("blogposts", id));
 }
 
-export async function getIntrotext(): Promise<OneItem<Introtext>> {
-  return directus.singleton("aboutme").read();
+export async function getProjectById(id: string): Promise<Project> {
+  return directus.request(readItem("projects", id));
+}
+
+export async function getIntrotext(): Promise<Introtext> {
+  return directus.request(readSingleton("aboutme"));
 }
