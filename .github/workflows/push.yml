@@ -5,9 +5,9 @@ on:
     branches:
       - master
       - development
-  pull_request:
-    branches:
-      - '*'
+#  pull_request:
+#    branches:
+#      - '*'
 
 env:
   CI: true
