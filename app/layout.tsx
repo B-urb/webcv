@@ -48,7 +48,7 @@ export default function Layout({ children} :{ children: ReactNode }) {
             <div className="row-span-1 mt-4 flex justify-center">
               <ProfileImage/>
             </div>
-        <main className="min-h-[70vh] font-barlow ">
+        <main className="overflow-y-auto scrollbar-none lg:overflow-y-hidden xl:min-h-[70vh] font-barlow ">
             {children}
         </main>
         <Footer/>

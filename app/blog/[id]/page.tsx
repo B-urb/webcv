@@ -41,16 +41,21 @@ const post: Blogpost = await getPost(params.id)
       </div>
       <article className="flex justify-items-center flex-col mt-6 min-w-[65vw]
       max-w-[90vw]
-      dark:prose-p:text-2xl
+      dark:prose-p:sm:text-sm
+      dark:prose-pre:text-xs
+      dark:prose-p:md:text-sm
+      dark:prose-p:xl:text-2xl
        prose prose-pre:bg-inherit dark:prose-p:text-dark-4
-       dark: prose-pre:opacity-90
+       dark:prose-pre:opacity-90
        dark:prose-headings:text-dark-4
        dark:prose-invert"><h2>{post.title!}</h2>
-        <div className="flex flex-col items-center justify-items-center">
-        <BlogMeta tags={post.tags} date={post.date_created}/>
+        <div className="flex flex-col gap-y-2 items-center justify-items-center">
         <div className="w-96 h-96 relative">
           <DirectusImage src={post.thumbnail} alt={"Titelbild"}/>
         </div>
+          <div className="">
+          <BlogMeta tags={post.tags} date={post.date_created}/>
+          </div>
           <div/>
         </div>
         <BlogpostMarkdown markdown={post.content!}/> </article>
