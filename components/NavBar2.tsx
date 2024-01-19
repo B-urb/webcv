@@ -50,6 +50,15 @@ const NavBar2 = () => {
               </svg>
             </button>
           </div>
+          <div className="hidden w-1/2 xl:block"/>
+          <div className="hidden xl:block"/>
+          <div className="hidden xl:block"/>
+          <div className="hidden xl:block"/>
+          <div className="hidden xl:block"/>
+          <div className="hidden xl:block"/>
+          <div className="hidden xl:block"/>
+          <div className="hidden xl:block"/>
+
           <div
               className={`items-center justify-between ${isMenuOpen ? 'block' : 'hidden'} w-full md:flex md:w-auto md:order-1`}
               id="navbar-sticky">
