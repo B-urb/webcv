@@ -1,22 +1,32 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowAltCircleLeft} from "@fortawesome/free-solid-svg-icons";
 import {BlogpostMarkdown} from "../../../components/BlogpostMarkdown";
-import {allProjects, getProjectById, IProject} from "../../../lib/directus";
+import {getProjectById, Project} from "../../../lib/directus";
 import Link from "next/link";
 
-type ProjectParams = {
-  id: string
-}
+
+// export async function generateMetadata(
+//     id: string,
+//     parent: ResolvingMetadata
+// ): Promise<Metadata> {
+//   // read route params
+//   // fetch data
+//   //const project = await getProject(id)
+//   return {
+//     title: "test", // project.title,
+//     description: "test"
+//   }
+// }
+
 async function getProject(projectId: string) {
   // Call an external API endpoint to get posts
-  const project = await getProjectById(projectId)
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
-  return project
+  return await getProjectById(projectId)
 }
 //FIXME: Add generate metadata
 const Project = async ({params}: any) => {
-const project: IProject = await getProject(params.id)
+const project: Project = await getProject(params.id)
 console.log(project)
 
   return project != undefined ? <div className="flex items-center flex-col">

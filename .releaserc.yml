@@ -6,6 +6,8 @@ plugins:
         - from: master
           to: development
       clearWorkspace: true
+      backmergeStrategy: merge
+      fastForwardMode: no-ff
       message: "chore(release): Preparations for next release [skip ci]"
   - - "@semantic-release/npm"
     - npmPublish: false
