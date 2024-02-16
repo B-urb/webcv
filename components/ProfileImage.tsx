@@ -4,7 +4,7 @@ import React from "react";
 
 
 const directusLoader = ({src, width, quality}: ImageLoaderProps) => {
-  return `https://cms.tecios.de/assets/${src}?width=${width}&quality=${quality || 76}`
+  return `https://cms.burban.me/assets/${src}?width=${width}&quality=${quality || 76}`
 }
 
 const ProfileImage = () => {

@@ -6,12 +6,12 @@ import {
   staticToken,
 } from '@directus/sdk';
 const directus =
-    createDirectus<MyCollections>('https://cms.tecios.de')
+    createDirectus<MyCollections>('https://cms.burban.me')
     .with(staticToken(process.env.DIRECTUS_TOKEN!))
     .with(rest()).with(graphql());
 
 
-// const directus = new Directus<MyCollections>('https://cms.tecios.de', {
+// const directus = new Directus<MyCollections>('https://cms.burban.me', {
 //   auth: {
 //     staticToken: process.env.DIRECTUS_TOKEN!
 //   }
