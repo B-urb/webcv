@@ -54,7 +54,7 @@ export default function Layout({ children} :{ children: ReactNode }) {
         <Footer/>
       </div>
       </div>
-      <Script strategy="beforeInteractive" data-website-id={process.env.NEXT_PUBLIC_ANALYTICS_ID} src="https://stats.tecios.de/script.js"/>
+      <Script strategy="beforeInteractive" data-website-id={process.env.NEXT_PUBLIC_ANALYTICS_ID} src="https://stats.burban.me/script.js"/>
       </body>
       </html>
   )
