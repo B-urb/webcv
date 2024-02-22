@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment: development
-    container: node:18
+    container: node:20
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
