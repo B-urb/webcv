@@ -4,9 +4,9 @@ import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import {dracula, } from "react-syntax-highlighter/dist/cjs/styles/prism";
 export const BlogpostMarkdown = (props: {markdown: string}) => {
   return <ReactMarkdown  components={{
-    code({node, inline, className, children, ...props}) {
+    code({node,  className, children, ...props}) {
       const match = /language-(\w+)/.exec(className || '')
-      return !inline && match ? (
+      return  match ? (
           <SyntaxHighlighter
 
               // @ts-ignore
