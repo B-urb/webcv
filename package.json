@@ -36,7 +36,7 @@
     "autoprefixer": "^10.4.9",
     "devicon": "^2.15.1",
     "eslint": "8.56.0",
-    "eslint-config-next": "^13.4.5",
+    "eslint-config-next": "^14.0.0",
     "next-sitemap": "^4.0.0",
     "postcss": "^8.4.16",
     "react-markdown": "^9.0.0",
