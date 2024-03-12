@@ -29,7 +29,7 @@
     "@mapbox/rehype-highlight-code-block": "^1.0.0",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.7",
-    "@types/node": "20.11.25",
+    "@types/node": "20.11.26",
     "@types/react": "18.2.64",
     "@types/react-dom": "18.2.21",
     "@types/react-syntax-highlighter": "^15.5.4",
