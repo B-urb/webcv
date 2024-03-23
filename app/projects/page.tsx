@@ -17,10 +17,10 @@ const Projects = async () => {
         frameworks and programming languages and technologies.
       </h2>
       <div className="flex flex-row flex-wrap gap-4 xl:w-2/3">
-        {projects != undefined && projects.length > 0 ? (
-          projects.map((content, key) => (
+        {projects !== undefined && projects.length > 0 ? (
+          projects.map((content) => (
             <ProjectsCard
-              key={key}
+              key={content.name}
               id={content.id}
               name={content.name!}
               content={content.description!}

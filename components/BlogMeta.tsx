@@ -11,7 +11,7 @@ const BlogMeta = (props: { tags: string[]; date: string }) => {
     day: '2-digit',
   };
   return (
-    <div className="grid grid-cols-6 gap-4 border-2 border-accent border-opacity-50 p-2">
+    <div className="grid grid-cols-6 gap-4 border-2 border-accent/50 p-2">
       <FontAwesomeIcon
         className="col-span-1 self-center justify-self-center"
         icon={faClock}
@@ -24,7 +24,7 @@ const BlogMeta = (props: { tags: string[]; date: string }) => {
         icon={faTags}
       />
       <div className="col-span-5 flex flex-wrap justify-start justify-items-start gap-2 pt-2">
-        {props.tags.map((tag, key) => tag && <MetaTag key={key} tag={tag} />)}
+        {props.tags.map((tag) => tag && <MetaTag key={tag} tag={tag} />)}
       </div>
     </div>
   );

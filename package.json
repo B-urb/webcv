@@ -12,6 +12,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
+    "check-types": "tsc --noEmit --pretty",
     "postbuild": "next-sitemap",
     "prepare": "husky"
   },

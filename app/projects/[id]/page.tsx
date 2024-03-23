@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 
 import { BlogpostMarkdown } from '../../../components/BlogpostMarkdown';
-import { getProjectById, Project } from '../../../lib/directus';
+import type { Project } from '../../../lib/directus';
+import { getProjectById } from '../../../lib/directus';
 
 // export async function generateMetadata(
 //     id: string,
@@ -25,15 +26,17 @@ async function getProject(projectId: string) {
   return getProjectById(projectId);
 }
 // FIXME: Add generate metadata
-const Project = async ({ params }: any) => {
+const ProjectView = async ({ params }: any) => {
   const project: Project = await getProject(params.id);
-  console.log(project);
-
-  return project != undefined ? (
+  return project !== undefined ? (
     <div className="flex flex-col items-center">
       <div className="mx-4 flex w-[90vw] flex-row justify-between">
         <Link href="/projects" legacyBehavior>
-          <button className="transition-all hover:scale-150 md:text-2xl">
+          <button
+            aria-label="Back"
+            type="button"
+            className="transition-all hover:scale-150 md:text-2xl"
+          >
             <FontAwesomeIcon icon={faArrowAltCircleLeft} />
           </button>
         </Link>
@@ -59,4 +62,4 @@ const Project = async ({ params }: any) => {
   );
 };
 
-export default Project;
+export default ProjectView;
