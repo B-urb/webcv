@@ -1,27 +1,24 @@
-'use client'
-import Image, {ImageLoaderProps} from "next/image";
-import React from "react";
+'use client';
 
-//FIXME: Check conversion to client component
-const directusLoader = ({src, width, quality}: ImageLoaderProps) => {
-  return `https://cms.burban.me/assets/${src}?width=${width}&quality=${quality || 75}`
-}
+import type { ImageLoaderProps } from 'next/image';
+import Image from 'next/image';
+import React from 'react';
 
-const DirectusImage = (props: { src: string, alt: string }) => {
+// FIXME: Check conversion to client component
+const directusLoader = ({ src, width, quality }: ImageLoaderProps) => {
+  return `https://cms.burban.me/assets/${src}?width=${width}&quality=${quality || 75}`;
+};
+
+const DirectusImage = (props: { src: string; alt: string }) => {
   return (
-      <Image src={props.src}
-             alt={props.alt}
-             loader={directusLoader}
-             fill
-             objectFit= "contain"
-             style={{
-               marginTop: 0,
-              marginBottom: 0
-      }}
-             sizes={"(max-width: 768px) 70vw, 10vw (max-width: 1200px) 70vw, 40vw, 10vw"}
-      />
-  )
-}
+    <Image
+      src={props.src}
+      alt={props.alt}
+      loader={directusLoader}
+      fill
+      sizes="(max-width: 768px) 70vw, 10vw (max-width: 1200px) 70vw, 40vw, 10vw"
+    />
+  );
+};
 
-
-export default DirectusImage
+export default DirectusImage;
