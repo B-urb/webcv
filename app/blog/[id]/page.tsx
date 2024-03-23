@@ -1,12 +1,12 @@
-import { faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
+import { faArrowAltCircleLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 
-import BlogMeta from '../../../components/BlogMeta';
-import { BlogpostMarkdown } from '../../../components/BlogpostMarkdown';
-import DirectusImage from '../../../components/DirectusImage';
-import type { Blogpost } from '../../../lib/directus';
-import { getPostById } from '../../../lib/directus';
+import BlogMeta from "../../../components/BlogMeta";
+import { BlogpostMarkdown } from "../../../components/BlogpostMarkdown";
+import DirectusImage from "../../../components/DirectusImage";
+import type { Blogpost } from "../../../lib/directus";
+import { getPostById } from "../../../lib/directus";
 
 // FIXME: Add metadata generation
 async function getPost(postId: string) {
@@ -35,7 +35,10 @@ const BlogpostView = async ({ params }: any) => {
     <div className="flex flex-col items-center">
       <div className="mx-4 flex w-[90vw] flex-row justify-between">
         <Link href="/blog" legacyBehavior>
-          <button className="transition-all hover:scale-150 md:text-2xl">
+          <button
+            type="button"
+            className="transition-all hover:scale-150 md:text-2xl"
+          >
             <FontAwesomeIcon
               aria-label="Back to list"
               icon={faArrowAltCircleLeft}
@@ -68,7 +71,7 @@ const BlogpostView = async ({ params }: any) => {
           </div>
           <div />
         </div>
-        <BlogpostMarkdown markdown={post.content!} />{' '}
+        <BlogpostMarkdown markdown={post.content!} />{" "}
       </article>
     </div>
   ) : (

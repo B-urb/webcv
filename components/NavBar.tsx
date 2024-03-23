@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React from 'react';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React from "react";
 
 const NavLinkWrapper = (props: { text: string; path: string }) => {
   const pathname = usePathname();
   const isActive = () => {
     return (
-      pathname.includes(props.path) || (props.path === '/#' && pathname === '/')
+      pathname.includes(props.path) || (props.path === "/#" && pathname === "/")
     );
   };
   return (
@@ -16,8 +16,8 @@ const NavLinkWrapper = (props: { text: string; path: string }) => {
       href={props.path}
       className={`duration-50 dark:border-dark-4 border-solid  border-black transition-all ease-in-out hover:scale-110 focus:border-b-2 motion-reduce:transition-none${
         isActive()
-          ? 'border-b-2 border-solid border-accent  hover:scale-150'
-          : ''
+          ? "border-b-2 border-solid border-accent  hover:scale-150"
+          : ""
       }`}
     >
       {props.text}

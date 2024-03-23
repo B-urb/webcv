@@ -1,37 +1,37 @@
-import '../styles/globals.css';
-import 'devicon/devicon.min.css';
-import '@fortawesome/fontawesome-svg-core/styles.css';
+import "../styles/globals.css";
+import "devicon/devicon.min.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 
 // Prevent fontawesome from adding its CSS since we did it manually above:
-import { config } from '@fortawesome/fontawesome-svg-core';
-import localFont from 'next/font/local';
-import Script from 'next/script';
-import type { ReactNode } from 'react';
-import React from 'react';
+import { config } from "@fortawesome/fontawesome-svg-core";
+import localFont from "next/font/local";
+import Script from "next/script";
+import type { ReactNode } from "react";
+import React from "react";
 
-import Footer from '../components/Footer';
-import NavBar2 from '../components/NavBar2';
-import ProfileImage from '../components/ProfileImage';
+import Footer from "../components/Footer";
+import NavBar2 from "../components/NavBar2";
+import ProfileImage from "../components/ProfileImage";
 
 config.autoAddCss = false;
 
-const barlow = localFont({
-  src: [
-    {
-      path: '../public/fonts/barlow-condensed-v12-latin-300.ttf',
-      weight: '300',
-    },
-  ],
-  variable: '--font-barlow',
-});
+// const barlow = localFont({
+//   src: [
+//     {
+//       path: '../public/fonts/barlow-condensed-v12-latin-300.ttf',
+//       weight: '300',
+//     },
+//   ],
+//   variable: '--font-barlow',
+// });
 const roboto = localFont({
   src: [
     {
-      path: '../public/fonts/roboto-condensed-v25-latin-700.ttf',
-      weight: '700',
+      path: "../public/fonts/roboto-condensed-v25-latin-700.ttf",
+      weight: "700",
     },
   ],
-  variable: '--font-roboto',
+  variable: "--font-roboto",
 });
 
 export default function Layout({ children }: { children: ReactNode }) {

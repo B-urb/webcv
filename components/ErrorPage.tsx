@@ -2,10 +2,10 @@ export const ErrorPage = () => {
   return (
     <div className="mt-6 flex w-full flex-col items-center">
       <iframe
+        title="errorGif"
         src="https://giphy.com/embed/6uGhT1O4sxpi8"
         width="480"
         height="240"
-        frameBorder="0"
         className="giphy-embed"
         allowFullScreen
       />

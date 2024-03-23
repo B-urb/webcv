@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import type { ImageLoaderProps } from 'next/image';
-import Image from 'next/image';
-import React from 'react';
+import type { ImageLoaderProps } from "next/image";
+import Image from "next/image";
+import React from "react";
 
 // FIXME: Check conversion to client component
 const directusLoader = ({ src, width, quality }: ImageLoaderProps) => {

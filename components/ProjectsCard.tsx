@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import React from 'react';
-import Markdown from 'react-markdown';
+import Link from "next/link";
+import React from "react";
+import Markdown from "react-markdown";
 
-import MetaTag from './MetaTag';
+import MetaTag from "./MetaTag";
 
 const ProjectsCard = (props: {
   id: number;
@@ -19,6 +19,7 @@ const ProjectsCard = (props: {
           <div className="row-span-auto">
             <h2 className="font-roboto text-xl md:text-2xl">{props.name}</h2>
           </div>
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
           <div
             onClick={(e) => e.stopPropagation()}
             className="row-auto h-44 cursor-default overflow-hidden font-barlow text-base prose-a:underline md:h-36"
@@ -28,8 +29,9 @@ const ProjectsCard = (props: {
             </Markdown>
           </div>
           <div className="row-auto flex flex-wrap justify-start justify-items-start gap-2 pt-2">
-            {props.tags.map((tag, key) => {
-              if (tag !== undefined) return <MetaTag key={key} tag={tag} />;
+            {props.tags.map((tag) => {
+              if (tag !== undefined) return <MetaTag key={tag} tag={tag} />;
+              return null;
             })}
           </div>
         </div>

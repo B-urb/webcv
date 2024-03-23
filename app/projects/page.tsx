@@ -1,12 +1,12 @@
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
 
-import ProjectsCard from '../../components/ProjectsCard';
-import { allProjects } from '../../lib/directus';
+import ProjectsCard from "../../components/ProjectsCard";
+import { allProjects } from "../../lib/directus";
 
 export const metadata: Metadata = {
-  title: 'Björn Urban | Projects',
+  title: "Björn Urban | Projects",
   description:
-    'Have a look at some of the projects I have worked on in the past or working on at the moment. This can be work, university or hobby projects.',
+    "Have a look at some of the projects I have worked on in the past or working on at the moment. This can be work, university or hobby projects.",
 };
 const Projects = async () => {
   const projects = await allProjects();

@@ -1,13 +1,13 @@
-import Head from 'next/head';
-import React from 'react';
+import Head from "next/head";
+import React from "react";
 
 type ISEO = {
   title: string;
   description: string;
 };
 const SEO = ({
-  title = 'Björn Urban',
-  description = 'This is my personal Web-based CV, showcase and Blog',
+  title = "Björn Urban",
+  description = "This is my personal Web-based CV, showcase and Blog",
 }: ISEO) => {
   return (
     <Head>

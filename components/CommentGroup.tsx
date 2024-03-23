@@ -1,6 +1,6 @@
 export function CommentGroup() {
   return (
-    <div className="flex hidden w-2/3 flex-col items-center justify-center justify-items-center">
+    <div className="flex w-2/3 flex-col items-center justify-center justify-items-center">
       <div />
 
       <textarea

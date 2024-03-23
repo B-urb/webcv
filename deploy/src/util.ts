@@ -1,16 +1,23 @@
-import {Namespace, Secret} from "@pulumi/kubernetes/core/v1";
-import {interpolate} from "@pulumi/pulumi";
+import { Namespace, Secret } from "@pulumi/kubernetes/core/v1";
+import { interpolate } from "@pulumi/pulumi";
 
-export function createGitlabSecret(username: string, token: string,name:string, namespace: Namespace): Secret {
+export function createGitlabSecret(
+  username: string,
+  token: string,
+  name: string,
+  namespace: Namespace
+): Secret {
   let secretData = {
-    "auths":
-        {
-          "registry.gitlab.com":
-              {"auth": Buffer.from(username + ":" + token).toString('base64')}
-        }
+    auths: {
+      "registry.gitlab.com": {
+        auth: Buffer.from(username + ":" + token).toString("base64"),
+      },
+    },
   };
-  let encodedSecret = Buffer.from(JSON.stringify(secretData)).toString('base64')
-  const pullSecretName = interpolate `gitlab-pull-secret-${namespace.metadata.name}`;
+  let encodedSecret = Buffer.from(JSON.stringify(secretData)).toString(
+    "base64"
+  );
+  const pullSecretName = interpolate`gitlab-pull-secret-${namespace.metadata.name}`;
   return new Secret(name, {
     metadata: {
       name: pullSecretName,
@@ -18,7 +25,7 @@ export function createGitlabSecret(username: string, token: string,name:string, 
     },
     type: "kubernetes.io/dockerconfigjson",
     data: {
-      ".dockerconfigjson": encodedSecret
-    }
+      ".dockerconfigjson": encodedSecret,
+    },
   });
 }

@@ -1,159 +1,166 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as kubernetes from "@pulumi/kubernetes";
-import {getProject, getStack, interpolate} from "@pulumi/pulumi";
-import {createGitlabSecret} from "./src/util";
-import {authAnnotation} from "./src/globals";
-import {Ingress} from "@pulumi/kubernetes/networking/v1";
-import {Deployment} from "@pulumi/kubernetes/apps/v1";
+import { getProject, getStack, interpolate } from "@pulumi/pulumi";
+import { createGitlabSecret } from "./src/util";
+import { authAnnotation } from "./src/globals";
+import { Ingress } from "@pulumi/kubernetes/networking/v1";
+import { Deployment } from "@pulumi/kubernetes/apps/v1";
 
 // Get some values from the stack configuration, or use defaults
 const config = new pulumi.Config();
 const baseUrl = config.get("url") || "default";
 const numReplicas = config.getNumber("replicas") || 1;
-const stackName = getStack()
+const stackName = getStack();
 
-const prefix = stackName === "prod" ? "" : stackName
-const url = prefix === "" ? baseUrl : prefix + "." + baseUrl
-const projectName = getProject()
-const resourceName = stackName + "-" + projectName
+const prefix = stackName === "prod" ? "" : stackName;
+const url = prefix === "" ? baseUrl : prefix + "." + baseUrl;
+const projectName = getProject();
+const resourceName = stackName + "-" + projectName;
 const k8sNamespace = config.get("namespace") || projectName;
 
-const cmsToken = config.getSecret("cms-token")
-
+const cmsToken = config.getSecret("cms-token");
 
 const appLabels = {
   name: resourceName,
-  app: resourceName
+  app: resourceName,
 };
 
 // Create a new namespace
 const webServerNs = new kubernetes.core.v1.Namespace(resourceName, {
   metadata: {
     name: resourceName,
-  }
+  },
 });
-const ingressAnnotation =  stackName === "prod" ? {} : authAnnotation;
+const ingressAnnotation = stackName === "prod" ? {} : authAnnotation;
 
 // Create a new ConfigMap for the Nginx configuration
 
-
 //Create Gitlab Secret
-const pullSecret = process.env.CI_PULL_SECRET!
-const secret = createGitlabSecret("pulumi", pullSecret, "gitlab-pull-secret", webServerNs)
-
+const pullSecret = process.env.CI_PULL_SECRET!;
+const secret = createGitlabSecret(
+  "pulumi",
+  pullSecret,
+  "gitlab-pull-secret",
+  webServerNs
+);
 
 // Create a new Deployment with a user-specified number of replicas
 
 const deployment = new Deployment(resourceName, {
-
   metadata: {
     name: resourceName,
     namespace: webServerNs.metadata.name,
-    labels: appLabels
+    labels: appLabels,
   },
   spec: {
-    "strategy": {
-      "type": "Recreate"
+    strategy: {
+      type: "Recreate",
     },
     selector: {
-      matchLabels: appLabels
+      matchLabels: appLabels,
     },
-    "template": {
-      "metadata": {
-        "labels": appLabels
+    template: {
+      metadata: {
+        labels: appLabels,
       },
-      "spec": {
-        "containers": [
+      spec: {
+        containers: [
           {
-            "name": resourceName,
-            "image": process.env.registryImage + ":" + process.env.imageTag,
-            "imagePullPolicy": "Always",
+            name: resourceName,
+            image: process.env.registryImage + ":" + process.env.imageTag,
+            imagePullPolicy: "Always",
             resources: {
               requests: {
                 memory: "250Mi",
-                cpu: "300m"
+                cpu: "300m",
               },
               limits: {
                 memory: "500Mi",
-                cpu: "700m"
-              }
+                cpu: "700m",
+              },
             },
-            "env": [
+            env: [
               {
-                "name": "url",
-                "value": url
+                name: "url",
+                value: url,
               },
               {
-                "name": "CI_DIRECTUS_TOKEN",
-                "value": cmsToken
-              }
+                name: "CI_DIRECTUS_TOKEN",
+                value: cmsToken,
+              },
             ],
-            "ports": [
+            ports: [
               {
-                "name": "http",
-                "containerPort": 3000
-              }
-            ]
-          }
+                name: "http",
+                containerPort: 3000,
+              },
+            ],
+          },
         ],
         imagePullSecrets: [
-          {"name": pulumi.interpolate`${secret.metadata.name}`}
-        ]
-
-      }
-    }
-  }
-})
+          { name: pulumi.interpolate`${secret.metadata.name}` },
+        ],
+      },
+    },
+  },
+});
 
 // Expose the Deployment as a Kubernetes Service
 const service = new kubernetes.core.v1.Service(resourceName, {
   metadata: {
     namespace: webServerNs.metadata.name,
-    name: resourceName
+    name: resourceName,
   },
   spec: {
-    "ports": [
+    ports: [
       {
-        "name": "http",
-        "port": 80,
-        "protocol": "TCP",
-        "targetPort": "http"
-      }
+        name: "http",
+        port: 80,
+        protocol: "TCP",
+        targetPort: "http",
+      },
     ],
     selector: appLabels,
   },
 });
 const ingress = new Ingress(resourceName, {
-      metadata: {
-        annotations: {
-          "kubernetes.io/ingress.class": "traefik",
-          "cert-manager.io/cluster-issuer": "letsencrypt",
-          ...ingressAnnotation
-        },
-        namespace: webServerNs.metadata.name
+  metadata: {
+    annotations: {
+      "kubernetes.io/ingress.class": "traefik",
+      "cert-manager.io/cluster-issuer": "letsencrypt",
+      ...ingressAnnotation,
+    },
+    namespace: webServerNs.metadata.name,
+  },
+
+  spec: {
+    tls: [
+      {
+        secretName: interpolate`${service.metadata.name}-tls`,
+        hosts: [url],
       },
-
-      spec: {
-        tls: [{
-          secretName: interpolate`${service.metadata.name}-tls`,
-          hosts: [url]
-        }],
-        rules: [
-          {
-            host: url,
-            http: {
-              paths: [{
-                pathType: "Prefix",
-                path: "/",
-                backend: {service: {name: interpolate`${service.metadata.name}`, port: {number: 80}}}
-              }],
-
-            }
-          }]
-      }
-    }
-);
-
+    ],
+    rules: [
+      {
+        host: url,
+        http: {
+          paths: [
+            {
+              pathType: "Prefix",
+              path: "/",
+              backend: {
+                service: {
+                  name: interpolate`${service.metadata.name}`,
+                  port: { number: 80 },
+                },
+              },
+            },
+          ],
+        },
+      },
+    ],
+  },
+});
 
 // Export some values for use elsewhere
 export const deploymentName = deployment.metadata.name;

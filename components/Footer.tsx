@@ -4,28 +4,33 @@ import {
   faInstagram,
   faLinkedin,
   faTwitter,
-} from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const socialLinks = [
   {
-    url: 'https://gitlab.com/bjoern_urban_5',
+    name: "gitlab",
+    url: "https://gitlab.com/bjoern_urban_5",
     icon: faGitlab,
   },
   {
-    url: 'https://github.com/B-urb',
+    name: "github",
+    url: "https://github.com/B-urb",
     icon: faGithub,
   },
   {
-    url: 'https://www.linkedin.com/in/bj%C3%B6rn-u-3a9347113',
+    name: "linkedin",
+    url: "https://www.linkedin.com/in/bj%C3%B6rn-u-3a9347113",
     icon: faLinkedin,
   },
   {
-    url: 'https://twitter.com/bambusbijoern',
+    name: "twitter",
+    url: "https://twitter.com/bambusbijoern",
     icon: faTwitter,
   },
   {
-    url: 'https://www.instagram.com/bambusbijoern/',
+    name: "instagram",
+    url: "https://www.instagram.com/bambusbijoern/",
     icon: faInstagram,
   },
 ];
@@ -34,9 +39,9 @@ const Footer = () => {
   return (
     <div className=" dark:text-dark-4 flex justify-center text-2xl md:text-4xl">
       <ul className="flex">
-        {socialLinks.map((social, key) => (
-          <li key={key} className="m-1 hover:cursor-pointer sm:m-3">
-            <a href={social.url} target="_blank">
+        {socialLinks.map((social) => (
+          <li key={social.name} className="m-1 hover:cursor-pointer sm:m-3">
+            <a aria-label={social.name} href={social.url} target="_blank">
               <FontAwesomeIcon icon={social.icon} />
             </a>
           </li>

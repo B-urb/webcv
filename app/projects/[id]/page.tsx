@@ -1,10 +1,10 @@
-import { faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
+import { faArrowAltCircleLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 
-import { BlogpostMarkdown } from '../../../components/BlogpostMarkdown';
-import type { Project } from '../../../lib/directus';
-import { getProjectById } from '../../../lib/directus';
+import { BlogpostMarkdown } from "../../../components/BlogpostMarkdown";
+import type { Project } from "../../../lib/directus";
+import { getProjectById } from "../../../lib/directus";
 
 // export async function generateMetadata(
 //     id: string,
@@ -54,7 +54,7 @@ const ProjectView = async ({ params }: any) => {
        dark:prose-p:text-2xl"
       >
         <h2>{project.name!}</h2>
-        <BlogpostMarkdown markdown={project.description!} />{' '}
+        <BlogpostMarkdown markdown={project.description!} />{" "}
       </article>
     </div>
   ) : (

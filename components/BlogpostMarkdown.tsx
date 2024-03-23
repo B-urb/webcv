@@ -1,8 +1,8 @@
-import React from 'react';
-import type { Components } from 'react-markdown';
-import ReactMarkdown from 'react-markdown';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import React from "react";
+import type { Components } from "react-markdown";
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 interface CodeProps {
   className?: string;
@@ -14,7 +14,7 @@ const CodeComponent: React.FC<CodeProps> = ({
   children,
   ...props
 }) => {
-  const match = /language-(\w+)/.exec(className || '');
+  const match = /language-(\w+)/.exec(className || "");
   return match ? (
     <SyntaxHighlighter
       style={dracula}
@@ -23,7 +23,7 @@ const CodeComponent: React.FC<CodeProps> = ({
       PreTag="div"
       {...props}
     >
-      {String(children).replace(/\n$/, '')}
+      {String(children).replace(/\n$/, "")}
     </SyntaxHighlighter>
   ) : (
     <code className={className} {...props}>
@@ -38,7 +38,7 @@ export const BlogpostMarkdown: React.FC<{ markdown: string }> = ({
   return (
     <ReactMarkdown
       components={{
-        code: CodeComponent as Components['code'],
+        code: CodeComponent as Components["code"],
       }}
     >
       {markdown}

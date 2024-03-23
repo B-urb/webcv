@@ -1,5 +1,5 @@
 const tagIconMapping: Object = {
-  cpp: 'cplusplus',
+  cpp: "cplusplus",
 };
 
 const MetaTag = (props: { tag: string }) => {

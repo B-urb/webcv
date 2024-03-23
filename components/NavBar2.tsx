@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React, { useState } from 'react';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React, { useState } from "react";
 
 const NavLinkWrapper = (props: { text: string; path: string }) => {
   const pathname = usePathname();
   const isActive = () => {
     return (
-      pathname.includes(props.path) || (props.path === '/#' && pathname === '/')
+      pathname.includes(props.path) || (props.path === "/#" && pathname === "/")
     );
   };
   return (
@@ -16,11 +16,11 @@ const NavLinkWrapper = (props: { text: string; path: string }) => {
       href={props.path}
       className={`block py-2 pl-3 pr-4${
         isActive()
-          ? 'rounded bg-accent text-white md:bg-transparent md:p-0 md:text-accent md:dark:text-accent'
-          : 'text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-accent md:p-0 md:dark:hover:text-accent dark:text-white' +
-            ' dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'
+          ? "rounded bg-accent text-white md:bg-transparent md:p-0 md:text-accent md:dark:text-accent"
+          : "text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-accent md:p-0 md:dark:hover:text-accent dark:text-white" +
+            " dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
       }`}
-      aria-current={isActive() ? 'page' : 'false'}
+      aria-current={isActive() ? "page" : "false"}
     >
       {props.text}
     </Link>
@@ -80,7 +80,7 @@ const NavBar2 = () => {
         <div className="hidden xl:block" />
 
         <div
-          className={`items-center justify-between ${isMenuOpen ? 'block' : 'hidden'} w-full md:order-1 md:flex md:w-auto`}
+          className={`items-center justify-between ${isMenuOpen ? "block" : "hidden"} w-full md:order-1 md:flex md:w-auto`}
           id="navbar-sticky"
         >
           <ul className="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900">

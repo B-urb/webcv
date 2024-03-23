@@ -1,13 +1,13 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
+import type { Metadata } from "next";
+import Link from "next/link";
 
-import BlogpostCard from '../../components/BlogpostCard';
-import { allBlogposts } from '../../lib/directus';
+import BlogpostCard from "../../components/BlogpostCard";
+import { allBlogposts } from "../../lib/directus";
 
 export const metadata: Metadata = {
-  title: 'Björn Urban | Blogposts',
+  title: "Björn Urban | Blogposts",
   description:
-    'Checkout my Blogposts. I write about tech, mostly tutorials and experiences from my hobby projects.',
+    "Checkout my Blogposts. I write about tech, mostly tutorials and experiences from my hobby projects.",
 };
 
 interface BlogPostData {
@@ -34,16 +34,16 @@ const Blogposts = async () => {
           blogposts
             .sort(
               (a, b) =>
-                new Date(b.date_created ?? '').getTime() -
-                new Date(a.date_created ?? '').getTime()
+                new Date(b.date_created ?? "").getTime() -
+                new Date(a.date_created ?? "").getTime()
             )
-            .map((post, key) => (
-              <Link key={key} href={`blog/${post.id?.toString() ?? ''}`}>
+            .map((post) => (
+              <Link key={post.id} href={`blog/${post.id?.toString() ?? ""}`}>
                 <BlogpostCard
-                  name={post.title ?? ''}
+                  name={post.title ?? ""}
                   thumbnail={post.thumbnail}
-                  abstract={post.abstract ?? ''}
-                  date={post.date_created ?? ''}
+                  abstract={post.abstract ?? ""}
+                  date={post.date_created ?? ""}
                   tags={post.tags ?? []}
                 />
               </Link>
