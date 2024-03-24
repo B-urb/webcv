@@ -32,8 +32,16 @@ export type Blogpost = {
 export type Project = {
   id: number;
   name: string;
-  description: string;
   tags: Array<string>;
+  translations: ProjectTranslations[] | null;
+  repository_url: string;
+};
+export type ProjectTranslations = {
+  id: number;
+  projects_id: number;
+  category: string;
+  languages_code: string;
+  description: string;
 };
 export type Introtext = {
   id: number;
@@ -43,6 +51,7 @@ export type Introtext = {
 interface MyCollections {
   blogposts: Blogpost[];
   projects: Project[];
+  projects_translations: ProjectTranslations[];
   aboutme: Introtext;
 }
 
@@ -82,7 +91,14 @@ export async function allProjects(): Promise<Project[]> {
       // By default API limits results to 100.
       // With -1, it will return all results, but it may lead to performance degradation
       // for large result sets.
-      fields: ["id", "name", "description", "tags"],
+      deep: {
+        translations: {
+          _filter: {
+            languages_code: { _eq: "en-US" },
+          },
+        },
+      },
+      fields: ["id", "name", "tags", "repository_url", { translations: ["*"] }],
     })
   );
 }
@@ -92,7 +108,26 @@ export async function getPostById(id: string): Promise<Blogpost> {
 }
 
 export async function getProjectById(id: string): Promise<Project> {
-  return directus.request(readItem("projects", id));
+  return directus.request(
+    readItem("projects", id, {
+      deep: {
+        translations: {
+          _filter: {
+            _and: [
+              {
+                languages_code: { _eq: "en-US" },
+              },
+              {
+                projects_id: { _eq: parseInt(id, 10) },
+              },
+            ],
+          },
+        },
+      },
+      fields: ["*", { translations: ["*"] }],
+      limit: 1,
+    })
+  );
 }
 
 export async function getIntrotext(): Promise<Introtext> {

@@ -54,7 +54,9 @@ const ProjectView = async ({ params }: any) => {
        dark:prose-p:text-2xl"
       >
         <h2>{project.name!}</h2>
-        <BlogpostMarkdown markdown={project.description!} />{" "}
+        <BlogpostMarkdown
+          markdown={project.translations?.[0].description!}
+        />{" "}
       </article>
     </div>
   ) : (

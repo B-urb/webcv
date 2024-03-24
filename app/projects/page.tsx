@@ -23,7 +23,7 @@ const Projects = async () => {
               key={content.name}
               id={content.id}
               name={content.name!}
-              content={content.description!}
+              content={content.translations?.[0]?.description!}
               tags={content.tags!}
             />
           ))
