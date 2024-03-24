@@ -31,7 +31,10 @@ const BlogpostCard: React.FC<BlogpostCardProps> = ({
       <div className="md:text-md grid h-full divide-y divide-dotted divide-white rounded-md bg-secondary p-3 text-xs text-black dark:bg-secondary dark:text-white">
         <div className="flex justify-center">
           <div className="relative size-52 2xl:size-80">
-            <DirectusImage src={thumbnail ?? ""} alt="test" />
+            <DirectusImage
+              src={thumbnail || "/images/default-thumbnail.jpg"}
+              alt="Blogpost thumbnail"
+            />
           </div>
         </div>
         <div className="row-span-auto">

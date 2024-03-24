@@ -25,15 +25,14 @@ describe("BlogpostCard component", () => {
 
   it("renders the thumbnail correctly", () => {
     render(<BlogpostCard {...mockProps} />);
-    const img = screen.getByAltText("test") as HTMLImageElement;
+    const img = screen.getByAltText("Blogpost thumbnail") as HTMLImageElement;
     expect(img.src).toContain("test-thumbnail.jpg");
   });
 
-  // eslint-disable-next-line jest/no-commented-out-tests
-  // it('renders default image when thumbnail is not provided', () => {
-  //     const { thumbnail, ...propsWithoutThumbnail } = mockProps;
-  //     render(<BlogpostCard {...propsWithoutThumbnail} />);
-  //     const img = screen.getByAltText('test') as HTMLImageElement;
-  //     expect(img.src).toContain('default-thumbnail.jpg');
-  // });
+  it("renders default image when thumbnail is not provided", () => {
+    const { ...propsWithoutThumbnail } = mockProps;
+    render(<BlogpostCard {...propsWithoutThumbnail} />);
+    const img = screen.getByAltText("Blogpost thumbnail") as HTMLImageElement;
+    expect(img.src).toContain("default-thumbnail.jpg");
+  });
 });
