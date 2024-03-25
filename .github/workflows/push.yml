@@ -58,8 +58,9 @@ jobs:
 
 
       - name: Run E2E tests
-        run: npm run test:e2e
+        run: npx percy exec -- npm run test:e2e
         env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
           CI_DIRECTUS_TOKEN: ${{ secrets.CI_DIRECTUS_TOKEN }}
 
       - name: Archive production artifacts
