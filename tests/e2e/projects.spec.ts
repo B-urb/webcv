@@ -17,7 +17,7 @@ test("test", async ({ page }) => {
   );
   await expect(page.getByText("DoclyticsA document analyzer")).toBeVisible();
   await page.getByLabel("Back").click();
-  await expect(
-    page.getByRole("heading", { name: "Projects summarizing my" })
-  ).toBeVisible();
+  await expect(page.getByRole("main")).toContainText(
+    "Projects summarizing my professional experience with different frameworks and programming languages and technologies."
+  );
 });
