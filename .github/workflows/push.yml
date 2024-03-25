@@ -60,6 +60,7 @@ jobs:
       - name: Run E2E tests
         run: npx percy exec -- npm run test:e2e
         env:
+          HOME: /root
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
           CI_DIRECTUS_TOKEN: ${{ secrets.CI_DIRECTUS_TOKEN }}
 
