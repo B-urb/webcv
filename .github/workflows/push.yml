@@ -55,6 +55,8 @@ jobs:
 
       - name: Install Playwright (used for Storybook and E2E tests)
         run: npx playwright install --with-deps
+        env:
+          CI_DIRECTUS_TOKEN: ${{ secrets.CI_DIRECTUS_TOKEN }}
 
       - name: Run E2E tests
         run: npm run test:e2e
