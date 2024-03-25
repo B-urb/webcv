@@ -30,7 +30,8 @@ describe("BlogpostCard component", () => {
   });
 
   it("renders default image when thumbnail is not provided", () => {
-    const { ...propsWithoutThumbnail } = mockProps;
+    // eslint-disable-next-line unused-imports/no-unused-vars
+    const { thumbnail, ...propsWithoutThumbnail } = mockProps;
     render(<BlogpostCard {...propsWithoutThumbnail} />);
     const img = screen.getByAltText("Blogpost thumbnail") as HTMLImageElement;
     expect(img.src).toContain("default-thumbnail.jpg");
