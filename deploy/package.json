@@ -1,11 +1,11 @@
 {
-    "name": "webapp-kubernetes-typescript",
-    "devDependencies": {
-        "@types/node": "^20.0.0"
-    },
-    "dependencies": {
-        "typescript": "^5.0.0",
-        "@pulumi/pulumi": "^3.0.0",
-        "@pulumi/kubernetes": "4.9.1"
-    }
+  "name": "webapp-kubernetes-typescript",
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  },
+  "dependencies": {
+    "typescript": "^5.0.0",
+    "@pulumi/pulumi": "^3.0.0",
+    "@pulumi/kubernetes": "4.9.0"
+  }
 }

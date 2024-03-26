@@ -3,8 +3,8 @@ name: CI
 on:
   push:
     branches:
-      - master
-      - development
+      - '*'
+
 #  pull_request:
 #    branches:
 #      - '*'
@@ -37,6 +37,30 @@ jobs:
       - name: Build
         run: npm run build
         env:
+          CI_DIRECTUS_TOKEN: ${{ secrets.CI_DIRECTUS_TOKEN }}
+
+      - name: Linter
+        run: npm run lint
+
+      - name: Type checking
+        run: npm run check-types
+
+      - name: Run unit tests
+        run: npm run test
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Install Playwright (used for Storybook and E2E tests)
+        run: npx playwright install --with-deps
+
+
+      - name: Run E2E tests
+        run: npx percy exec -- npm run test:e2e
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
           CI_DIRECTUS_TOKEN: ${{ secrets.CI_DIRECTUS_TOKEN }}
 
       - name: Archive production artifacts

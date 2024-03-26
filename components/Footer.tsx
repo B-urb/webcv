@@ -1,42 +1,54 @@
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {library} from "@fortawesome/fontawesome-svg-core";
-import {faGithub, faLinkedin, faTwitter, faInstagram, faGitlab} from "@fortawesome/free-brands-svg-icons";
+import {
+  faGithub,
+  faGitlab,
+  faInstagram,
+  faLinkedin,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
-const socialLinks = [{
-  url: "https://gitlab.com/bjoern_urban_5",
-  icon: faGitlab
-}, {
-  url: "https://github.com/B-urb",
-  icon: faGithub
-}, {
-  url: "https://www.linkedin.com/in/bj%C3%B6rn-u-3a9347113",
-  icon: faLinkedin
-},
+const socialLinks = [
   {
-    url: "https://twitter.com/bambusbijoern",
-    icon: faTwitter
+    name: "gitlab",
+    url: "https://gitlab.com/bjoern_urban_5",
+    icon: faGitlab,
   },
   {
+    name: "github",
+    url: "https://github.com/B-urb",
+    icon: faGithub,
+  },
+  {
+    name: "linkedin",
+    url: "https://www.linkedin.com/in/bj%C3%B6rn-u-3a9347113",
+    icon: faLinkedin,
+  },
+  {
+    name: "twitter",
+    url: "https://twitter.com/bambusbijoern",
+    icon: faTwitter,
+  },
+  {
+    name: "instagram",
     url: "https://www.instagram.com/bambusbijoern/",
-    icon: faInstagram
-  }
-
-]
-
+    icon: faInstagram,
+  },
+];
 
 const Footer = () => {
-  return <div
-      className=" flex justify-center text-2xl md:text-4xl dark:text-dark-4">
-    <ul className="flex">{socialLinks.map((social, key) =>
-        <li key={key}
-            className="m-1 sm:m-3 hover:cursor-pointer"><a href={social.url} target={"_blank"}><FontAwesomeIcon icon={social.icon}/></a>
-        </li>
-    )
-    }
-    </ul>
-  </div>
-
-}
+  return (
+    <div className=" dark:text-dark-4 flex justify-center text-2xl md:text-4xl">
+      <ul className="flex">
+        {socialLinks.map((social) => (
+          <li key={social.name} className="m-1 hover:cursor-pointer sm:m-3">
+            <a aria-label={social.name} href={social.url} target="_blank">
+              <FontAwesomeIcon icon={social.icon} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default Footer;
