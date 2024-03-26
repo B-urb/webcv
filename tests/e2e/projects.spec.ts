@@ -16,7 +16,10 @@ test("test", async ({ page }) => {
     "A document analyzer using local a local LLM like Ollama for the document management system paperless-ngx"
   );
   await expect(page.getByText("DoclyticsA document analyzer")).toBeVisible();
-  await page.getByLabel("Back").click();
+  await page.waitForSelector('button[aria-label="Back"]', {
+    state: "attached",
+  });
+  await page.click('button[aria-label="Back"]');
   await page.waitForURL("**/projects");
   await expect(page.getByRole("main")).toContainText(
     "Projects summarizing my professional experience with different frameworks and programming languages and technologies."
