@@ -37,7 +37,7 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <div className=" dark:text-dark-4 flex justify-center text-2xl md:text-4xl">
+    <div className="dark:text-dark-4 flex justify-center text-2xl md:text-4xl">
       <ul className="flex">
         {socialLinks.map((social) => (
           <li key={social.name} className="m-1 hover:cursor-pointer sm:m-3">

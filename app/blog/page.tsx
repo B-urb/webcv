@@ -29,7 +29,7 @@ const Blogposts = async () => {
         Blogposts about mostly tech related topics. Tutorials, experiences and
         more.
       </h2>
-      <nav className="flex list-none flex-row flex-wrap justify-start gap-4">
+      <nav className="3xl:grid-cols-4 grid list-none grid-cols-1 justify-start gap-4 md:grid-cols-2 xl:grid-cols-3">
         {blogposts.length > 0 ? (
           blogposts
             .sort(
