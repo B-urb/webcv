@@ -43,6 +43,32 @@ export type ProjectTranslations = {
   languages_code: string;
   description: string;
 };
+
+export type WorkExperience = {
+  id: number;
+  name: string;
+  startdate: string;
+  enddate?: string;
+  url: string;
+  roles: WorkRoles[] | null;
+};
+
+export type WorkRoles = {
+  id: number;
+  employer_id: number;
+  title: string;
+  startdate: string;
+  enddate?: string;
+  translations: WorkRolesTranslations[] | null;
+};
+
+export type WorkRolesTranslations = {
+  id: number;
+  work_roles_id: number;
+  description: string;
+  languages_code: string;
+};
+
 export type Introtext = {
   id: number;
   introtext: string;
@@ -53,6 +79,9 @@ interface MyCollections {
   projects: Project[];
   projects_translations: ProjectTranslations[];
   aboutme: Introtext;
+  work_experience: WorkExperience[];
+  work_roles: WorkRoles[];
+  work_roles_translations: WorkRolesTranslations[];
 }
 
 export async function allBlogposts(): Promise<Blogpost[]> {
@@ -99,6 +128,34 @@ export async function allProjects(): Promise<Project[]> {
         },
       },
       fields: ["id", "name", "tags", "repository_url", { translations: ["*"] }],
+    })
+  );
+}
+
+export async function allWorkExperience(): Promise<WorkExperience[]> {
+  // We don't need to authenticate if data is public
+  return directus.request(
+    readItems("work_experience", {
+      // By default API limits results to 100.
+      // With -1, it will return all results, but it may lead to performance degradation
+      // for large result sets.
+      deep: {
+        roles: {
+          translations: {
+            _filter: {
+              languages_code: { _eq: "en-US" },
+            },
+          },
+        },
+      },
+      fields: [
+        "id",
+        "name",
+        "url",
+        "startdate",
+        "enddate",
+        { roles: ["*", { translations: ["*"] }] },
+      ],
     })
   );
 }
