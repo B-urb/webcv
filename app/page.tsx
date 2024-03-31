@@ -6,6 +6,7 @@ import { Suspense } from "react";
 
 import IntroText from "../components/IntroText";
 import ProjectsList from "../components/ProjectsList";
+import WorkExperience from "../components/WorkExperience";
 
 export const metadata: Metadata = {
   title: "Björn Urban",
@@ -20,6 +21,11 @@ const AboutMe = () => {
           <div className="flex">
             <Suspense>
               <IntroText />
+            </Suspense>
+          </div>
+          <div className="w-full">
+            <Suspense>
+              <WorkExperience />
             </Suspense>
           </div>
           <h2 className="w-full border-b-4 border-dotted border-accent">

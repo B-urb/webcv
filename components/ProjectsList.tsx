@@ -3,9 +3,6 @@ import { allProjects } from "../lib/directus";
 import ProjectsCard from "./ProjectsCard";
 
 const filterProjects = (elem: Project, category: string | undefined) => {
-  console.log(elem);
-  console.log("jo");
-  console.log(category);
   if (!category) {
     return true;
   }
