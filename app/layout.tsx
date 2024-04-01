@@ -11,7 +11,6 @@ import React from "react";
 
 import Footer from "../components/Footer";
 import NavBar2 from "../components/NavBar2";
-import ProfileImage from "../components/ProfileImage";
 
 config.autoAddCss = false;
 
@@ -45,9 +44,6 @@ export default function Layout({ children }: { children: ReactNode }) {
           <div className="grid auto-rows-auto gap-y-10 border-solid border-text font-roboto">
             <div className="text-md row-span-1 text-center md:text-3xl">
               <NavBar2 />
-            </div>
-            <div className="row-span-1 mt-4 flex justify-center">
-              <ProfileImage />
             </div>
             <main className="grow font-barlow scrollbar-none">{children}</main>
             <Footer />

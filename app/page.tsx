@@ -2,9 +2,10 @@ import { faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 
 import IntroText from "../components/IntroText";
+import ProfileImage from "../components/ProfileImage";
 import ProjectsList from "../components/ProjectsList";
 import WorkExperience from "../components/WorkExperience";
 
@@ -16,14 +17,15 @@ export const metadata: Metadata = {
 const AboutMe = () => {
   return (
     <div className="flex flex-col gap-y-5 text-xs md:text-xl">
+      <div className="flex justify-center">
+        <ProfileImage />
+      </div>
       <div className="flex w-full flex-col items-center justify-center justify-items-center  ">
-        <div className="flex w-4/5 flex-col items-center gap-y-4">
-          <div className="flex">
+        <div className="flex w-4/5 flex-col items-center justify-center gap-y-4">
+          <div className="flex w-fit flex-col gap-y-4">
             <Suspense>
               <IntroText />
             </Suspense>
-          </div>
-          <div className="w-full">
             <Suspense>
               <WorkExperience />
             </Suspense>
@@ -31,10 +33,12 @@ const AboutMe = () => {
           <h2 className="w-full border-b-4 border-dotted border-accent">
             Work Projects
           </h2>
-          <Suspense>
-            <ProjectsList category="work" />
-          </Suspense>
-          <div className="flex w-full justify-center lg:justify-end">
+          <div className="self-start">
+            <Suspense>
+              <ProjectsList category="work" />
+            </Suspense>
+          </div>
+          <div className="flex w-full justify-center">
             <Link href="/projects">
               <button
                 type="button"
