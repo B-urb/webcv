@@ -49,6 +49,7 @@ export type WorkExperience = {
   name: string;
   startdate: string;
   enddate?: string;
+  logo: string;
   url: string;
   roles: WorkRoles[] | null;
 };
@@ -154,6 +155,7 @@ export async function allWorkExperience(): Promise<WorkExperience[]> {
         "url",
         "startdate",
         "enddate",
+        "logo",
         { roles: ["*", { translations: ["*"] }] },
       ],
     })

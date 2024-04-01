@@ -25,6 +25,10 @@ module.exports = {
         secondary: "#082b2b",
         accent: "#b280e5",
       },
+      screens: {
+        "3xl": "1840px",
+        "4xl": "2100px",
+      },
     },
   },
   // eslint-disable-next-line global-require

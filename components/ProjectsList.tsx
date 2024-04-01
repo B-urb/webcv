@@ -11,7 +11,7 @@ const filterProjects = (elem: Project, category: string | undefined) => {
 const ProjectsList = async (props: { category?: string }) => {
   const projects = await allProjects();
   return (
-    <nav className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:w-2/3 xl:grid-cols-3 2xl:grid-cols-4">
+    <nav className="grid w-4/5 grid-cols-1 gap-4 md:w-fit md:grid-cols-2 3xl:grid-cols-3 4xl:grid-cols-4">
       {projects !== undefined && projects.length > 0 ? (
         projects
           .filter((project) => filterProjects(project, props.category))

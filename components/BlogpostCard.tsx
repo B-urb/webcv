@@ -34,6 +34,7 @@ const BlogpostCard: React.FC<BlogpostCardProps> = ({
             <DirectusImage
               src={thumbnail || "/images/default-thumbnail.jpg"}
               alt="Blogpost thumbnail"
+              className="rounded-md"
             />
           </div>
         </div>

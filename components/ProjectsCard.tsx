@@ -14,7 +14,7 @@ const ProjectsCard = (props: {
 }) => {
   return (
     <Link href={`projects/${props.id!.toString()}`}>
-      <div className="h-full w-60 self-stretch rounded-md shadow-black transition-all duration-300 hover:cursor-pointer md:w-72 md:hover:scale-105 2xl:w-96">
+      <div className="size-full self-stretch rounded-md shadow-black transition-all duration-300 hover:cursor-pointer md:w-96 md:hover:scale-105">
         <div className="md:text-md grid h-full divide-y divide-dotted divide-white rounded-md bg-primary p-3 text-xs text-black dark:bg-secondary dark:text-text">
           <div className="row-span-auto">
             <h2 className="font-roboto text-xl md:text-2xl">{props.name}</h2>

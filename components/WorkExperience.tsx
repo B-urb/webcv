@@ -1,4 +1,5 @@
 import { allWorkExperience } from "../lib/directus";
+import DirectusImage from "./DirectusImage";
 import WorkRolesView from "./WorkRoles";
 
 const workTime = (startdate: string, enddate?: string) => {
@@ -28,7 +29,7 @@ const workTime = (startdate: string, enddate?: string) => {
 const WorkExperience = async () => {
   const experience = await allWorkExperience();
   return (
-    <div className="flex flex-col gap-y-4">
+    <div className="flex flex-col gap-y-10 first:block">
       {experience !== undefined && experience.length > 0 ? (
         experience
           .sort(
@@ -39,6 +40,11 @@ const WorkExperience = async () => {
           .map((content) => (
             <div key={content.id} className="flex flex-row gap-x-3">
               {workTime(content.startdate, content.enddate)}
+              <div className="flex size-14 items-center justify-center rounded-xl bg-secondary 2xl:size-20">
+                <div className="relative size-10 2xl:size-16">
+                  <DirectusImage src={content.logo} alt={content.name} />
+                </div>
+              </div>
               <div>
                 <h3 className="font-extrabold underline">
                   <a href={content.url}>{content.name}</a>
