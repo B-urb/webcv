@@ -9,15 +9,23 @@ const directusLoader = ({ src, width, quality }: ImageLoaderProps) => {
   return `https://cms.burban.me/assets/${src}?width=${width}&quality=${quality || 75}`;
 };
 
-const DirectusImage = (props: { src: string; alt: string }) => {
+const DirectusImage = ({
+  src,
+  alt,
+  ...otherProps
+}: {
+  src: string;
+  alt: string;
+  [x: string]: any;
+}) => {
   return (
     <Image
-      src={props.src}
-      alt={props.alt}
+      src={src}
+      alt={alt}
       loader={directusLoader}
-      className="rounded-md"
       fill
       sizes="(max-width: 768px) 70vw, 10vw (max-width: 1200px) 70vw, 40vw, 10vw"
+      {...otherProps} // This spreads any additional props to the Image component.
     />
   );
 };
