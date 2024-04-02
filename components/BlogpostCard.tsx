@@ -29,11 +29,12 @@ const BlogpostCard: React.FC<BlogpostCardProps> = ({
   return (
     <div className="m-4 h-full w-96 self-stretch rounded-md shadow-black transition-all duration-300 hover:cursor-pointer md:hover:scale-105">
       <div className="md:text-md grid h-full divide-y divide-dotted divide-white rounded-md bg-secondary p-3 text-xs text-black dark:bg-secondary dark:text-white">
-        <div className="flex justify-center">
-          <div className="relative size-52 2xl:size-80">
+        <div className="flex justify-center ">
+          <div className="relative size-52  2xl:size-80">
             <DirectusImage
               src={thumbnail || "/images/default-thumbnail.jpg"}
               alt="Blogpost thumbnail"
+              className="rounded-md"
             />
           </div>
         </div>

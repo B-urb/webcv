@@ -49,6 +49,24 @@ const BlogpostView = async ({ params }: any) => {
           {post.title!}
         </h2>
       </div>
+      <div className="flex flex-col items-center justify-items-center gap-y-2">
+        <div className="grid gap-y-4">
+          <div className="row-span-1 flex justify-center">
+            <div className="relative size-96 overflow-hidden ">
+              <DirectusImage
+                src={post.thumbnail}
+                alt="Titelbild"
+                objectFit="contain"
+                className="rounded-sm"
+              />
+            </div>
+          </div>
+          <div className="">
+            <BlogMeta tags={post.tags} date={post.date_created} />
+          </div>
+        </div>
+        <div />
+      </div>
       <article
         className="dark:prose-p:text-dark-4 dark:prose-headings:text-dark-4 prose mt-6 flex
       min-w-[65vw]
@@ -62,15 +80,6 @@ const BlogpostView = async ({ params }: any) => {
        dark:prose-p:xl:text-2xl"
       >
         <h2>{post.title!}</h2>
-        <div className="flex flex-col items-center justify-items-center gap-y-2">
-          <div className="relative size-96">
-            <DirectusImage src={post.thumbnail} alt="Titelbild" />
-          </div>
-          <div className="">
-            <BlogMeta tags={post.tags} date={post.date_created} />
-          </div>
-          <div />
-        </div>
         <BlogpostMarkdown markdown={post.content!} />{" "}
       </article>
     </div>

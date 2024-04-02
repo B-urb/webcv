@@ -11,7 +11,7 @@ const directusLoader = ({ src, width, quality }: ImageLoaderProps) => {
 const ProfileImage = () => {
   const imageUuid = "218814ac-b04e-4156-9be9-3770ff825a70";
   return (
-    <div className="relative size-36 overflow-hidden rounded-full border-4 border-accent dark:border-accent lg:size-56">
+    <div className="relative size-44 overflow-hidden rounded-full border-4 border-accent dark:border-accent lg:size-72 2xl:size-96">
       <Image
         src={imageUuid}
         alt="Profile Picture"

@@ -1,6 +1,10 @@
 import ReactMarkdown from "react-markdown";
 
-const IntroText = (props: { introtext: string }) => {
+import { getIntrotext, type Introtext } from "../lib/directus";
+
+const IntroText = async () => {
+  const data = (await getIntrotext()) as Introtext;
+
   return (
     <ReactMarkdown
       className="dark:prose-p:text-dark-4
@@ -11,7 +15,7 @@ const IntroText = (props: { introtext: string }) => {
        md:text-2xl
        prose-ul:md:w-96"
     >
-      {props.introtext}
+      {data.introtext}
     </ReactMarkdown>
   );
 };

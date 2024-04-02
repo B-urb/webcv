@@ -14,7 +14,7 @@ const ProjectsCard = (props: {
 }) => {
   return (
     <Link href={`projects/${props.id!.toString()}`}>
-      <div className=" m-4 h-full self-stretch rounded-md shadow-black transition-all duration-300 hover:cursor-pointer md:hover:scale-105 xl:w-96">
+      <div className="size-full self-stretch rounded-md shadow-black transition-all duration-300 hover:cursor-pointer md:w-96 md:hover:scale-105">
         <div className="md:text-md grid h-full divide-y divide-dotted divide-white rounded-md bg-primary p-3 text-xs text-black dark:bg-secondary dark:text-text">
           <div className="row-span-auto">
             <h2 className="font-roboto text-xl md:text-2xl">{props.name}</h2>
@@ -24,7 +24,7 @@ const ProjectsCard = (props: {
             onClick={(e) => e.stopPropagation()}
             className="row-auto h-44 cursor-default overflow-hidden font-barlow text-base prose-a:underline md:h-36"
           >
-            <Markdown className="line-clamp-6 text-xl md:text-xl">
+            <Markdown className="text-md line-clamp-6 xl:text-xl">
               {props.content}
             </Markdown>
           </div>
