@@ -21,6 +21,7 @@ const CodeComponent: React.FC<CodeProps> = ({
       showLineNumbers
       language={match[1]}
       PreTag="div"
+      className="border-opacity/20 border-2 border-accent"
       {...props}
     >
       {String(children).replace(/\n$/, "")}

@@ -7,6 +7,7 @@ import React, { Suspense } from "react";
 import IntroText from "../components/IntroText";
 import ProfileImage from "../components/ProfileImage";
 import ProjectsList from "../components/ProjectsList";
+import SkillsGroup from "../components/SkillsGroup";
 import WorkExperience from "../components/WorkExperience";
 
 export const metadata: Metadata = {
@@ -36,7 +37,7 @@ const AboutMe = () => {
           <h2 className="w-full border-b-4 border-dotted border-accent">
             Work Projects
           </h2>
-          <div className="self-start">
+          <div className="flex justify-center self-start md:justify-start">
             <Suspense>
               <ProjectsList category="work" />
             </Suspense>
@@ -54,6 +55,14 @@ const AboutMe = () => {
                 />
               </button>
             </Link>
+          </div>
+          <h2 className="w-full border-b-4 border-dotted border-accent">
+            Skills
+          </h2>
+          <div className=" w-fit">
+            <Suspense>
+              <SkillsGroup />
+            </Suspense>
           </div>
         </div>
       </div>

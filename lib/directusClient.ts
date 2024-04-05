@@ -5,6 +5,7 @@ import type {
   Introtext,
   Project,
   ProjectTranslations,
+  Skill,
   WorkExperience,
   WorkRoles,
   WorkRolesTranslations,
@@ -23,4 +24,5 @@ interface MyCollections {
   work_experience: WorkExperience[];
   work_roles: WorkRoles[];
   work_roles_translations: WorkRolesTranslations[];
+  skills: Skill[];
 }
