@@ -40,7 +40,10 @@ const Footer = () => {
     <div className="dark:text-dark-4 flex justify-center text-2xl md:text-4xl">
       <ul className="flex">
         {socialLinks.map((social) => (
-          <li key={social.name} className="m-1 hover:cursor-pointer sm:m-3">
+          <li
+            key={social.name}
+            className="m-1 hover:animate-pulse hover:cursor-pointer sm:m-3"
+          >
             <a aria-label={social.name} href={social.url} target="_blank">
               <FontAwesomeIcon icon={social.icon} />
             </a>

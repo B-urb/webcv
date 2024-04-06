@@ -29,7 +29,7 @@ const workTime = (startdate: string, enddate?: string) => {
 const WorkExperience = async () => {
   const experience = await allWorkExperience();
   return (
-    <div className="flex flex-col gap-y-10 first:block">
+    <div className="flex flex-col gap-y-3 first:block">
       {experience !== undefined && experience.length > 0 ? (
         experience
           .sort(
@@ -37,10 +37,16 @@ const WorkExperience = async () => {
               new Date(b.startdate ?? "").getTime() -
               new Date(a.startdate ?? "").getTime()
           )
-          .map((content) => (
-            <div key={content.id} className="flex flex-row gap-x-3">
+          .map((content, index) => (
+            <div
+              key={content.id}
+              style={{ animationDelay: `${(index + 1) * 150}ms` }}
+              className="flex animate-slide-in-right
+              flex-row gap-x-3 rounded-lg bg-gradient-to-br from-secondary to-transparent 
+              p-3 opacity-0 shadow-sm shadow-accent"
+            >
               {workTime(content.startdate, content.enddate)}
-              <div className="flex size-14 items-center justify-center rounded-xl bg-secondary 2xl:size-20">
+              <div className="flex size-14 items-center justify-center rounded-xl bg-secondary  2xl:size-20">
                 <div className="relative size-10 2xl:size-16">
                   <DirectusImage src={content.logo} alt={content.name} />
                 </div>

@@ -7,6 +7,7 @@ import React, { Suspense } from "react";
 import IntroText from "../components/IntroText";
 import ProfileImage from "../components/ProfileImage";
 import ProjectsList from "../components/ProjectsList";
+import SkillsGroup from "../components/SkillsGroup";
 import WorkExperience from "../components/WorkExperience";
 
 export const metadata: Metadata = {
@@ -17,27 +18,30 @@ export const metadata: Metadata = {
 const AboutMe = () => {
   return (
     <div className="flex flex-col gap-y-5 text-xs md:text-xl">
-      <div className="flex justify-center">
-        <ProfileImage />
-      </div>
       <div className="flex w-full flex-col items-center justify-center justify-items-center  ">
         <div className="flex w-4/5 flex-col items-center justify-center gap-y-4">
           <div className="flex w-fit flex-col gap-y-4">
+            <div className="flex flex-col items-center justify-center gap-x-5 2xl:flex-row">
+              <ProfileImage />
+              <Suspense>
+                <IntroText />
+              </Suspense>
+            </div>
             <Suspense>
-              <IntroText />
-            </Suspense>
-            <Suspense>
+              <h2 className="w-full border-b-4 border-dotted border-accent">
+                Work Experience
+              </h2>
               <WorkExperience />
             </Suspense>
           </div>
-          <h2 className="w-full border-b-4 border-dotted border-accent">
-            Work Projects
-          </h2>
-          <div className="self-start">
-            <Suspense>
+          <Suspense>
+            <h2 className="w-full border-b-4 border-dotted border-accent">
+              Work Projects
+            </h2>
+            <div className="flex justify-center self-start md:justify-start">
               <ProjectsList category="work" />
-            </Suspense>
-          </div>
+            </div>
+          </Suspense>
           <div className="flex w-full justify-center">
             <Link href="/projects">
               <button
@@ -51,6 +55,14 @@ const AboutMe = () => {
                 />
               </button>
             </Link>
+          </div>
+          <h2 className="w-full border-b-4 border-dotted border-accent">
+            Skills
+          </h2>
+          <div className=" w-fit">
+            <Suspense>
+              <SkillsGroup />
+            </Suspense>
           </div>
         </div>
       </div>

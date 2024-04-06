@@ -1,4 +1,5 @@
 const tagIconMapping: Object = {
+  sql: "azuresqldatabase",
   cpp: "cplusplus",
 };
 

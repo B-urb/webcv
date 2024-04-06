@@ -1,10 +1,9 @@
 import { faArrowAltCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { Suspense } from "react";
 
-import { BlogpostMarkdown } from "../../../components/BlogpostMarkdown";
-import type { Project } from "../../../lib/directus";
-import { getProjectById } from "../../../lib/directus";
+import ProjectDescription from "../../../components/ProjectDescription";
 
 // export async function generateMetadata(
 //     id: string,
@@ -19,18 +18,11 @@ import { getProjectById } from "../../../lib/directus";
 //   }
 // }
 
-async function getProject(projectId: string) {
-  // Call an external API endpoint to get posts
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
-  return getProjectById(projectId);
-}
 // FIXME: Add generate metadata
-const ProjectView = async ({ params }: any) => {
-  const project: Project = await getProject(params.id);
-  return project !== undefined ? (
-    <div className="flex flex-col items-center">
-      <div className="mx-4 flex w-[90vw] flex-row justify-between">
+const ProjectView = ({ params }: any) => {
+  return (
+    <div className="flex w-full flex-col items-center">
+      <div className="flex w-5/6 items-center justify-items-center gap-x-3">
         <Link href="/projects" legacyBehavior>
           <button
             aria-label="Back"
@@ -40,27 +32,14 @@ const ProjectView = async ({ params }: any) => {
             <FontAwesomeIcon icon={faArrowAltCircleLeft} />
           </button>
         </Link>
-        <h2 className="hidden w-48 font-roboto text-xl opacity-50 md:inline md:text-sm">
-          {project.name!}
+        <h2 className="w-48 font-roboto text-xl opacity-50 md:text-sm">
+          Return To Overview
         </h2>
       </div>
-      <article
-        className="dark:prose-p:text-dark-4 dark: dark:prose-headings:text-dark-4 prose mt-6
-      flex
-      min-w-[65vw]
-       max-w-[90vw] flex-col justify-items-center
-       dark:prose-invert prose-pre:bg-inherit
-       prose-pre:opacity-90
-       dark:prose-p:text-2xl"
-      >
-        <h2>{project.name!}</h2>
-        <BlogpostMarkdown
-          markdown={project.translations?.[0].description!}
-        />{" "}
-      </article>
+      <Suspense>
+        <ProjectDescription id={params.id} />
+      </Suspense>
     </div>
-  ) : (
-    <div>No Projectdata</div>
   );
 };
 

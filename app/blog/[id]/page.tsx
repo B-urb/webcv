@@ -68,16 +68,17 @@ const BlogpostView = async ({ params }: any) => {
         <div />
       </div>
       <article
-        className="dark:prose-p:text-dark-4 dark:prose-headings:text-dark-4 prose mt-6 flex
+        className="prose-p:text-dark-4 prose-headings:text-dark-4 prose-p:text-md
+              prose-div:border-4
+      prose
+      prose-invert
       min-w-[65vw]
       max-w-[90vw]
-      flex-col
-      justify-items-center
-      dark:prose-invert
-       prose-pre:bg-inherit dark:prose-pre:text-xs dark:prose-pre:opacity-90
-       dark:prose-p:sm:text-sm
-       dark:prose-p:md:text-sm
-       dark:prose-p:xl:text-2xl"
+       flex-col justify-items-center
+       bg-inherit prose-pre:bg-inherit
+       prose-pre:opacity-90 prose-pre:first:border-accent
+       dark:prose-pre:text-xs
+       xl:prose-p:text-xl"
       >
         <h2>{post.title!}</h2>
         <BlogpostMarkdown markdown={post.content!} />{" "}

@@ -1,3 +1,5 @@
+import React from "react";
+
 import type { Project } from "../lib/directus";
 import { allProjects } from "../lib/directus";
 import ProjectsCard from "./ProjectsCard";
@@ -8,13 +10,19 @@ const filterProjects = (elem: Project, category: string | undefined) => {
   }
   return category === elem.translations?.[0].category;
 };
-const ProjectsList = async (props: { category?: string }) => {
-  const projects = await allProjects();
+const ProjectsList: React.FC<{
+  category?: string;
+  loader?: () => Promise<Project[]>;
+}> = async ({
+  category,
+  loader = allProjects, // Assigning the default loader function
+}) => {
+  const projects = await loader();
   return (
     <nav className="grid w-4/5 grid-cols-1 gap-4 md:w-fit md:grid-cols-2 3xl:grid-cols-3 4xl:grid-cols-4">
       {projects !== undefined && projects.length > 0 ? (
         projects
-          .filter((project) => filterProjects(project, props.category))
+          .filter((project) => filterProjects(project, category))
           .map((content) => (
             <ProjectsCard
               key={content.name}

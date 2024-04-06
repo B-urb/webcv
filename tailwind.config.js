@@ -29,6 +29,9 @@ module.exports = {
         "3xl": "1840px",
         "4xl": "2100px",
       },
+      animation: {
+        "slide-in-right": "slide-in-right 1s ease-out forwards",
+      },
     },
   },
   // eslint-disable-next-line global-require
