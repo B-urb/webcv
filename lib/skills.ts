@@ -1,7 +1,7 @@
 import { readItems } from "@directus/sdk";
 
 import { directus } from "./directusClient";
-import type { Skill } from "./types";
+import type { Project, Skill } from "./types";
 
 export async function allSkills(): Promise<Skill[]> {
   // We don't need to authenticate if data is public
@@ -15,24 +15,31 @@ export async function allSkills(): Promise<Skill[]> {
   );
 }
 
-// export async function getSkillAssociatedProjects(
-//   id: string
-// ): Promise<Project[]> {
-//   return directus.request(
-//     readItem("projects", id, {
-//       deep: {
-//         translations: {
-//           _filter: {
-//             languages_code: { _eq: "en-US" },
-//           },
-//         },
-//         skills: {
-//           _search: {
-//             : { _contains: parseInt(id, 10) },
-//           },
-//         },
-//       },
-//       fields: ["*", { translations: ["*"], skills: ["id", "key", "text"] }],
-//     })
-//   );
-// }
+export async function getSkillAssociatedProjects(
+  id: string
+): Promise<Project[]> {
+  return directus.request(
+    readItems("projects", {
+      deep: {
+        translations: {
+          _filter: {
+            languages_code: { _eq: "en-US" },
+          },
+        },
+      },
+      filter: {
+        associated_skills: {
+          skills_id: {
+            id: {
+              _in: parseInt(id, 10),
+            },
+          },
+        },
+      },
+      fields: [
+        "*",
+        { translations: ["*"], associated_skills: ["id", "key", "text"] },
+      ],
+    })
+  );
+}

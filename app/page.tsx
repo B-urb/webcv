@@ -27,21 +27,21 @@ const AboutMe = () => {
                 <IntroText />
               </Suspense>
             </div>
-            <h2 className="w-full border-b-4 border-dotted border-accent">
-              Work Experience
-            </h2>
             <Suspense>
+              <h2 className="w-full border-b-4 border-dotted border-accent">
+                Work Experience
+              </h2>
               <WorkExperience />
             </Suspense>
           </div>
-          <h2 className="w-full border-b-4 border-dotted border-accent">
-            Work Projects
-          </h2>
-          <div className="flex justify-center self-start md:justify-start">
-            <Suspense>
+          <Suspense>
+            <h2 className="w-full border-b-4 border-dotted border-accent">
+              Work Projects
+            </h2>
+            <div className="flex justify-center self-start md:justify-start">
               <ProjectsList category="work" />
-            </Suspense>
-          </div>
+            </div>
+          </Suspense>
           <div className="flex w-full justify-center">
             <Link href="/projects">
               <button

@@ -26,7 +26,7 @@ export async function allWorkExperience(): Promise<WorkExperience[]> {
         "startdate",
         "enddate",
         "logo",
-        { roles: ["*", { translations: ["*"] }] },
+        { roles: ["*", { translations: ["*"], associated_skills: ["*"] }] },
       ],
     })
   );
