@@ -29,6 +29,10 @@ module.exports = {
         "3xl": "1840px",
         "4xl": "2100px",
       },
+      fontWeight: {
+        normal: 400,
+        bold: 700,
+      },
       animation: {
         "slide-in-right": "slide-in-right 1s ease-out forwards",
       },

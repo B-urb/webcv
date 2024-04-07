@@ -24,7 +24,7 @@ const ProjectsCard = (props: {
             onClick={(e) => e.stopPropagation()}
             className="row-auto h-44 cursor-default overflow-hidden font-barlow text-base prose-a:underline md:h-36"
           >
-            <Markdown className="text-md line-clamp-6 xl:text-xl">
+            <Markdown className="xl:text-md line-clamp-6 text-sm">
               {props.content}
             </Markdown>
           </div>
