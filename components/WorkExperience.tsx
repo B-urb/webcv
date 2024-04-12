@@ -19,7 +19,7 @@ const workTime = (startdate: string, enddate?: string) => {
   const endFormatted = enddate ? formatDate(enddate) : "now";
 
   return (
-    <div className="flex flex-col items-center gap-y-1">
+    <div className="flex h-full flex-col items-center gap-y-1">
       <span>{endFormatted}</span>
       <div className="h-72 w-px border-r-2 border-dashed border-accent" />
       <span>{startFormatted}</span>

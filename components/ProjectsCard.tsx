@@ -29,10 +29,12 @@ const ProjectsCard = (props: {
             </Markdown>
           </div>
           <div className="row-auto flex flex-wrap justify-start justify-items-start gap-2 pt-2">
-            {props.tags.map((tag) => {
-              if (tag !== undefined) return <MetaTag key={tag} tag={tag} />;
-              return null;
-            })}
+            {props.tags !== undefined
+              ? props.tags.map((tag) => {
+                  if (tag !== undefined) return <MetaTag key={tag} tag={tag} />;
+                  return null;
+                })
+              : "no tags"}
           </div>
         </div>
       </div>

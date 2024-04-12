@@ -1,3 +1,5 @@
+import Markdown from "react-markdown";
+
 import type { WorkRoles } from "../lib/directus";
 
 const formatDate = (date: string) => {
@@ -25,11 +27,11 @@ const WorkRolesView = (props: { roles: WorkRoles[] }) => {
                 {elem.enddate ? formatDate(elem.enddate) : "now"}
               </h4>
             </div>
-            <p className="text-sm">
+            <Markdown className="prose prose-invert text-sm">
               {elem.translations
                 ? elem.translations[0].description
                 : "no description"}
-            </p>
+            </Markdown>
           </div>
         ))}
     </div>
