@@ -24,15 +24,17 @@ const ProjectsCard = (props: {
             onClick={(e) => e.stopPropagation()}
             className="row-auto h-44 cursor-default overflow-hidden font-barlow text-base prose-a:underline md:h-36"
           >
-            <Markdown className="text-md line-clamp-6 xl:text-xl">
+            <Markdown className="xl:text-md line-clamp-6 text-sm">
               {props.content}
             </Markdown>
           </div>
           <div className="row-auto flex flex-wrap justify-start justify-items-start gap-2 pt-2">
-            {props.tags.map((tag) => {
-              if (tag !== undefined) return <MetaTag key={tag} tag={tag} />;
-              return null;
-            })}
+            {props.tags !== undefined
+              ? props.tags.map((tag) => {
+                  if (tag !== undefined) return <MetaTag key={tag} tag={tag} />;
+                  return null;
+                })
+              : "no tags"}
           </div>
         </div>
       </div>

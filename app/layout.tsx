@@ -26,8 +26,16 @@ config.autoAddCss = false;
 const roboto = localFont({
   src: [
     {
-      path: "../public/fonts/roboto-condensed-v25-latin-700.ttf",
+      path: "../public/fonts/roboto-condensed-v27-latin-regular.woff2",
+      weight: "400",
+    },
+    {
+      path: "../public/fonts/roboto-condensed-v27-latin-700.woff2",
       weight: "700",
+    },
+    {
+      path: "../public/fonts/roboto-condensed-v27-latin-900.woff2",
+      weight: "900",
     },
   ],
   variable: "--font-roboto",
