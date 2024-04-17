@@ -39,8 +39,8 @@ const NavBar2 = () => {
     <nav className="border-b border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-900">
       <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
         <div className="text-center md:text-left">
-          <h1 className="bg-gradient-to-br from-primary to-accent bg-clip-text text-4xl text-transparent md:text-5xl">
-            Björn Urban
+          <h1 className="bg-gradient-to-br from-primary to-accent bg-clip-text text-4xl text-transparent hover:cursor-pointer hover:from-accent hover:transition-colors md:text-5xl">
+            <Link href="/">Björn Urban</Link>
           </h1>
         </div>
         <div className="flex md:order-2">
