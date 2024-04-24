@@ -1,9 +1,9 @@
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowAltCircleLeft} from "@fortawesome/free-solid-svg-icons";
-import {BlogpostMarkdown} from "../../../components/BlogpostMarkdown";
-import {getProjectById, Project} from "../../../lib/directus";
+import { faArrowAltCircleLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { Suspense } from "react";
 
+import ProjectDescription from "../../../components/ProjectDescription";
 
 // export async function generateMetadata(
 //     id: string,
@@ -18,34 +18,29 @@ import Link from "next/link";
 //   }
 // }
 
-async function getProject(projectId: string) {
-  // Call an external API endpoint to get posts
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
-  return await getProjectById(projectId)
-}
-//FIXME: Add generate metadata
-const Project = async ({params}: any) => {
-const project: Project = await getProject(params.id)
-console.log(project)
-
-  return project != undefined ? <div className="flex items-center flex-col">
-    <div className="flex flex-row w-[90vw] justify-between mx-4">
-      <Link href="/projects" legacyBehavior><button className="md:text-2xl transition-all hover:scale-150">
-        <FontAwesomeIcon icon={faArrowAltCircleLeft}/></button>
-      </Link>
-      <h2 className="hidden md:inline font-roboto opacity-50 w-48 text-xl md:text-sm">{project.name!}</h2>
+// FIXME: Add generate metadata
+const ProjectView = ({ params }: any) => {
+  return (
+    <div className="flex w-full flex-col items-center">
+      <div className="flex w-5/6 items-center justify-items-center gap-x-3">
+        <Link href="/projects" legacyBehavior>
+          <button
+            aria-label="Back"
+            type="button"
+            className="transition-all hover:scale-150 md:text-2xl"
+          >
+            <FontAwesomeIcon icon={faArrowAltCircleLeft} />
+          </button>
+        </Link>
+        <h2 className="w-48 font-roboto text-xl opacity-50 md:text-sm">
+          Return To Overview
+        </h2>
+      </div>
+      <Suspense>
+        <ProjectDescription id={params.id} />
+      </Suspense>
     </div>
-    <article className="flex justify-items-center flex-col mt-6 min-w-[65vw]
-      max-w-[90vw]
-      dark:prose-p:text-2xl
-       prose prose-pre:bg-inherit dark:prose-p:text-dark-4
-       dark: prose-pre:opacity-90
-       dark:prose-headings:text-dark-4
-       dark:prose-invert"><h2>{project.name!}</h2><BlogpostMarkdown markdown={project.description!}/> </article>
-  </div> :<div>No Projectdata</div>;
-}
+  );
+};
 
-
-
-export default Project;
+export default ProjectView;
