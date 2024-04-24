@@ -13,7 +13,6 @@ async function getRepoLanguageStats(
     });
     return response.data;
   } catch (error) {
-    console.error("Error fetching repository language stats:", error);
     return null;
   }
 }
