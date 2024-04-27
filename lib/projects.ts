@@ -17,13 +17,7 @@ export async function allProjects(): Promise<Project[]> {
           },
         },
       },
-      fields: [
-        "id",
-        "name",
-        "tags",
-        "repository_url",
-        { translations: ["*"], associated_skills: ["*"] },
-      ],
+      fields: ["*", { translations: ["*"], associated_skills: ["*"] }],
     })
   );
 }
@@ -44,7 +38,13 @@ export async function getProjectById(id: string): Promise<Project> {
           },
         },
       },
-      fields: ["*", { translations: ["*"], associated_skills: ["*"] }],
+      fields: [
+        "*",
+        {
+          translations: ["*"],
+          associated_skills: ["id", "skills_id", "projects_id"],
+        },
+      ],
       limit: 1,
     })
   );
