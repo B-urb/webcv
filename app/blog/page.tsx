@@ -24,12 +24,12 @@ const Blogposts = async () => {
   const blogposts: BlogPostData[] = res ?? [];
 
   return (
-    <div className="mt-2 flex flex-col items-center justify-center text-center">
-      <h2>
+    <div className="mt-2 flex flex-col items-center justify-center gap-y-3 text-center lg:gap-y-14">
+      <h2 className="text-center font-bold text-accent underline lg:text-2xl">
         Blogposts about mostly tech related topics. Tutorials, experiences and
         more.
       </h2>
-      <nav className="3xl:grid-cols-4 grid list-none grid-cols-1 justify-start gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <nav className="grid list-none grid-cols-1 justify-start gap-4 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4">
         {blogposts.length > 0 ? (
           blogposts
             .sort(

@@ -28,14 +28,14 @@ const AboutMe = () => {
               </Suspense>
             </div>
             <Suspense>
-              <h2 className="w-full border-b-4 border-dotted border-accent">
+              <h2 className="w-full border-b-4 border-dotted border-accent text-lg lg:text-2xl">
                 Work Experience
               </h2>
               <WorkExperience />
             </Suspense>
           </div>
           <Suspense>
-            <h2 className="w-full border-b-4 border-dotted border-accent">
+            <h2 className="w-full border-b-4 border-dotted border-accent text-lg lg:text-2xl">
               Work Projects
             </h2>
             <div className="flex justify-center self-center md:justify-start">
@@ -56,7 +56,7 @@ const AboutMe = () => {
               </button>
             </Link>
           </div>
-          <h2 className="w-full border-b-4 border-dotted border-accent">
+          <h2 className="w-full border-b-4 border-dotted border-accent text-lg lg:text-2xl">
             Skills
           </h2>
           <div className=" w-fit">

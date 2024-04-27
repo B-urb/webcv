@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 };
 const Projects = () => {
   return (
-    <div className="flex flex-col items-center">
-      <h2 className="text-center">
+    <div className="flex flex-col items-center gap-y-3 lg:gap-y-14">
+      <h2 className="text-center font-bold text-accent underline lg:text-2xl">
         Projects summarizing my professional experience with different
         frameworks and programming languages and technologies.
       </h2>
