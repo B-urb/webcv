@@ -17,10 +17,10 @@ export const metadata: Metadata = {
 };
 const AboutMe = () => {
   return (
-    <div className="flex flex-col gap-y-5 text-xs md:text-xl">
+    <div className="flex flex-col gap-y-5  text-xs md:text-xl">
       <div className="flex w-full flex-col items-center justify-center justify-items-center  ">
         <div className="flex w-4/5 flex-col items-center justify-center gap-y-4">
-          <div className="flex w-fit flex-col gap-y-4">
+          <div className="flex w-full flex-col gap-y-4">
             <div className="flex flex-col items-center justify-center gap-x-5 2xl:flex-row">
               <ProfileImage />
               <Suspense>
@@ -38,7 +38,7 @@ const AboutMe = () => {
             <h2 className="w-full border-b-4 border-dotted border-accent">
               Work Projects
             </h2>
-            <div className="flex justify-center self-start md:justify-start">
+            <div className="flex justify-center self-center md:justify-start">
               <ProjectsList category="work" />
             </div>
           </Suspense>
