@@ -50,7 +50,9 @@ const BlogpostCard: React.FC<BlogpostCardProps> = ({
             {new Date(date).toLocaleDateString("de-DE", dateOptions)}
           </span>
           <div className="row-auto flex flex-wrap justify-start justify-items-start gap-2 pt-2">
-            {tags.map((tag) => tag && <MetaTag key={tag} tag={tag} />)}
+            {tags.map(
+              (tag) => tag && <MetaTag key={tag} tag={tag} text={tag} />
+            )}
           </div>
         </button>
       </div>

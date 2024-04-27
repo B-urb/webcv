@@ -29,7 +29,7 @@ const workTime = (startdate: string, enddate?: string) => {
 const WorkExperience = async () => {
   const experience = await allWorkExperience();
   return (
-    <div className="flex flex-col gap-y-3 first:block">
+    <div className="flex w-full flex-col gap-y-3 self-center first:block lg:w-4/5">
       {experience !== undefined && experience.length > 0 ? (
         experience
           .sort(

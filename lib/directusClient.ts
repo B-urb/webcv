@@ -4,6 +4,7 @@ import type {
   Blogpost,
   Introtext,
   Project,
+  ProjectsSkills,
   ProjectTranslations,
   Skill,
   WorkExperience,
@@ -21,6 +22,7 @@ interface MyCollections {
   projects: Project[];
   projects_translations: ProjectTranslations[];
   aboutme: Introtext;
+  projects_skills: ProjectsSkills[];
   work_experience: WorkExperience[];
   work_roles: WorkRoles[];
   work_roles_translations: WorkRolesTranslations[];
