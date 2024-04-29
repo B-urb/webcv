@@ -3,7 +3,7 @@ const tagIconMapping: Object = {
   cpp: "cplusplus",
 };
 
-const MetaTag = (props: { tag: string }) => {
+const MetaTag = (props: { tag: string; text: string }) => {
   const findIconOrNull = () => {
     if (!(props.tag.toLowerCase() in tagIconMapping))
       return `devicon-${props.tag.toLowerCase()}-plain`;
@@ -15,7 +15,7 @@ const MetaTag = (props: { tag: string }) => {
       <div className="text-center text-base md:text-lg">
         <i className={findIconOrNull()} />
       </div>
-      <span className="ml-0.5 text-sm md:text-base">{`${props.tag}`}</span>
+      <span className="ml-0.5 text-sm md:text-base">{`${props.text}`}</span>
     </div>
   );
 };

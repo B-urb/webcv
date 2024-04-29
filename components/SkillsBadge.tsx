@@ -20,7 +20,7 @@ const SkillsBadge = (props: { id: string; text: string }) => {
       <div className="text-center text-xl font-extrabold transition-transform duration-300 ease-in-out group-hover:scale-110">
         <i className={findIconOrNull()} />
       </div>
-      <span className="text-xl opacity-100 transition-transform duration-300 ease-in-out group-hover:scale-110">{`${props.text}`}</span>
+      <span className="max-w-20 text-xl opacity-100 transition-transform duration-300 ease-in-out group-hover:scale-110">{`${props.text}`}</span>
     </div>
   );
 };

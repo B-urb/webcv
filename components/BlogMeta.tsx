@@ -24,7 +24,9 @@ const BlogMeta = (props: { tags: string[]; date: string }) => {
         icon={faTags}
       />
       <div className="col-span-5 flex flex-wrap justify-start justify-items-start gap-2 pt-2">
-        {props.tags.map((tag) => tag && <MetaTag key={tag} tag={tag} />)}
+        {props.tags.map(
+          (tag) => tag && <MetaTag key={tag} tag={tag} text={tag} />
+        )}
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ describe("BlogpostCard component", () => {
   };
 
   it("renders correctly", () => {
+    jest.spyOn(console, "error").mockImplementation();
     render(<BlogpostCard {...mockProps} />);
     expect(screen.getByText(/test blogpost/i)).toBeInTheDocument();
     expect(screen.getByText(/tag1/i)).toBeInTheDocument();

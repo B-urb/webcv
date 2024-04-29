@@ -1,17 +1,19 @@
-"use client";
-
 import Link from "next/link";
 import React from "react";
 import Markdown from "react-markdown";
 
+import { getSkillsById } from "../lib/skills";
+import type { ProjectsSkills } from "../lib/types";
 import MetaTag from "./MetaTag";
 
-const ProjectsCard = (props: {
+const ProjectsCard = async (props: {
   id: number;
   name: string;
   content: string;
-  tags: Array<string | undefined>;
+  associated_skills: ProjectsSkills[] | null;
 }) => {
+  const ids = props.associated_skills?.map((it) => Number(it.skills_id))!;
+  const skills = await getSkillsById(ids);
   return (
     <Link href={`projects/${props.id!.toString()}`}>
       <div className="size-full self-stretch rounded-md shadow-black transition-all duration-300 hover:cursor-pointer md:w-96 md:hover:scale-105">
@@ -20,18 +22,18 @@ const ProjectsCard = (props: {
             <h2 className="font-roboto text-xl md:text-2xl">{props.name}</h2>
           </div>
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="row-auto h-44 cursor-default overflow-hidden font-barlow text-base prose-a:underline md:h-36"
-          >
+          <div className="row-auto h-44 cursor-default overflow-hidden font-barlow text-base prose-a:underline md:h-36">
             <Markdown className="xl:text-md line-clamp-6 text-sm">
               {props.content}
             </Markdown>
           </div>
           <div className="row-auto flex flex-wrap justify-start justify-items-start gap-2 pt-2">
-            {props.tags !== undefined
-              ? props.tags.map((tag) => {
-                  if (tag !== undefined) return <MetaTag key={tag} tag={tag} />;
+            {skills !== undefined
+              ? skills?.map((tag) => {
+                  if (tag !== undefined)
+                    return (
+                      <MetaTag key={tag.key} tag={tag.key} text={tag.text} />
+                    );
                   return null;
                 })
               : "no tags"}

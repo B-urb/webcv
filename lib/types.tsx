@@ -14,7 +14,7 @@ export type Project = {
   tags: Array<string>;
   translations: ProjectTranslations[] | null;
   repository_url: string;
-  associated_skills: Skill[] | null;
+  associated_skills: ProjectsSkills[] | null;
 };
 export type ProjectTranslations = {
   id: number;
@@ -26,8 +26,8 @@ export type ProjectTranslations = {
 
 export type ProjectsSkills = {
   id: number;
-  project_id: number;
-  skill_id: number;
+  projects_id: number | Project[] | null;
+  skills_id: number | Skill[] | null;
 };
 
 export type Skill = {
