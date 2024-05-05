@@ -19,6 +19,7 @@ const resourceName = stackName + "-" + projectName;
 const k8sNamespace = config.get("namespace") || projectName;
 
 const cmsToken = config.getSecret("cms-token");
+const isrToken = config.getSecret("isr-token");
 
 const appLabels = {
   name: resourceName,
@@ -83,6 +84,10 @@ const deployment = new Deployment(resourceName, {
               {
                 name: "url",
                 value: url,
+              },
+              {
+                name: "CI_ISR_TOKEN",
+                value: isrToken,
               },
               {
                 name: "CI_DIRECTUS_TOKEN",
