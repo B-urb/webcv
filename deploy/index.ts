@@ -50,99 +50,116 @@ const secret = createGitlabSecret(
 // Create a new Deployment with a user-specified number of replicas
 // Assume we have a configured Kubernetes provider
 
-const externalSecret = new apiextensions.CustomResource("external-isr-token", {
-  apiVersion: "external-secrets.io/v1beta1",
-  kind: "ExternalSecret",
+const isrSecret = new Secret("isr-token-secret", {
   metadata: {
-    name: "external-isr-token",
-    namespace: "default",
-  },
-  spec: {
-    refreshInterval: "240h",
-    secretStoreRef: {
-      name: "aws-secret-store", // This should be the name of your SecretStore
-      kind: "ClusterSecretStore", // or SecretStore if not cluster-wide
-    },
-    target: {
-      name: "isr-token-secret", // The name of the Kubernetes secret to be created
-      creationPolicy: "Owner",
-    },
-    data: [
-      {
-        secretKey: "ISR_TOKEN",
-        remoteRef: {
-          key: "ISR_TOKEN",
-          property: "ISR_TOKEN",
-        },
-      },
-    ],
+    name: "isr-token-secret",
+    namespace: k8sNamespace,
   },
 });
-
-const deployment = new Deployment(resourceName, {
-  metadata: {
-    name: resourceName,
-    namespace: webServerNs.metadata.name,
-    labels: appLabels,
-  },
-  spec: {
-    strategy: {
-      type: "Recreate",
+const externalSecret = new apiextensions.CustomResource(
+  "external-isr-token",
+  {
+    apiVersion: "external-secrets.io/v1beta1",
+    kind: "ExternalSecret",
+    metadata: {
+      name: "external-isr-token",
+      namespace: "default",
     },
-    selector: {
-      matchLabels: appLabels,
-    },
-    template: {
-      metadata: {
-        labels: appLabels,
+    spec: {
+      refreshInterval: "240h",
+      secretStoreRef: {
+        name: "aws-secret-store", // This should be the name of your SecretStore
+        kind: "ClusterSecretStore", // or SecretStore if not cluster-wide
       },
-      spec: {
-        containers: [
-          {
-            name: resourceName,
-            image: process.env.registryImage + ":" + process.env.imageTag,
-            imagePullPolicy: "Always",
-            resources: {
-              requests: {
-                memory: "250Mi",
-                cpu: "300m",
-              },
-              limits: {
-                memory: "500Mi",
-                cpu: "700m",
-              },
-            },
-            env: [
-              {
-                name: "url",
-                value: url,
-              },
-              {
-                name: "CI_ISR_TOKEN",
-                valueFrom: {
-                  secretKeyRef: { name: "isr-token-secret", key: "ISR_TOKEN" },
+      target: {
+        name: isrSecret.metadata.name, // The name of the Kubernetes secret to be created
+        creationPolicy: "Owner",
+      },
+      data: [
+        {
+          secretKey: "ISR_TOKEN",
+          remoteRef: {
+            key: "ISR_TOKEN",
+            property: "ISR_TOKEN",
+          },
+        },
+      ],
+    },
+  },
+  { dependsOn: [isrSecret] }
+);
+
+const deployment = new Deployment(
+  resourceName,
+  {
+    metadata: {
+      name: resourceName,
+      namespace: webServerNs.metadata.name,
+      labels: appLabels,
+    },
+    spec: {
+      strategy: {
+        type: "Recreate",
+      },
+      selector: {
+        matchLabels: appLabels,
+      },
+      template: {
+        metadata: {
+          labels: appLabels,
+        },
+        spec: {
+          containers: [
+            {
+              name: resourceName,
+              image: process.env.registryImage + ":" + process.env.imageTag,
+              imagePullPolicy: "Always",
+              resources: {
+                requests: {
+                  memory: "250Mi",
+                  cpu: "300m",
+                },
+                limits: {
+                  memory: "500Mi",
+                  cpu: "700m",
                 },
               },
-              {
-                name: "CI_DIRECTUS_TOKEN",
-                value: cmsToken,
-              },
-            ],
-            ports: [
-              {
-                name: "http",
-                containerPort: 3000,
-              },
-            ],
-          },
-        ],
-        imagePullSecrets: [
-          { name: pulumi.interpolate`${secret.metadata.name}` },
-        ],
+              env: [
+                {
+                  name: "url",
+                  value: url,
+                },
+                {
+                  name: "CI_ISR_TOKEN",
+                  valueFrom: {
+                    secretKeyRef: {
+                      name: isrSecret.metadata.name,
+                      key: "ISR_TOKEN",
+                    },
+                  },
+                },
+                {
+                  name: "CI_DIRECTUS_TOKEN",
+                  value: cmsToken,
+                },
+              ],
+              ports: [
+                {
+                  name: "http",
+                  containerPort: 3000,
+                },
+              ],
+            },
+          ],
+          imagePullSecrets: [
+            { name: pulumi.interpolate`${secret.metadata.name}` },
+          ],
+        },
       },
     },
   },
-});
+  { dependsOn: [externalSecret] }
+);
 
 // Expose the Deployment as a Kubernetes Service
 const service = new kubernetes.core.v1.Service(resourceName, {
