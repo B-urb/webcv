@@ -80,7 +80,6 @@ const externalSecret = new apiextensions.CustomResource(
           secretKey: "ISR_TOKEN",
           remoteRef: {
             key: "ISR_TOKEN",
-            property: "ISR_TOKEN",
           },
         },
       ],
