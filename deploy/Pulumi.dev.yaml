@@ -1,6 +1,8 @@
 config:
   webcv:cms-token:
-    secure: AAABAKY8lN0kFwiy4+qIDjVOAIcuvuNznVMmnbDKtJyeIkMpZ6H+vGTxjAnLzl2s/U0dZfcsSxbFwUtjZI2F6Q==
+    secure: AAABAFibCTJhzMe7EYzENxoiR05ggwNXfJ3kHnjPZiXeOIRGMsXON/vbXev9lumWrNPy431mDk+rUdUI/52Whw==
+  webcv:isr-token:
+    secure: AAABABfwRWB0tzF87aEJvhSUIKrM0USp4H3gBPAYg2ZYhp0QW+bzL0Gd1lJa51IHuKYqpStl5OhLZJK53o//fBjTas/uOPlzcNLxLVuU1W34IkYMbEl+fgbmsn6iq709
   webcv:namespace: burban
   webcv:replicas: "1"
   webcv:url: burban.me

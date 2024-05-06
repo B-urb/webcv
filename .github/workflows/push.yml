@@ -38,6 +38,7 @@ jobs:
         run: npm run build
         env:
           CI_DIRECTUS_TOKEN: ${{ secrets.CI_DIRECTUS_TOKEN }}
+          CI_ISR_TOKEN: ${{ secrets.CI_ISR_TOKEN }}
 
       - name: Linter
         run: npm run lint

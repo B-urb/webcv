@@ -32,6 +32,7 @@ jobs:
         run: npm run build
         env:
           CI_DIRECTUS_TOKEN: ${{ secrets.CI_DIRECTUS_TOKEN }}
+          CI_ISR_TOKEN: ${{ secrets.CI_ISR_TOKEN }}
           ANALYTICS_ID: ${{ secrets.ANALYTICS_ID }}
 
 
