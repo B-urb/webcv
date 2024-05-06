@@ -23,11 +23,9 @@ async function handleRequest(req: NextRequest) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  console.log("Authorized");
   try {
     // Assuming some shared logic here for demonstration
     const data = await req.json();
-    console.log(data);
     if (data !== undefined) {
       if (
         data.operation.contains("create") ||
@@ -35,6 +33,7 @@ async function handleRequest(req: NextRequest) {
       ) {
         revalidatePath(`/${data.collection}}`);
       } else {
+        revalidatePath(`/${data.collection}`);
         revalidatePath(`/${data.collection}/${data.id}`);
       }
     }
