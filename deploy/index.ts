@@ -53,7 +53,7 @@ const secret = createGitlabSecret(
 const isrSecret = new Secret("isr-token-secret", {
   metadata: {
     name: "isr-token-secret",
-    namespace: k8sNamespace,
+    namespace: webServerNs.metadata.name,
   },
 });
 const externalSecret = new apiextensions.CustomResource(
@@ -63,7 +63,7 @@ const externalSecret = new apiextensions.CustomResource(
     kind: "ExternalSecret",
     metadata: {
       name: "external-isr-token",
-      namespace: "default",
+      namespace: webServerNs.metadata.name,
     },
     spec: {
       refreshInterval: "240h",
