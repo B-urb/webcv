@@ -5,6 +5,8 @@ import { createGitlabSecret } from "./src/util";
 import { authAnnotation } from "./src/globals";
 import { Ingress } from "@pulumi/kubernetes/networking/v1";
 import { Deployment } from "@pulumi/kubernetes/apps/v1";
+import { Secret } from "@pulumi/kubernetes/core/v1";
+import { apiextensions } from "@pulumi/kubernetes";
 
 // Get some values from the stack configuration, or use defaults
 const config = new pulumi.Config();
@@ -46,6 +48,36 @@ const secret = createGitlabSecret(
 );
 
 // Create a new Deployment with a user-specified number of replicas
+// Assume we have a configured Kubernetes provider
+
+const externalSecret = new apiextensions.CustomResource("external-isr-token", {
+  apiVersion: "external-secrets.io/v1beta1",
+  kind: "ExternalSecret",
+  metadata: {
+    name: "external-isr-token",
+    namespace: "default",
+  },
+  spec: {
+    refreshInterval: "240h",
+    secretStoreRef: {
+      name: "aws-secret-store", // This should be the name of your SecretStore
+      kind: "ClusterSecretStore", // or SecretStore if not cluster-wide
+    },
+    target: {
+      name: "isr-token-secret", // The name of the Kubernetes secret to be created
+      creationPolicy: "Owner",
+    },
+    data: [
+      {
+        secretKey: "ISR_TOKEN",
+        remoteRef: {
+          key: "ISR_TOKEN",
+          property: "ISR_TOKEN",
+        },
+      },
+    ],
+  },
+});
 
 const deployment = new Deployment(resourceName, {
   metadata: {
@@ -87,7 +119,9 @@ const deployment = new Deployment(resourceName, {
               },
               {
                 name: "CI_ISR_TOKEN",
-                value: isrToken,
+                valueFrom: {
+                  secretKeyRef: { name: "isr-token-secret", key: "ISR_TOKEN" },
+                },
               },
               {
                 name: "CI_DIRECTUS_TOKEN",
