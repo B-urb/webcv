@@ -31,9 +31,9 @@ async function handleRequest(req: NextRequest) {
         data.operation.contains("create") ||
         data.operation.contains("delete")
       ) {
-        revalidatePath(`/${data.collection}}`);
+        revalidatePath(`/${data.collection}/`);
       } else {
-        revalidatePath(`/${data.collection}`);
+        revalidatePath(`/${data.collection}/`);
         revalidatePath(`/${data.collection}/${data.id}`);
       }
     }
