@@ -60,7 +60,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <Script
           strategy="beforeInteractive"
           data-website-id={process.env.NEXT_PUBLIC_ANALYTICS_ID}
-          src="https://stats.burban.me/script.js"
+          src="https://cloud.umami.is/script.js"
         />
       </body>
     </html>
