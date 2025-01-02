@@ -12,7 +12,7 @@ import type {
   WorkRolesTranslations,
 } from "./types";
 
-export const directus = createDirectus<MyCollections>("https://cms.burban.me")
+export const directus = createDirectus<MyCollections>("https://cms.burbn.de")
   .with(staticToken(process.env.DIRECTUS_TOKEN!))
   .with(rest())
   .with(graphql());
