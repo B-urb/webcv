@@ -6,7 +6,7 @@ export * from "./projects";
 export * from "./types";
 export * from "./workExperience";
 
-// const directus = new Directus<MyCollections>('https://cms.burban.me', {
+// const directus = new Directus<MyCollections>('https://cms.burbn.de', {
 //   auth: {
 //     staticToken: process.env.DIRECTUS_TOKEN!
 //   }

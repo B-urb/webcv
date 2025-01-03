@@ -4,4 +4,4 @@ config:
   webcv:isr-token:
     secure: AAABAOvA8JuzpJ9LjVlUxvMjxtO5bftB4UIPMp428gXGHZZAH25KsQSeHZSJlm4qQ0jMjMvZ2LhSBzclQtxidpXF2xwBMVzsW3MawvsPWjj5jokafn3fiTqCkHG9WanE
   webcv:namespace: burban
-  webcv:url: burban.me
+  webcv:url: burbn.de
